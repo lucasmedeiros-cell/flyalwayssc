@@ -1,0 +1,394 @@
+@import "tailwindcss";
+
+/* Modo oscuro por clase (.dark) en lugar de prefers-color-scheme. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+  Identidad visual "FlyAlways" — 100% original.
+  Marca: violeta-índigo (señal de marca) + menta/teal (acento "go"),
+  neutros levemente fríos, glassmorphism muy sutil.
+*/
+
+:root {
+  --background: #f6f7fb;
+  --foreground: #0e1525;
+
+  --surface: #ffffff;
+  --surface-2: #eef1f8;
+
+  --muted: #f1f3f9;
+  --muted-foreground: #5b6577;
+
+  --border: #e4e8f1;
+  --input: #e4e8f1;
+  --ring: #3a23a8;
+
+  /* Marca FlyAlways — colores del logo: índigo (primario), rojo (acento), verde (éxito). */
+  --primary: #3a23a8;
+  --primary-strong: #2c1980;
+  --primary-foreground: #ffffff;
+
+  --accent: #e62020;
+  --accent-strong: #c4140f;
+  --accent-foreground: #ffffff;
+
+  --success: #1ca71c;
+  --warning: #e0a106;
+  --danger: #e5484d;
+
+  /* Glassmorphism muy sutil */
+  --glass-bg: rgba(255, 255, 255, 0.66);
+  --glass-border: rgba(255, 255, 255, 0.7);
+  --glass-highlight: rgba(255, 255, 255, 0.9);
+
+  /* Sombras suaves */
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.04), 0 1px 3px rgba(16, 24, 40, 0.06);
+  --shadow-md: 0 6px 16px -4px rgba(16, 24, 40, 0.1), 0 2px 6px -2px rgba(16, 24, 40, 0.06);
+  --shadow-lg: 0 24px 48px -12px rgba(16, 24, 40, 0.18);
+  --shadow-glow: 0 12px 40px -10px rgba(58, 35, 168, 0.45);
+
+  color-scheme: light;
+}
+
+.dark {
+  --background: #0a0d16;
+  --foreground: #e8ebf2;
+
+  --surface: #121726;
+  --surface-2: #1a2034;
+
+  --muted: #161c2c;
+  --muted-foreground: #98a2b8;
+
+  --border: rgba(255, 255, 255, 0.09);
+  --input: rgba(255, 255, 255, 0.12);
+  --ring: #8b7bf5;
+
+  --primary: #8b7bf5;
+  --primary-strong: #7a68f0;
+  --primary-foreground: #0a0d16;
+
+  --accent: #ff6b6b;
+  --accent-strong: #ff4d4d;
+  --accent-foreground: #2a0606;
+
+  --glass-bg: rgba(18, 23, 38, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-highlight: rgba(255, 255, 255, 0.06);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 24px -6px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 28px 60px -16px rgba(0, 0, 0, 0.65);
+  --shadow-glow: 0 16px 50px -12px rgba(139, 123, 245, 0.4);
+
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-primary: var(--primary);
+  --color-primary-strong: var(--primary-strong);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), var(--font-sans), sans-serif;
+
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+  --radius-3xl: 1.75rem;
+
+  --shadow-soft-sm: var(--shadow-sm);
+  --shadow-soft-md: var(--shadow-md);
+  --shadow-soft-lg: var(--shadow-lg);
+  --shadow-glow: var(--shadow-glow);
+
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Transición animada de tema (claro ↔ oscuro). En @layer base para que las
+   utilidades de Tailwind (transition-colors, etc.) sigan teniendo prioridad. */
+@layer base {
+  body,
+  .glass,
+  [class*="bg-surface"],
+  [class*="border-"] {
+    transition:
+      background-color 0.45s var(--ease-spring),
+      border-color 0.45s var(--ease-spring),
+      color 0.45s var(--ease-spring),
+      box-shadow 0.45s var(--ease-spring);
+  }
+}
+
+/* Utilidades de marca reutilizables ------------------------------------ */
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid var(--glass-border);
+}
+
+.text-gradient {
+  background: linear-gradient(100deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Eyebrow / kicker estandarizado para encabezados de sección. */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+.eyebrow::before {
+  content: "";
+  height: 1px;
+  width: 1.75rem;
+  background: linear-gradient(90deg, var(--primary), transparent);
+}
+.eyebrow.justify-center::before {
+  display: none;
+}
+
+/* Texto legible sobre fotografía (hero, tiles). */
+.text-on-photo {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 2px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* Inputs de fecha: oculta el icono nativo de calendario (derecha) pero deja que
+   un clic en cualquier parte del campo abra el datepicker. Mantiene solo el icono
+   principal del Field. */
+.date-input::-webkit-calendar-picker-indicator {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  opacity: 0;
+}
+
+/* Ruido fino para dar "grano" premium a superficies (usar con opacidad muy baja). */
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='140'%20height='140'%3E%3Cfilter%20id='n'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.85'%20numOctaves='2'%20stitchTiles='stitch'/%3E%3C/filter%3E%3Crect%20width='100%25'%20height='100%25'%20filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.bg-aurora {
+  background:
+    radial-gradient(60% 55% at 15% 10%, color-mix(in oklab, var(--primary) 28%, transparent), transparent 70%),
+    radial-gradient(55% 50% at 90% 15%, color-mix(in oklab, var(--accent) 24%, transparent), transparent 70%),
+    radial-gradient(45% 45% at 60% 95%, color-mix(in oklab, var(--primary) 16%, transparent), transparent 70%);
+}
+
+/* Aurora viva: desplazamiento muy lento en loop (solo da sensación de vida). */
+@keyframes aurora-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1.05);
+  }
+  50% {
+    transform: translate3d(-2.5%, 2%, 0) scale(1.12);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.05);
+  }
+}
+.aurora-animate {
+  animation: aurora-drift 22s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Blob decorativo flotante para fondos del hero. */
+@keyframes blob-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2%, -3%, 0) scale(1.08);
+  }
+}
+.animate-blob {
+  animation: blob-float 14s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Barrido "shimmer" para botones premium (se activa al hover). */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    100deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 75%
+  );
+  transform: translateX(-120%);
+  transition: transform 0s;
+  pointer-events: none;
+}
+.btn-shine:hover::after {
+  transform: translateX(120%);
+  transition: transform 0.85s var(--ease-spring);
+}
+
+/* Skeleton con barrido luminoso en lugar de un simple pulse. */
+@keyframes skeleton-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface-2);
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklab, var(--muted-foreground) 12%, transparent),
+    transparent
+  );
+  animation: skeleton-shimmer 1.5s infinite;
+}
+
+/* Borde con glow sutil reutilizable. */
+.ring-glow {
+  box-shadow: var(--shadow-glow);
+}
+
+/* Scrollbar discreta */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--muted-foreground) 35%, transparent);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in oklab, var(--muted-foreground) 55%, transparent);
+  background-clip: padding-box;
+}
+
+/* Slider de rango con doble pulgar */
+.dual-range__input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background: transparent;
+  pointer-events: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.dual-range__input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  pointer-events: auto;
+  height: 18px;
+  width: 18px;
+  border-radius: 9999px;
+  background: var(--surface);
+  border: 2px solid var(--primary);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform 0.15s var(--ease-spring);
+}
+.dual-range__input::-webkit-slider-thumb:hover {
+  transform: scale(1.12);
+}
+.dual-range__input::-moz-range-thumb {
+  pointer-events: auto;
+  height: 16px;
+  width: 16px;
+  border-radius: 9999px;
+  background: var(--surface);
+  border: 2px solid var(--primary);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+}
+.dual-range__input:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Pulso del marcador GPS en el mapa de seguimiento */
+@keyframes gps-pulse {
+  0% {
+    r: 2.4;
+    opacity: 0.55;
+  }
+  100% {
+    r: 7;
+    opacity: 0;
+  }
+}
+.gps-pulse {
+  animation: gps-pulse 1.8s ease-out infinite;
+  transform-box: fill-box;
+}
+
+/* Respeta reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

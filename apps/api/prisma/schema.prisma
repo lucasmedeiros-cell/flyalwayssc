@@ -1,0 +1,256 @@
+// Esquema Prisma — Vialta API
+// Modelo de dominio inicial para transporte multimodal, multiempresa y multisucursal.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ----------------------------------------------------------------------------
+// Enums
+// ----------------------------------------------------------------------------
+
+enum TransportMode {
+  AIR
+  BUS
+  TRAIN
+  PRIVATE
+}
+
+enum TravelClass {
+  ECONOMY
+  PREMIUM_ECONOMY
+  BUSINESS
+  FIRST
+  STANDARD
+  EXECUTIVE
+  VIP
+  SLEEPER
+}
+
+enum UserRole {
+  TRAVELER
+  OPERATOR_ADMIN
+  STAFF
+  PLATFORM_ADMIN
+}
+
+enum BookingStatus {
+  DRAFT
+  PENDING_PAYMENT
+  CONFIRMED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+enum SeatStatus {
+  AVAILABLE
+  HELD
+  BOOKED
+  BLOCKED
+}
+
+// ----------------------------------------------------------------------------
+// Multiempresa / multisucursal
+// ----------------------------------------------------------------------------
+
+model Company {
+  id         String          @id @default(cuid())
+  name       String
+  slug       String          @unique
+  modes      TransportMode[]
+  logoMark   String
+  brandColor String          @default("#6a5cff")
+  rating     Float           @default(0)
+  countryCode String         @default("PE")
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+
+  branches   Branch[]
+  vehicles   Vehicle[]
+  routes     Route[]
+  trips      Trip[]
+  staff      User[]
+}
+
+model Branch {
+  id        String   @id @default(cuid())
+  companyId String
+  company   Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  name      String
+  city      String
+  countryCode String @default("PE")
+  createdAt DateTime @default(now())
+
+  @@index([companyId])
+}
+
+// ----------------------------------------------------------------------------
+// Catálogo de transporte
+// ----------------------------------------------------------------------------
+
+model Place {
+  id          String        @id @default(cuid())
+  code        String        @unique
+  name        String
+  city        String
+  country     String
+  countryCode String
+  kind        String // airport | bus_terminal | train_station | private_hub | city
+  lat         Float?
+  lng         Float?
+
+  routesFrom  Route[]       @relation("RouteOrigin")
+  routesTo    Route[]       @relation("RouteDestination")
+}
+
+model Vehicle {
+  id        String        @id @default(cuid())
+  companyId String
+  company   Company       @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  mode      TransportMode
+  name      String // "Airbus A320neo", "Volvo 9800"
+  capacity  Int
+  createdAt DateTime      @default(now())
+
+  trips     Trip[]
+  seats     Seat[]
+
+  @@index([companyId])
+}
+
+model Route {
+  id            String        @id @default(cuid())
+  companyId     String
+  company       Company       @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  mode          TransportMode
+  originId      String
+  origin        Place         @relation("RouteOrigin", fields: [originId], references: [id])
+  destinationId String
+  destination   Place         @relation("RouteDestination", fields: [destinationId], references: [id])
+  trips         Trip[]
+
+  @@index([companyId])
+  @@index([originId, destinationId])
+}
+
+// Una salida concreta (horario) de un vehículo sobre una ruta.
+model Trip {
+  id            String        @id @default(cuid())
+  companyId     String
+  company       Company       @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  routeId       String
+  route         Route         @relation(fields: [routeId], references: [id], onDelete: Cascade)
+  vehicleId     String?
+  vehicle       Vehicle?      @relation(fields: [vehicleId], references: [id])
+  mode          TransportMode
+  travelClass   TravelClass
+  departAt      DateTime
+  arriveAt      DateTime
+  durationMin   Int
+  stops         Int           @default(0)
+  priceAmount   Float
+  priceCurrency String        @default("PEN")
+  seatsTotal    Int
+  seatsAvailable Int
+  baggageIncluded Boolean     @default(false)
+  petsAllowed   Boolean       @default(false)
+  accessible    Boolean       @default(false)
+  amenities     String[]
+  createdAt     DateTime      @default(now())
+
+  seats         Seat[]
+  bookings      Booking[]
+
+  @@index([companyId])
+  @@index([routeId])
+  @@index([departAt])
+}
+
+model Seat {
+  id        String     @id @default(cuid())
+  vehicleId String?
+  vehicle   Vehicle?   @relation(fields: [vehicleId], references: [id])
+  tripId    String?
+  trip      Trip?      @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  label     String
+  row       Int
+  col       String
+  status    SeatStatus @default(AVAILABLE)
+  surcharge Float      @default(0)
+
+  @@index([tripId])
+}
+
+// ----------------------------------------------------------------------------
+// Usuarios y reservas
+// ----------------------------------------------------------------------------
+
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  passwordHash String?
+  fullName     String?
+  role         UserRole  @default(TRAVELER)
+  companyId    String?
+  company      Company?  @relation(fields: [companyId], references: [id])
+  createdAt    DateTime  @default(now())
+
+  bookings     Booking[]
+
+  @@index([companyId])
+}
+
+model Booking {
+  id            String        @id @default(cuid())
+  reference     String        @unique
+  userId        String?
+  user          User?         @relation(fields: [userId], references: [id])
+  tripId        String
+  trip          Trip          @relation(fields: [tripId], references: [id])
+  status        BookingStatus @default(DRAFT)
+  totalAmount   Float
+  totalCurrency String        @default("PEN")
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  passengers    Passenger[]
+  payment       Payment?
+
+  @@index([userId])
+  @@index([tripId])
+}
+
+model Passenger {
+  id             String  @id @default(cuid())
+  bookingId      String
+  booking        Booking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  firstName      String
+  lastName       String
+  documentType   String  @default("dni")
+  documentNumber String
+  seatLabel      String?
+
+  @@index([bookingId])
+}
+
+model Payment {
+  id        String        @id @default(cuid())
+  bookingId String        @unique
+  booking   Booking       @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  provider  String // stripe | paypal | mercadopago | transfer | qr | wallet
+  status    PaymentStatus @default(PENDING)
+  amount    Float
+  currency  String        @default("PEN")
+  createdAt DateTime      @default(now())
+}

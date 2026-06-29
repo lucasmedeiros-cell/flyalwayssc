@@ -1,0 +1,22 @@
+{
+  "name": "vialta",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Vialta — plataforma premium de venta y administración de transporte multimodal (aéreo, terrestre, ferroviario y flotas privadas).",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace web",
+    "dev:web": "npm run dev --workspace web",
+    "dev:api": "npm run start:dev --workspace api",
+    "build": "npm run build --workspaces --if-present",
+    "build:web": "npm run build --workspace web",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
