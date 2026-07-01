@@ -38,6 +38,7 @@ export function SmartImage({
           alt={image.alt}
           fill
           sizes={sizes}
+          quality={90}
           placeholder="blur"
           blurDataURL={BLUR_DATA_URL}
           priority={priority}

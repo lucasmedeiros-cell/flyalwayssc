@@ -70,7 +70,7 @@ export function ResultsView({ query }: { query: SearchQuery }) {
   const meta = TRANSPORT_MODE_META[query.mode];
   const count = trips.length;
   const tripTags = useMemo(() => computeTripTags(trips), [trips]);
-  const currency = trips[0]?.price.currency ?? "PEN";
+  const currency = trips[0]?.price.currency ?? "BOB";
   const activeCount = countActiveFilters(filters);
 
   const sidebar = facets ? (
@@ -103,7 +103,7 @@ export function ResultsView({ query }: { query: SearchQuery }) {
               <span className="mr-2">{meta.icon}</span>
               {loading
                 ? "Buscando opciones…"
-                : `${count} ${meta.label.toLowerCase()}${count === 1 ? "" : "es"} disponibles`}
+                : `${count} ${(count === 1 ? meta.label : meta.pluralLabel).toLowerCase()} ${count === 1 ? "disponible" : "disponibles"}`}
             </h1>
             {!loading && count > 0 && (
               <p className="mt-1 text-sm text-muted-foreground">

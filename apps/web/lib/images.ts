@@ -11,7 +11,7 @@
  */
 
 /** Construye una URL de Unsplash acotada (next/image hace el resto del trabajo). */
-export function unsplash(id: string, w = 1200, q = 70): string {
+export function unsplash(id: string, w = 1600, q = 82): string {
   return `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=${q}`;
 }
 
@@ -45,22 +45,22 @@ export const HERO_IMAGE: CuratedImage = {
 /** Por modo de transporte (selector y tarjetas de modo). */
 export const MODE_IMAGES: Record<"air" | "bus" | "train" | "private", CuratedImage> = {
   air: {
-    src: unsplash("1436491865332-7a61a109cc05", 1000),
+    src: unsplash("1436491865332-7a61a109cc05", 1600),
     alt: "Ala de avión sobre las nubes",
     gradient: "from-primary/40 via-accent/20 to-primary/45",
   },
   bus: {
-    src: unsplash("1544620347-c4fd4a3d5957", 1000),
+    src: unsplash("1544620347-c4fd4a3d5957", 1600),
     alt: "Carretera de montaña al amanecer",
     gradient: "from-accent/40 via-primary/15 to-accent/45",
   },
   train: {
-    src: unsplash("1474487548417-781cb71495f3", 1000),
+    src: unsplash("1474487548417-781cb71495f3", 1600),
     alt: "Vías de tren que se pierden en el horizonte",
     gradient: "from-primary/35 via-accent/20 to-primary/40",
   },
   private: {
-    src: unsplash("1503376780353-7e6692767b70", 1000),
+    src: unsplash("1503376780353-7e6692767b70", 1600),
     alt: "Interior de un vehículo premium",
     gradient: "from-primary/45 via-accent/15 to-primary/35",
   },
@@ -112,6 +112,58 @@ export const DESTINATION_IMAGES: Record<string, CuratedImage> = {
     src: "/images/destinations/tarija.jpg",
     alt: "Viñedos del valle de Tarija",
     gradient: "from-success/25 via-warning/15 to-accent/30",
+  },
+  // Internacionales — fotografía real (Wikimedia Commons CC) optimizada en
+  // /public/images/destinations vía scripts/fetch-intl-destination-photos.mjs.
+  "Buenos Aires": {
+    src: "/images/destinations/buenos-aires.jpg",
+    alt: "Puerto Madero, Buenos Aires",
+    gradient: "from-primary/40 via-accent/15 to-primary/45",
+  },
+  Madrid: {
+    src: "/images/destinations/madrid.jpg",
+    alt: "Panorámica de Madrid con la Sierra de Guadarrama",
+    gradient: "from-warning/20 via-primary/15 to-accent/30",
+  },
+  Miami: {
+    src: "/images/destinations/miami.jpg",
+    alt: "Skyline de Miami al atardecer",
+    gradient: "from-accent/40 via-primary/15 to-accent/45",
+  },
+  "São Paulo": {
+    src: "/images/destinations/sao-paulo.jpg",
+    alt: "Panorámica del centro de São Paulo",
+    gradient: "from-primary/35 via-accent/15 to-primary/40",
+  },
+  Lima: {
+    src: "/images/destinations/lima.jpg",
+    alt: "Costa Verde de Miraflores, Lima",
+    gradient: "from-accent/35 via-primary/15 to-accent/40",
+  },
+  Santiago: {
+    src: "/images/destinations/santiago.jpg",
+    alt: "Santiago de Chile desde el Cerro San Cristóbal",
+    gradient: "from-primary/40 via-warning/15 to-primary/45",
+  },
+  "Río de Janeiro": {
+    src: "/images/destinations/rio-de-janeiro.jpg",
+    alt: "Río de Janeiro con el Pan de Azúcar",
+    gradient: "from-accent/40 via-primary/15 to-accent/45",
+  },
+  Bogotá: {
+    src: "/images/destinations/bogota.jpg",
+    alt: "Cerro de Monserrate sobre Bogotá",
+    gradient: "from-success/30 via-accent/15 to-primary/35",
+  },
+  Cancún: {
+    src: "/images/destinations/cancun.jpg",
+    alt: "Playa caribeña de Cancún",
+    gradient: "from-accent/45 via-primary/15 to-accent/40",
+  },
+  "Punta Cana": {
+    src: "/images/destinations/punta-cana.jpg",
+    alt: "Playa Bávaro en Punta Cana",
+    gradient: "from-accent/40 via-success/15 to-accent/45",
   },
 };
 

@@ -1,7 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "framer-motion";
-import { CheckCircle2, Plane, ShieldCheck, Sparkles, Zap } from "lucide-react";
+import { useCallback, useRef, useState } from "react";
+import { motion, type Variants } from "framer-motion";
+import { CheckCircle2, ChevronLeft, ChevronRight, ShieldCheck, Sparkles, Zap } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { SectionHeading } from "@/components/ui/section";
 import { SPRING_SOFT } from "@/lib/motion";
@@ -31,14 +32,40 @@ const TRUST = [
   { icon: CheckCircle2, label: "Fácil" },
 ];
 
-export function HowItWorks() {
-  const reduced = useReducedMotion();
+const STEPS: Step[] = [
+  { n: 1, title: "Busca y compara", body: "Elige tu ruta y compara aerolíneas, horarios y precios al instante.", illo: <SearchIllo /> },
+  { n: 2, title: "Elige tu vuelo", body: "Filtra por horario, escalas o servicios y selecciona tu asiento ideal.", illo: <CompareIllo /> },
+  { n: 3, title: "Reserva y vuela", body: "Paga de forma segura, recibe tu ticket digital y listo para despegar.", illo: <TicketIllo /> },
+];
 
-  const STEPS: Step[] = [
-    { n: 1, title: "Busca y compara", body: "Elige tu ruta y compara aerolíneas, horarios y precios al instante.", illo: <SearchIllo /> },
-    { n: 2, title: "Elige tu vuelo", body: "Filtra por horario, escalas o servicios y selecciona tu asiento ideal.", illo: <CompareIllo /> },
-    { n: 3, title: "Reserva y vuela", body: "Paga de forma segura, recibe tu ticket digital y listo para despegar.", illo: <TicketIllo /> },
-  ];
+export function HowItWorks() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+
+  const goTo = useCallback((i: number) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const clamped = Math.max(0, Math.min(STEPS.length - 1, i));
+    const card = track.children[clamped] as HTMLElement | undefined;
+    if (card) track.scrollTo({ left: card.offsetLeft, behavior: "smooth" });
+  }, []);
+
+  const handleScroll = useCallback(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const center = track.scrollLeft + track.clientWidth / 2;
+    let idx = 0;
+    let best = Infinity;
+    Array.from(track.children).forEach((node, i) => {
+      const el = node as HTMLElement;
+      const dist = Math.abs(el.offsetLeft + el.offsetWidth / 2 - center);
+      if (dist < best) {
+        best = dist;
+        idx = i;
+      }
+    });
+    setActive(idx);
+  }, []);
 
   return (
     <AnimatedSection id="como-funciona" className="border-y border-border">
@@ -46,70 +73,65 @@ export function HowItWorks() {
         align="center"
         eyebrow="Sencillo y rápido"
         title="Reservar nunca fue tan fácil"
-        subtitle="De la búsqueda al despegue en tres pasos, sin fricción ni sorpresas."
+        subtitle="De la búsqueda al despegue en tres pasos, sin fricción ni sorpresas. Desliza para ver cada paso."
       />
 
-      <motion.div
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.3 }}
-        className="relative mt-14"
-      >
-        {/* Conector horizontal (desktop) + avión que recorre la ruta */}
-        <div className="pointer-events-none absolute inset-x-[16.5%] top-7 hidden -translate-y-1/2 md:block">
-          <svg viewBox="0 0 100 20" preserveAspectRatio="none" className="h-10 w-full overflow-visible">
-            <defs>
-              <linearGradient id="hiw-line" x1="0" y1="0" x2="100%" y2="0">
-                <stop stopColor="var(--primary)" />
-                <stop offset="1" stopColor="var(--accent)" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M0 10 C 25 2, 40 2, 50 10 S 75 18, 100 10"
-              fill="none"
-              stroke="var(--border)"
-              strokeWidth="2"
-              strokeLinecap="round"
-              vectorEffect="non-scaling-stroke"
-            />
-            <motion.path
-              d="M0 10 C 25 2, 40 2, 50 10 S 75 18, 100 10"
-              fill="none"
-              stroke="url(#hiw-line)"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              vectorEffect="non-scaling-stroke"
-              initial={{ pathLength: reduced ? 1 : 0 }}
-              whileInView={{ pathLength: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.4, ease: "easeInOut", delay: 0.2 }}
-            />
-          </svg>
-
-          {!reduced && (
-            <motion.span
-              aria-hidden
-              className="absolute top-1/2 z-20 -translate-y-1/2"
-              initial={{ left: "1%", opacity: 0 }}
-              whileInView={{ left: "99%", opacity: [0, 1, 1, 1, 0], y: [0, -7, 0, 7, 0] }}
-              viewport={{ once: true }}
-              transition={{ duration: 2.6, ease: "easeInOut", delay: 0.4 }}
-            >
-              <span className="-ml-3.5 flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary-strong text-primary-foreground shadow-[var(--shadow-glow)]">
-                <Plane className="h-3.5 w-3.5 rotate-45" />
-              </span>
-            </motion.span>
+      {/* Carrusel: una tarjeta por vista; al deslizar aparece la siguiente */}
+      <div className="relative mt-12">
+        <motion.div
+          ref={trackRef}
+          onScroll={handleScroll}
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          className={cn(
+            "flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4",
+            "[scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
           )}
-        </div>
-
-        {/* Pasos */}
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {STEPS.map((step, i) => (
-            <StepRow key={step.n} step={step} isLast={i === STEPS.length - 1} />
+        >
+          {STEPS.map((step) => (
+            <StepCard key={step.n} step={step} />
           ))}
-        </div>
-      </motion.div>
+        </motion.div>
+
+        {/* Flechas (desktop) */}
+        <button
+          type="button"
+          aria-label="Paso anterior"
+          onClick={() => goTo(active - 1)}
+          disabled={active === 0}
+          className="absolute left-2 top-[42%] hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-surface/90 text-foreground shadow-[var(--shadow-sm)] backdrop-blur transition hover:border-primary/40 hover:text-primary disabled:cursor-not-allowed disabled:opacity-0 md:inline-flex"
+        >
+          <ChevronLeft className="h-5 w-5" />
+        </button>
+        <button
+          type="button"
+          aria-label="Paso siguiente"
+          onClick={() => goTo(active + 1)}
+          disabled={active === STEPS.length - 1}
+          className="absolute right-2 top-[42%] hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-surface/90 text-foreground shadow-[var(--shadow-sm)] backdrop-blur transition hover:border-primary/40 hover:text-primary disabled:cursor-not-allowed disabled:opacity-0 md:inline-flex"
+        >
+          <ChevronRight className="h-5 w-5" />
+        </button>
+      </div>
+
+      {/* Puntos de navegación */}
+      <div className="mt-6 flex items-center justify-center gap-2">
+        {STEPS.map((step, i) => (
+          <button
+            key={step.n}
+            type="button"
+            aria-label={`Ir al paso ${step.n}`}
+            aria-current={active === i}
+            onClick={() => goTo(i)}
+            className={cn(
+              "h-2 rounded-full transition-all duration-300",
+              active === i ? "w-7 bg-primary" : "w-2 bg-border hover:bg-muted-foreground/40",
+            )}
+          />
+        ))}
+      </div>
 
       {/* Marketing: fácil · seguro · rápido */}
       <motion.ul
@@ -130,37 +152,34 @@ export function HowItWorks() {
   );
 }
 
-function StepRow({ step, isLast }: { step: Step; isLast: boolean }) {
+function StepCard({ step }: { step: Step }) {
   return (
-    <motion.div
+    <motion.article
       variants={cardVariants}
-      className="relative flex gap-5 md:flex-col md:items-center md:gap-0 md:text-center"
+      className={cn(
+        "group relative flex w-full shrink-0 basis-full snap-center overflow-hidden rounded-3xl border border-border bg-surface/80 p-6 shadow-[var(--shadow-sm)] backdrop-blur-sm sm:p-8",
+      )}
     >
-      {/* Riel: círculo + línea vertical (móvil); en desktop el círculo fluye arriba */}
-      <div className="relative flex shrink-0 flex-col items-center md:contents">
-        <NumberCircle n={step.n} />
-        {!isLast && (
-          <div className="mt-2 w-px flex-1 bg-gradient-to-b from-primary/40 to-accent/30 md:hidden" />
-        )}
-      </div>
+      {/* Glow muy ligero */}
+      <div className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-primary/10 blur-3xl" />
 
-      {/* Tarjeta */}
-      <motion.div
-        whileHover={{ y: -6, scale: 1.03 }}
-        transition={SPRING_SOFT}
-        className={cn(
-          "group relative flex-1 overflow-hidden rounded-3xl border border-border bg-surface/80 p-6 shadow-[var(--shadow-sm)] backdrop-blur-sm",
-          "transition-[box-shadow,border-color] duration-300 hover:border-primary/30 hover:shadow-[var(--shadow-glow)]",
-          "md:-mt-7 md:w-full md:pt-12",
-        )}
-      >
-        {/* Glow muy ligero al hover */}
-        <div className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-primary/10 opacity-0 blur-3xl transition-opacity duration-300 group-hover:opacity-100" />
-        <div className="relative flex justify-center">{step.illo}</div>
-        <h3 className="mt-5 text-lg font-semibold">{step.title}</h3>
-        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
-      </motion.div>
-    </motion.div>
+      <div className="relative mx-auto flex w-full max-w-3xl flex-col items-center gap-6 text-center sm:flex-row sm:items-center sm:gap-10 sm:text-left">
+        {/* Ilustración */}
+        <div className="w-full sm:w-2/5">{step.illo}</div>
+
+        {/* Contenido */}
+        <div className="flex-1">
+          <div className="flex items-center justify-center gap-3 sm:justify-start">
+            <NumberCircle n={step.n} />
+            <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              Paso {step.n}
+            </span>
+          </div>
+          <h3 className="mt-4 text-xl font-semibold sm:text-2xl">{step.title}</h3>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-base">{step.body}</p>
+        </div>
+      </div>
+    </motion.article>
   );
 }
 
@@ -171,7 +190,7 @@ function NumberCircle({ n }: { n: number }) {
         hidden: { scale: 0.4, opacity: 0 },
         show: { scale: 1, opacity: 1, transition: { type: "spring", stiffness: 320, damping: 20 } },
       }}
-      className="relative z-10 inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary-strong font-[family-name:var(--font-display)] text-lg font-bold text-primary-foreground shadow-[var(--shadow-glow)] ring-4 ring-surface"
+      className="relative z-10 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary-strong font-[family-name:var(--font-display)] text-lg font-bold text-primary-foreground shadow-[var(--shadow-glow)] ring-4 ring-surface"
     >
       {n}
     </motion.div>

@@ -13,6 +13,8 @@ export interface TransportModeMeta {
   mode: TransportMode;
   /** Etiqueta legible (es). */
   label: string;
+  /** Plural legible (es) — los plurales no siempre se forman con "+es" (avión → aviones). */
+  pluralLabel: string;
   /** Emoji/icono representativo. */
   icon: string;
   /** Descripción corta para UI. */
@@ -23,24 +25,28 @@ export const TRANSPORT_MODE_META: Record<TransportMode, TransportModeMeta> = {
   air: {
     mode: "air",
     label: "Avión",
+    pluralLabel: "Aviones",
     icon: "✈",
     tagline: "Vuela más lejos, más rápido",
   },
   bus: {
     mode: "bus",
     label: "Bus",
+    pluralLabel: "Buses",
     icon: "🚌",
     tagline: "Conecta cada ciudad",
   },
   train: {
     mode: "train",
     label: "Tren",
+    pluralLabel: "Trenes",
     icon: "🚆",
     tagline: "Viaja sobre rieles con estilo",
   },
   private: {
     mode: "private",
     label: "Flota privada",
+    pluralLabel: "Flotas privadas",
     icon: "🚐",
     tagline: "Tu trayecto, a tu medida",
   },

@@ -1,0 +1,4431 @@
+{
+  "defaultPassword": "demo1234",
+  "users": [
+    {
+      "id": "u-admin",
+      "name": "Ana Flores",
+      "initials": "AF",
+      "email": "ana@flyalways.bo",
+      "role": "admin",
+      "color": "#3a23a8",
+      "active": true,
+      "twoFactorEnabled": true,
+      "lastActiveAt": "2026-06-30T14:05:00Z",
+      "password": "demo1234"
+    },
+    {
+      "id": "u-super",
+      "name": "Carlos Mendoza",
+      "initials": "CM",
+      "email": "carlos@flyalways.bo",
+      "role": "supervisor",
+      "color": "#1ca71c",
+      "active": true,
+      "twoFactorEnabled": false,
+      "lastActiveAt": "2026-06-30T13:40:00Z",
+      "password": "demo1234"
+    },
+    {
+      "id": "u-agent",
+      "name": "Lucía Pérez",
+      "initials": "LP",
+      "email": "lucia@flyalways.bo",
+      "role": "agent",
+      "color": "#8b7bf5",
+      "active": true,
+      "twoFactorEnabled": false,
+      "lastActiveAt": "2026-06-30T12:10:00Z",
+      "password": "demo1234"
+    },
+    {
+      "id": "u-acct",
+      "name": "Diego Rojas",
+      "initials": "DR",
+      "email": "diego@flyalways.bo",
+      "role": "accounting",
+      "color": "#e0a106",
+      "active": true,
+      "twoFactorEnabled": false,
+      "lastActiveAt": "2026-06-29T18:22:00Z",
+      "password": "demo1234"
+    },
+    {
+      "id": "u-mkt",
+      "name": "María Salazar",
+      "initials": "MS",
+      "email": "maria@flyalways.bo",
+      "role": "marketing",
+      "color": "#e62020",
+      "active": true,
+      "twoFactorEnabled": false,
+      "lastActiveAt": "2026-06-30T09:50:00Z",
+      "password": "demo1234"
+    }
+  ],
+  "agents": [
+    {
+      "id": "a1",
+      "name": "Ana Flores",
+      "initials": "AF",
+      "email": "ana@flyalways.bo",
+      "role": "admin",
+      "sales": 89,
+      "revenue": {
+        "amount": 168400,
+        "currency": "BOB"
+      },
+      "commissionPct": 6,
+      "commissionEarned": {
+        "amount": 10104,
+        "currency": "BOB"
+      },
+      "goal": {
+        "amount": 150000,
+        "currency": "BOB"
+      },
+      "goalPct": 112,
+      "activeClients": 42,
+      "rating": 4.9,
+      "status": "active",
+      "joinedAt": "2022-03-01"
+    },
+    {
+      "id": "a2",
+      "name": "Carlos Mendoza",
+      "initials": "CM",
+      "email": "carlos@flyalways.bo",
+      "role": "supervisor",
+      "sales": 76,
+      "revenue": {
+        "amount": 142800,
+        "currency": "BOB"
+      },
+      "commissionPct": 5,
+      "commissionEarned": {
+        "amount": 7140,
+        "currency": "BOB"
+      },
+      "goal": {
+        "amount": 150000,
+        "currency": "BOB"
+      },
+      "goalPct": 95,
+      "activeClients": 38,
+      "rating": 4.7,
+      "status": "active",
+      "joinedAt": "2022-08-15"
+    },
+    {
+      "id": "a3",
+      "name": "Lucía Pérez",
+      "initials": "LP",
+      "email": "lucia@flyalways.bo",
+      "role": "agent",
+      "sales": 64,
+      "revenue": {
+        "amount": 118900,
+        "currency": "BOB"
+      },
+      "commissionPct": 5,
+      "commissionEarned": {
+        "amount": 5945,
+        "currency": "BOB"
+      },
+      "goal": {
+        "amount": 135000,
+        "currency": "BOB"
+      },
+      "goalPct": 88,
+      "activeClients": 31,
+      "rating": 4.6,
+      "status": "active",
+      "joinedAt": "2023-01-20"
+    },
+    {
+      "id": "a4",
+      "name": "Diego Rojas",
+      "initials": "DR",
+      "email": "diego@flyalways.bo",
+      "role": "accounting",
+      "sales": 0,
+      "revenue": {
+        "amount": 0,
+        "currency": "BOB"
+      },
+      "commissionPct": 0,
+      "commissionEarned": {
+        "amount": 0,
+        "currency": "BOB"
+      },
+      "goal": {
+        "amount": 0,
+        "currency": "BOB"
+      },
+      "goalPct": 0,
+      "activeClients": 0,
+      "rating": 4.5,
+      "status": "active",
+      "joinedAt": "2023-06-10"
+    },
+    {
+      "id": "a5",
+      "name": "María Salazar",
+      "initials": "MS",
+      "email": "maria@flyalways.bo",
+      "role": "marketing",
+      "sales": 12,
+      "revenue": {
+        "amount": 28600,
+        "currency": "BOB"
+      },
+      "commissionPct": 3,
+      "commissionEarned": {
+        "amount": 858,
+        "currency": "BOB"
+      },
+      "goal": {
+        "amount": 40000,
+        "currency": "BOB"
+      },
+      "goalPct": 71,
+      "activeClients": 9,
+      "rating": 4.4,
+      "status": "active",
+      "joinedAt": "2024-02-01"
+    }
+  ],
+  "customers": [
+    {
+      "id": "c1",
+      "firstName": "Roberto",
+      "lastName": "Áñez",
+      "documentType": "dni",
+      "documentNumber": "5402188 SC",
+      "passportNumber": "A1234567",
+      "passportExpiry": "2027-03-15",
+      "birthDate": "1979-07-04",
+      "nationality": "Boliviana",
+      "phone": "+591 3 3445566",
+      "whatsapp": "+591 70011223",
+      "email": "roberto.anez@gmail.com",
+      "address": "Av. San Martín #234",
+      "city": "Santa Cruz",
+      "country": "Bolivia",
+      "assignedAgentId": "a1",
+      "assignedAgentName": "Ana Flores",
+      "status": "vip",
+      "tags": [
+        "Corporativo",
+        "Frecuente",
+        "Europa"
+      ],
+      "notes": "Cliente VIP corporativo. Prefiere clase ejecutiva y asiento en ventana.",
+      "totalSpent": {
+        "amount": 184500,
+        "currency": "BOB"
+      },
+      "tripsCount": 18,
+      "favoriteDestinations": [
+        "Madrid",
+        "Miami",
+        "Panamá"
+      ],
+      "favoriteAirlines": [
+        "BoA",
+        "Iberia",
+        "American Airlines"
+      ],
+      "createdAt": "2023-02-10T10:00:00Z",
+      "lastActivityAt": "2026-06-30T14:05:00Z",
+      "files": [
+        {
+          "id": "c1-f-pass",
+          "kind": "passport",
+          "name": "Pasaporte A1234567.pdf",
+          "fileType": "pdf",
+          "url": "#",
+          "sizeKb": 420,
+          "uploadedAt": "2023-02-10T10:00:00Z",
+          "expiresAt": "2027-03-15"
+        },
+        {
+          "id": "c1-f-id",
+          "kind": "id",
+          "name": "Cédula de identidad.jpg",
+          "fileType": "image",
+          "url": "#",
+          "sizeKb": 180,
+          "uploadedAt": "2023-02-10T10:00:00Z"
+        },
+        {
+          "id": "c1-f-inv",
+          "kind": "invoice",
+          "name": "Factura última compra.pdf",
+          "fileType": "pdf",
+          "url": "#",
+          "sizeKb": 96,
+          "uploadedAt": "2026-06-30T14:05:00Z"
+        }
+      ],
+      "activity": [
+        {
+          "id": "c1-a-call",
+          "kind": "call",
+          "title": "Llamada de seguimiento",
+          "detail": "Confirmación de itinerario y preferencias.",
+          "at": "2026-06-30T14:05:00Z",
+          "agent": "Ana Flores"
+        },
+        {
+          "id": "c1-a-payment",
+          "kind": "payment",
+          "title": "Pago recibido",
+          "detail": "Método: QR",
+          "at": "2026-06-12T16:00:00Z",
+          "agent": "Sistema",
+          "amount": {
+            "amount": 10250,
+            "currency": "BOB"
+          }
+        },
+        {
+          "id": "c1-a-booking",
+          "kind": "booking",
+          "title": "Reserva confirmada",
+          "detail": "BoA · Madrid",
+          "at": "2026-06-12T15:30:00Z",
+          "agent": "Ana Flores",
+          "amount": {
+            "amount": 10250,
+            "currency": "BOB"
+          }
+        },
+        {
+          "id": "c1-a-quote",
+          "kind": "quote",
+          "title": "Cotización enviada",
+          "detail": "Destino Madrid",
+          "at": "2026-06-10T10:00:00Z",
+          "agent": "Ana Flores"
+        },
+        {
+          "id": "c1-a-created",
+          "kind": "note",
+          "title": "Cliente registrado",
+          "detail": "Cliente VIP corporativo. Prefiere clase ejecutiva y asiento en ventana.",
+          "at": "2023-02-10T10:00:00Z",
+          "agent": "Ana Flores"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "firstName": "María",
+      "lastName": "Salazar",
+      "documentType": "dni",
+      "documentNumber": "8123455 LP",
+      "birthDate": "1992-11-22",
+      "nationality": "Boliviana",
+      "phone": "+591 2 2778899",
+      "whatsapp": "+591 71234567",
+      "email": "maria.salazar@outlook.com",
+      "address": "Calle Sagárnaga #150",
+      "city": "La Paz",
+      "country": "Bolivia",
+      "assignedAgentId": "a3",
+      "assignedAgentName": "Lucía Pérez",
+      "status": "active",
+      "tags": [
+        "Luna de miel",
+        "Caribe"
+      ],
+      "notes": "Planificando luna de miel para diciembre.",
+      "totalSpent": {
+        "amount": 23800,
+        "currency": "BOB"
+      },
+      "tripsCount": 2,
+      "favoriteDestinations": [
+        "Cancún",
+        "Punta Cana"
+      ],
+      "favoriteAirlines": [
+        "Copa",
+        "Avianca"
+      ],
+      "createdAt": "2026-05-18T09:30:00Z",
+      "lastActivityAt": "2026-06-30T11:20:00Z",
+      "files": [
+        {
+          "id": "c2-f-id",
+          "kind": "id",
+          "name": "Cédula de identidad.jpg",
+          "fileType": "image",
+          "url": "#",
+          "sizeKb": 180,
+          "uploadedAt": "2026-05-18T09:30:00Z"
+        },
+        {
+          "id": "c2-f-inv",
+          "kind": "invoice",
+          "name": "Factura última compra.pdf",
+          "fileType": "pdf",
+          "url": "#",
+          "sizeKb": 96,
+          "uploadedAt": "2026-06-30T11:20:00Z"
+        }
+      ],
+      "activity": [
+        {
+          "id": "c2-a-call",
+          "kind": "call",
+          "title": "Llamada de seguimiento",
+          "detail": "Confirmación de itinerario y preferencias.",
+          "at": "2026-06-30T11:20:00Z",
+          "agent": "Lucía Pérez"
+        },
+        {
+          "id": "c2-a-payment",
+          "kind": "payment",
+          "title": "Pago recibido",
+          "detail": "Método: QR",
+          "at": "2026-06-12T16:00:00Z",
+          "agent": "Sistema",
+          "amount": {
+            "amount": 11900,
+            "currency": "BOB"
+          }
+        },
+        {
+          "id": "c2-a-booking",
+          "kind": "booking",
+          "title": "Reserva confirmada",
+          "detail": "Copa · Cancún",
+          "at": "2026-06-12T15:30:00Z",
+          "agent": "Lucía Pérez",
+          "amount": {
+            "amount": 11900,
+            "currency": "BOB"
+          }
+        },
+        {
+          "id": "c2-a-quote",
+          "kind": "quote",
+          "title": "Cotización enviada",
+          "detail": "Destino Cancún",
+          "at": "2026-06-10T10:00:00Z",
+          "agent": "Lucía Pérez"
+        },
+        {
+          "id": "c2-a-created",
+          "kind": "note",
+          "title": "Cliente registrado",
+          "detail": "Planificando luna de miel para diciembre.",
+          "at": "2026-05-18T09:30:00Z",
+          "agent": "Lucía Pérez"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "firstName": "Pedro",
+      "lastName": "Quispe",
+      "documentType": "dni",
+      "documentNumber": "6709833 CB",
+      "passportNumber": "B7654321",
+      "passportExpiry": "2026-09-01",
+      "birthDate": "1985-03-30",
+      "nationality": "Boliviana",
+      "phone": "+591 4 4556677",
+      "whatsapp": "+591 72345678",
+      "email": "pedro.quispe@gmail.com",
+      "address": "Av. América #890",
+      "city": "Cochabamba",
+      "country": "Bolivia",
+      "assignedAgentId": "a2",
+      "assignedAgentName": "Carlos Mendoza",
+      "status": "active",
+      "tags": [
+        "Negocios",
+        "Sudamérica"
+      ],
+      "notes": "Pago parcial pendiente de reserva #FA-20390.",
+      "totalSpent": {
+        "amount": 41200,
+        "currency": "BOB"
+      },
+      "tripsCount": 6,
+      "favoriteDestinations": [
+        "Buenos Aires",
+        "São Paulo",
+        "Lima"
+      ],
+      "favoriteAirlines": [
+        "BoA",
+        "Gol"
+      ],
+      "createdAt": "2024-08-03T14:00:00Z",
+      "lastActivityAt": "2026-06-29T16:40:00Z",
+      "files": [
+        {
+          "id": "c3-f-pass",
+          "kind": "passport",
+          "name": "Pasaporte B7654321.pdf",
+          "fileType": "pdf",
+          "url": "#",
+          "sizeKb": 420,
+          "uploadedAt": "2024-08-03T14:00:00Z",
+          "expiresAt": "2026-09-01"
+        },
+        {
+          "id": "c3-f-id",
+          "kind": "id",
+          "name": "Cédula de identidad.jpg",
+          "fileType": "image",
+          "url": "#",
+          "sizeKb": 180,
+          "uploadedAt": "2024-08-03T14:00:00Z"
+        },
+        {
+          "id": "c3-f-inv",
+          "kind": "invoice",
+          "name": "Factura última compra.pdf",
+          "fileType": "pdf",
+          "url": "#",
+          "sizeKb": 96,
+          "uploadedAt": "2026-06-29T16:40:00Z"
+        }
+      ],
+      "activity": [
+        {
+          "id": "c3-a-call",
+          "kind": "call",
+          "title": "Llamada de seguimiento",
+          "detail": "Confirmación de itinerario y preferencias.",
+          "at": "2026-06-29T16:40:00Z",
+          "agent": "Carlos Mendoza"
+        },
+        {
+          "id": "c3-a-payment",
+          "kind": "payment",
+          "title": "Pago recibido",
+          "detail": "Método: QR",
+          "at": "2026-06-12T16:00:00Z",
+          "agent": "Sistema",
+          "amount": {
+            "amount": 6867,
+            "currency": "BOB"
+          }
+        },
+        {
+          "id": "c3-a-booking",
+          "kind": "booking",
+          "title": "Reserva confirmada",
+          "detail": "BoA · Buenos Aires",
+          "at": "2026-06-12T15:30:00Z",
+          "agent": "Carlos Mendoza",
+          "amount": {
+            "amount": 6867,
+            "currency": "BOB"
+          }
+        },
+        {
+          "id": "c3-a-quote",
+          "kind": "quote",
+          "title": "Cotización enviada",
+          "detail": "Destino Buenos Aires",
+          "at": "2026-06-10T10:00:00Z",
+          "agent": "Carlos Mendoza"
+        },
+        {
+          "id": "c3-a-created",
+          "kind": "note",
+          "title": "Cliente registrado",
+          "detail": "Pago parcial pendiente de reserva #FA-20390.",
+          "at": "2024-08-03T14:00:00Z",
+          "agent": "Carlos Mendoza"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "firstName": "Laura",
+      "lastName": "Vargas",
+      "documentType": "passport",
+      "documentNumber": "C2233445",
+      "passportNumber": "C2233445",
+      "passportExpiry": "2028-01-20",
+      "birthDate": "1990-06-12",
+      "nationality": "Boliviana",
+      "phone": "+591 3 3221100",
+      "whatsapp": "+591 73456789",
+      "email": "laura.vargas@gmail.com",
+      "city": "Santa Cruz",
+      "country": "Bolivia",
+      "assignedAgentId": "a3",
+      "assignedAgentName": "Lucía Pérez",
+      "status": "prospect",
+      "tags": [
+        "Crucero",
+        "Cotización"
+      ],
+      "notes": "Interesada en crucero por el Caribe, 2 pasajeros.",
+      "totalSpent": {
+        "amount": 0,
+        "currency": "BOB"
+      },
+      "tripsCount": 0,
+      "favoriteDestinations": [
+        "Caribe"
+      ],
+      "favoriteAirlines": [],
+      "createdAt": "2026-06-22T12:00:00Z",
+      "lastActivityAt": "2026-06-30T12:48:00Z",
+      "files": [
+        {
+          "id": "c4-f-pass",
+          "kind": "passport",
+          "name": "Pasaporte C2233445.pdf",
+          "fileType": "pdf",
+          "url": "#",
+          "sizeKb": 420,
+          "uploadedAt": "2026-06-22T12:00:00Z",
+          "expiresAt": "2028-01-20"
+        },
+        {
+          "id": "c4-f-id",
+          "kind": "id",
+          "name": "Cédula de identidad.jpg",
+          "fileType": "image",
+          "url": "#",
+          "sizeKb": 180,
+          "uploadedAt": "2026-06-22T12:00:00Z"
+        }
+      ],
+      "activity": [
+        {
+          "id": "c4-a-call",
+          "kind": "call",
+          "title": "Llamada de seguimiento",
+          "detail": "Confirmación de itinerario y preferencias.",
+          "at": "2026-06-30T12:48:00Z",
+          "agent": "Lucía Pérez"
+        },
+        {
+          "id": "c4-a-created",
+          "kind": "note",
+          "title": "Cliente registrado",
+          "detail": "Interesada en crucero por el Caribe, 2 pasajeros.",
+          "at": "2026-06-22T12:00:00Z",
+          "agent": "Lucía Pérez"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "firstName": "Carmen",
+      "lastName": "Justiniano",
+      "documentType": "dni",
+      "documentNumber": "3344556 SC",
+      "passportNumber": "D9988776",
+      "passportExpiry": "2026-07-12",
+      "birthDate": "1968-02-18",
+      "nationality": "Boliviana",
+      "phone": "+591 3 3667788",
+      "whatsapp": "+591 74567890",
+      "email": "carmen.justiniano@gmail.com",
+      "address": "Barrio Equipetrol, calle 5",
+      "city": "Santa Cruz",
+      "country": "Bolivia",
+      "assignedAgentId": "a1",
+      "assignedAgentName": "Ana Flores",
+      "status": "active",
+      "tags": [
+        "Familiar",
+        "Frecuente"
+      ],
+      "notes": "Pasaporte próximo a vencer — recordar renovación.",
+      "totalSpent": {
+        "amount": 67400,
+        "currency": "BOB"
+      },
+      "tripsCount": 9,
+      "favoriteDestinations": [
+        "Miami",
+        "Orlando"
+      ],
+      "favoriteAirlines": [
+        "American Airlines",
+        "BoA"
+      ],
+      "createdAt": "2023-11-27T08:00:00Z",
+      "lastActivityAt": "2026-06-25T10:00:00Z",
+      "files": [
+        {
+          "id": "c5-f-pass",
+          "kind": "passport",
+          "name": "Pasaporte D9988776.pdf",
+          "fileType": "pdf",
+          "url": "#",
+          "sizeKb": 420,
+          "uploadedAt": "2023-11-27T08:00:00Z",
+          "expiresAt": "2026-07-12"
+        },
+        {
+          "id": "c5-f-id",
+          "kind": "id",
+          "name": "Cédula de identidad.jpg",
+          "fileType": "image",
+          "url": "#",
+          "sizeKb": 180,
+          "uploadedAt": "2023-11-27T08:00:00Z"
+        },
+        {
+          "id": "c5-f-inv",
+          "kind": "invoice",
+          "name": "Factura última compra.pdf",
+          "fileType": "pdf",
+          "url": "#",
+          "sizeKb": 96,
+          "uploadedAt": "2026-06-25T10:00:00Z"
+        }
+      ],
+      "activity": [
+        {
+          "id": "c5-a-call",
+          "kind": "call",
+          "title": "Llamada de seguimiento",
+          "detail": "Confirmación de itinerario y preferencias.",
+          "at": "2026-06-25T10:00:00Z",
+          "agent": "Ana Flores"
+        },
+        {
+          "id": "c5-a-payment",
+          "kind": "payment",
+          "title": "Pago recibido",
+          "detail": "Método: QR",
+          "at": "2026-06-12T16:00:00Z",
+          "agent": "Sistema",
+          "amount": {
+            "amount": 7489,
+            "currency": "BOB"
+          }
+        },
+        {
+          "id": "c5-a-booking",
+          "kind": "booking",
+          "title": "Reserva confirmada",
+          "detail": "American Airlines · Miami",
+          "at": "2026-06-12T15:30:00Z",
+          "agent": "Ana Flores",
+          "amount": {
+            "amount": 7489,
+            "currency": "BOB"
+          }
+        },
+        {
+          "id": "c5-a-quote",
+          "kind": "quote",
+          "title": "Cotización enviada",
+          "detail": "Destino Miami",
+          "at": "2026-06-10T10:00:00Z",
+          "agent": "Ana Flores"
+        },
+        {
+          "id": "c5-a-created",
+          "kind": "note",
+          "title": "Cliente registrado",
+          "detail": "Pasaporte próximo a vencer — recordar renovación.",
+          "at": "2023-11-27T08:00:00Z",
+          "agent": "Ana Flores"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "firstName": "Jorge",
+      "lastName": "Mamani",
+      "documentType": "dni",
+      "documentNumber": "9001234 LP",
+      "birthDate": "1995-09-09",
+      "nationality": "Boliviana",
+      "phone": "+591 2 2334455",
+      "whatsapp": "+591 75678901",
+      "email": "jorge.mamani@gmail.com",
+      "city": "El Alto",
+      "country": "Bolivia",
+      "assignedAgentId": "a2",
+      "assignedAgentName": "Carlos Mendoza",
+      "status": "inactive",
+      "tags": [
+        "Mochilero"
+      ],
+      "notes": "Sin actividad en 8 meses — candidato a campaña de reactivación.",
+      "totalSpent": {
+        "amount": 8900,
+        "currency": "BOB"
+      },
+      "tripsCount": 1,
+      "favoriteDestinations": [
+        "Cusco"
+      ],
+      "favoriteAirlines": [
+        "Latam"
+      ],
+      "createdAt": "2024-03-15T11:00:00Z",
+      "lastActivityAt": "2025-10-20T09:00:00Z",
+      "files": [
+        {
+          "id": "c6-f-id",
+          "kind": "id",
+          "name": "Cédula de identidad.jpg",
+          "fileType": "image",
+          "url": "#",
+          "sizeKb": 180,
+          "uploadedAt": "2024-03-15T11:00:00Z"
+        },
+        {
+          "id": "c6-f-inv",
+          "kind": "invoice",
+          "name": "Factura última compra.pdf",
+          "fileType": "pdf",
+          "url": "#",
+          "sizeKb": 96,
+          "uploadedAt": "2025-10-20T09:00:00Z"
+        }
+      ],
+      "activity": [
+        {
+          "id": "c6-a-payment",
+          "kind": "payment",
+          "title": "Pago recibido",
+          "detail": "Método: QR",
+          "at": "2026-06-12T16:00:00Z",
+          "agent": "Sistema",
+          "amount": {
+            "amount": 8900,
+            "currency": "BOB"
+          }
+        },
+        {
+          "id": "c6-a-booking",
+          "kind": "booking",
+          "title": "Reserva confirmada",
+          "detail": "Latam · Cusco",
+          "at": "2026-06-12T15:30:00Z",
+          "agent": "Carlos Mendoza",
+          "amount": {
+            "amount": 8900,
+            "currency": "BOB"
+          }
+        },
+        {
+          "id": "c6-a-quote",
+          "kind": "quote",
+          "title": "Cotización enviada",
+          "detail": "Destino Cusco",
+          "at": "2026-06-10T10:00:00Z",
+          "agent": "Carlos Mendoza"
+        },
+        {
+          "id": "c6-a-call",
+          "kind": "call",
+          "title": "Llamada de seguimiento",
+          "detail": "Confirmación de itinerario y preferencias.",
+          "at": "2025-10-20T09:00:00Z",
+          "agent": "Carlos Mendoza"
+        },
+        {
+          "id": "c6-a-created",
+          "kind": "note",
+          "title": "Cliente registrado",
+          "detail": "Sin actividad en 8 meses — candidato a campaña de reactivación.",
+          "at": "2024-03-15T11:00:00Z",
+          "agent": "Carlos Mendoza"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "firstName": "Daniela",
+      "lastName": "Rocha",
+      "documentType": "ce",
+      "documentNumber": "E-554433",
+      "passportNumber": "BR889900",
+      "passportExpiry": "2029-05-30",
+      "birthDate": "1988-12-01",
+      "nationality": "Brasileña",
+      "phone": "+591 3 3990011",
+      "whatsapp": "+591 76789012",
+      "email": "daniela.rocha@gmail.com",
+      "address": "Av. Beni #1200",
+      "city": "Santa Cruz",
+      "country": "Bolivia",
+      "assignedAgentId": "a1",
+      "assignedAgentName": "Ana Flores",
+      "status": "active",
+      "tags": [
+        "Negocios",
+        "Brasil"
+      ],
+      "totalSpent": {
+        "amount": 52100,
+        "currency": "BOB"
+      },
+      "tripsCount": 7,
+      "favoriteDestinations": [
+        "São Paulo",
+        "Río de Janeiro"
+      ],
+      "favoriteAirlines": [
+        "Gol",
+        "Latam"
+      ],
+      "createdAt": "2024-01-09T13:00:00Z",
+      "lastActivityAt": "2026-06-18T15:30:00Z",
+      "files": [
+        {
+          "id": "c7-f-pass",
+          "kind": "passport",
+          "name": "Pasaporte BR889900.pdf",
+          "fileType": "pdf",
+          "url": "#",
+          "sizeKb": 420,
+          "uploadedAt": "2024-01-09T13:00:00Z",
+          "expiresAt": "2029-05-30"
+        },
+        {
+          "id": "c7-f-id",
+          "kind": "id",
+          "name": "Cédula de identidad.jpg",
+          "fileType": "image",
+          "url": "#",
+          "sizeKb": 180,
+          "uploadedAt": "2024-01-09T13:00:00Z"
+        },
+        {
+          "id": "c7-f-inv",
+          "kind": "invoice",
+          "name": "Factura última compra.pdf",
+          "fileType": "pdf",
+          "url": "#",
+          "sizeKb": 96,
+          "uploadedAt": "2026-06-18T15:30:00Z"
+        }
+      ],
+      "activity": [
+        {
+          "id": "c7-a-call",
+          "kind": "call",
+          "title": "Llamada de seguimiento",
+          "detail": "Confirmación de itinerario y preferencias.",
+          "at": "2026-06-18T15:30:00Z",
+          "agent": "Ana Flores"
+        },
+        {
+          "id": "c7-a-payment",
+          "kind": "payment",
+          "title": "Pago recibido",
+          "detail": "Método: QR",
+          "at": "2026-06-12T16:00:00Z",
+          "agent": "Sistema",
+          "amount": {
+            "amount": 7443,
+            "currency": "BOB"
+          }
+        },
+        {
+          "id": "c7-a-booking",
+          "kind": "booking",
+          "title": "Reserva confirmada",
+          "detail": "Gol · São Paulo",
+          "at": "2026-06-12T15:30:00Z",
+          "agent": "Ana Flores",
+          "amount": {
+            "amount": 7443,
+            "currency": "BOB"
+          }
+        },
+        {
+          "id": "c7-a-quote",
+          "kind": "quote",
+          "title": "Cotización enviada",
+          "detail": "Destino São Paulo",
+          "at": "2026-06-10T10:00:00Z",
+          "agent": "Ana Flores"
+        },
+        {
+          "id": "c7-a-created",
+          "kind": "note",
+          "title": "Cliente registrado",
+          "at": "2024-01-09T13:00:00Z",
+          "agent": "Ana Flores"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "firstName": "Familia",
+      "lastName": "Gutiérrez",
+      "documentType": "dni",
+      "documentNumber": "Grupo / titular 4455667 SC",
+      "birthDate": "1975-04-25",
+      "nationality": "Boliviana",
+      "phone": "+591 3 3112233",
+      "whatsapp": "+591 77890123",
+      "email": "gutierrez.familia@gmail.com",
+      "address": "Urbanización Las Palmas #45",
+      "city": "Santa Cruz",
+      "country": "Bolivia",
+      "assignedAgentId": "a1",
+      "assignedAgentName": "Ana Flores",
+      "status": "vip",
+      "tags": [
+        "Familiar",
+        "Europa",
+        "Frecuente"
+      ],
+      "notes": "Grupo familiar de 4 pax. Viaje a Madrid confirmado para julio.",
+      "totalSpent": {
+        "amount": 98700,
+        "currency": "BOB"
+      },
+      "tripsCount": 11,
+      "favoriteDestinations": [
+        "Madrid",
+        "Barcelona"
+      ],
+      "favoriteAirlines": [
+        "Iberia",
+        "BoA"
+      ],
+      "createdAt": "2023-06-30T10:30:00Z",
+      "lastActivityAt": "2026-06-30T14:05:00Z",
+      "files": [
+        {
+          "id": "c8-f-id",
+          "kind": "id",
+          "name": "Cédula de identidad.jpg",
+          "fileType": "image",
+          "url": "#",
+          "sizeKb": 180,
+          "uploadedAt": "2023-06-30T10:30:00Z"
+        },
+        {
+          "id": "c8-f-inv",
+          "kind": "invoice",
+          "name": "Factura última compra.pdf",
+          "fileType": "pdf",
+          "url": "#",
+          "sizeKb": 96,
+          "uploadedAt": "2026-06-30T14:05:00Z"
+        }
+      ],
+      "activity": [
+        {
+          "id": "c8-a-call",
+          "kind": "call",
+          "title": "Llamada de seguimiento",
+          "detail": "Confirmación de itinerario y preferencias.",
+          "at": "2026-06-30T14:05:00Z",
+          "agent": "Ana Flores"
+        },
+        {
+          "id": "c8-a-payment",
+          "kind": "payment",
+          "title": "Pago recibido",
+          "detail": "Método: QR",
+          "at": "2026-06-12T16:00:00Z",
+          "agent": "Sistema",
+          "amount": {
+            "amount": 8973,
+            "currency": "BOB"
+          }
+        },
+        {
+          "id": "c8-a-booking",
+          "kind": "booking",
+          "title": "Reserva confirmada",
+          "detail": "Iberia · Madrid",
+          "at": "2026-06-12T15:30:00Z",
+          "agent": "Ana Flores",
+          "amount": {
+            "amount": 8973,
+            "currency": "BOB"
+          }
+        },
+        {
+          "id": "c8-a-quote",
+          "kind": "quote",
+          "title": "Cotización enviada",
+          "detail": "Destino Madrid",
+          "at": "2026-06-10T10:00:00Z",
+          "agent": "Ana Flores"
+        },
+        {
+          "id": "c8-a-created",
+          "kind": "note",
+          "title": "Cliente registrado",
+          "detail": "Grupo familiar de 4 pax. Viaje a Madrid confirmado para julio.",
+          "at": "2023-06-30T10:30:00Z",
+          "agent": "Ana Flores"
+        }
+      ]
+    },
+    {
+      "id": "c9",
+      "firstName": "Andrés",
+      "lastName": "Camacho",
+      "documentType": "dni",
+      "documentNumber": "7788990 CB",
+      "birthDate": "2000-01-15",
+      "nationality": "Boliviana",
+      "phone": "+591 4 4778899",
+      "whatsapp": "+591 78901234",
+      "email": "andres.camacho@gmail.com",
+      "city": "Cochabamba",
+      "country": "Bolivia",
+      "assignedAgentId": "a3",
+      "assignedAgentName": "Lucía Pérez",
+      "status": "prospect",
+      "tags": [
+        "Estudiante",
+        "Intercambio"
+      ],
+      "notes": "Consulta por vuelo de intercambio a España.",
+      "totalSpent": {
+        "amount": 0,
+        "currency": "BOB"
+      },
+      "tripsCount": 0,
+      "favoriteDestinations": [
+        "Madrid"
+      ],
+      "favoriteAirlines": [],
+      "createdAt": "2026-06-28T17:00:00Z",
+      "lastActivityAt": "2026-06-28T17:30:00Z",
+      "files": [
+        {
+          "id": "c9-f-id",
+          "kind": "id",
+          "name": "Cédula de identidad.jpg",
+          "fileType": "image",
+          "url": "#",
+          "sizeKb": 180,
+          "uploadedAt": "2026-06-28T17:00:00Z"
+        }
+      ],
+      "activity": [
+        {
+          "id": "c9-a-call",
+          "kind": "call",
+          "title": "Llamada de seguimiento",
+          "detail": "Confirmación de itinerario y preferencias.",
+          "at": "2026-06-28T17:30:00Z",
+          "agent": "Lucía Pérez"
+        },
+        {
+          "id": "c9-a-created",
+          "kind": "note",
+          "title": "Cliente registrado",
+          "detail": "Consulta por vuelo de intercambio a España.",
+          "at": "2026-06-28T17:00:00Z",
+          "agent": "Lucía Pérez"
+        }
+      ]
+    },
+    {
+      "id": "c10",
+      "firstName": "Patricia",
+      "lastName": "Vaca",
+      "documentType": "dni",
+      "documentNumber": "6655443 SC",
+      "passportNumber": "F1122334",
+      "passportExpiry": "2030-08-08",
+      "birthDate": "1983-10-10",
+      "nationality": "Boliviana",
+      "phone": "+591 3 3556644",
+      "whatsapp": "+591 79012345",
+      "email": "patricia.vaca@gmail.com",
+      "address": "Av. Cristo Redentor #5to anillo",
+      "city": "Santa Cruz",
+      "country": "Bolivia",
+      "assignedAgentId": "a2",
+      "assignedAgentName": "Carlos Mendoza",
+      "status": "active",
+      "tags": [
+        "Turismo",
+        "Norteamérica"
+      ],
+      "totalSpent": {
+        "amount": 35600,
+        "currency": "BOB"
+      },
+      "tripsCount": 4,
+      "favoriteDestinations": [
+        "Miami",
+        "Nueva York"
+      ],
+      "favoriteAirlines": [
+        "American Airlines",
+        "Copa"
+      ],
+      "createdAt": "2024-12-05T09:00:00Z",
+      "lastActivityAt": "2026-06-12T14:00:00Z",
+      "files": [
+        {
+          "id": "c10-f-pass",
+          "kind": "passport",
+          "name": "Pasaporte F1122334.pdf",
+          "fileType": "pdf",
+          "url": "#",
+          "sizeKb": 420,
+          "uploadedAt": "2024-12-05T09:00:00Z",
+          "expiresAt": "2030-08-08"
+        },
+        {
+          "id": "c10-f-id",
+          "kind": "id",
+          "name": "Cédula de identidad.jpg",
+          "fileType": "image",
+          "url": "#",
+          "sizeKb": 180,
+          "uploadedAt": "2024-12-05T09:00:00Z"
+        },
+        {
+          "id": "c10-f-inv",
+          "kind": "invoice",
+          "name": "Factura última compra.pdf",
+          "fileType": "pdf",
+          "url": "#",
+          "sizeKb": 96,
+          "uploadedAt": "2026-06-12T14:00:00Z"
+        }
+      ],
+      "activity": [
+        {
+          "id": "c10-a-payment",
+          "kind": "payment",
+          "title": "Pago recibido",
+          "detail": "Método: QR",
+          "at": "2026-06-12T16:00:00Z",
+          "agent": "Sistema",
+          "amount": {
+            "amount": 8900,
+            "currency": "BOB"
+          }
+        },
+        {
+          "id": "c10-a-booking",
+          "kind": "booking",
+          "title": "Reserva confirmada",
+          "detail": "American Airlines · Miami",
+          "at": "2026-06-12T15:30:00Z",
+          "agent": "Carlos Mendoza",
+          "amount": {
+            "amount": 8900,
+            "currency": "BOB"
+          }
+        },
+        {
+          "id": "c10-a-call",
+          "kind": "call",
+          "title": "Llamada de seguimiento",
+          "detail": "Confirmación de itinerario y preferencias.",
+          "at": "2026-06-12T14:00:00Z",
+          "agent": "Carlos Mendoza"
+        },
+        {
+          "id": "c10-a-quote",
+          "kind": "quote",
+          "title": "Cotización enviada",
+          "detail": "Destino Miami",
+          "at": "2026-06-10T10:00:00Z",
+          "agent": "Carlos Mendoza"
+        },
+        {
+          "id": "c10-a-created",
+          "kind": "note",
+          "title": "Cliente registrado",
+          "at": "2024-12-05T09:00:00Z",
+          "agent": "Carlos Mendoza"
+        }
+      ]
+    },
+    {
+      "id": "c11",
+      "firstName": "Luis",
+      "lastName": "Fernández",
+      "documentType": "dni",
+      "documentNumber": "5566778 LP",
+      "birthDate": "1972-05-19",
+      "nationality": "Boliviana",
+      "phone": "+591 2 2998877",
+      "whatsapp": "+591 70123456",
+      "email": "luis.fernandez@gmail.com",
+      "city": "La Paz",
+      "country": "Bolivia",
+      "assignedAgentId": "a1",
+      "assignedAgentName": "Ana Flores",
+      "status": "active",
+      "tags": [
+        "Negocios",
+        "Frecuente"
+      ],
+      "totalSpent": {
+        "amount": 73900,
+        "currency": "BOB"
+      },
+      "tripsCount": 12,
+      "favoriteDestinations": [
+        "Lima",
+        "Bogotá",
+        "Santiago"
+      ],
+      "favoriteAirlines": [
+        "Latam",
+        "Avianca"
+      ],
+      "createdAt": "2023-09-14T08:30:00Z",
+      "lastActivityAt": "2026-06-20T11:00:00Z",
+      "files": [
+        {
+          "id": "c11-f-id",
+          "kind": "id",
+          "name": "Cédula de identidad.jpg",
+          "fileType": "image",
+          "url": "#",
+          "sizeKb": 180,
+          "uploadedAt": "2023-09-14T08:30:00Z"
+        },
+        {
+          "id": "c11-f-inv",
+          "kind": "invoice",
+          "name": "Factura última compra.pdf",
+          "fileType": "pdf",
+          "url": "#",
+          "sizeKb": 96,
+          "uploadedAt": "2026-06-20T11:00:00Z"
+        }
+      ],
+      "activity": [
+        {
+          "id": "c11-a-call",
+          "kind": "call",
+          "title": "Llamada de seguimiento",
+          "detail": "Confirmación de itinerario y preferencias.",
+          "at": "2026-06-20T11:00:00Z",
+          "agent": "Ana Flores"
+        },
+        {
+          "id": "c11-a-payment",
+          "kind": "payment",
+          "title": "Pago recibido",
+          "detail": "Método: QR",
+          "at": "2026-06-12T16:00:00Z",
+          "agent": "Sistema",
+          "amount": {
+            "amount": 6158,
+            "currency": "BOB"
+          }
+        },
+        {
+          "id": "c11-a-booking",
+          "kind": "booking",
+          "title": "Reserva confirmada",
+          "detail": "Latam · Lima",
+          "at": "2026-06-12T15:30:00Z",
+          "agent": "Ana Flores",
+          "amount": {
+            "amount": 6158,
+            "currency": "BOB"
+          }
+        },
+        {
+          "id": "c11-a-quote",
+          "kind": "quote",
+          "title": "Cotización enviada",
+          "detail": "Destino Lima",
+          "at": "2026-06-10T10:00:00Z",
+          "agent": "Ana Flores"
+        },
+        {
+          "id": "c11-a-created",
+          "kind": "note",
+          "title": "Cliente registrado",
+          "at": "2023-09-14T08:30:00Z",
+          "agent": "Ana Flores"
+        }
+      ]
+    },
+    {
+      "id": "c12",
+      "firstName": "Sofía",
+      "lastName": "Antelo",
+      "documentType": "dni",
+      "documentNumber": "8877665 SC",
+      "birthDate": "1998-08-28",
+      "nationality": "Boliviana",
+      "phone": "+591 3 3443322",
+      "whatsapp": "+591 71122334",
+      "email": "sofia.antelo@gmail.com",
+      "city": "Santa Cruz",
+      "country": "Bolivia",
+      "assignedAgentId": "a3",
+      "assignedAgentName": "Lucía Pérez",
+      "status": "active",
+      "tags": [
+        "Turismo",
+        "Caribe"
+      ],
+      "totalSpent": {
+        "amount": 18200,
+        "currency": "BOB"
+      },
+      "tripsCount": 3,
+      "favoriteDestinations": [
+        "Cancún",
+        "Cartagena"
+      ],
+      "favoriteAirlines": [
+        "Copa"
+      ],
+      "createdAt": "2025-04-22T10:00:00Z",
+      "lastActivityAt": "2026-06-05T16:00:00Z",
+      "files": [
+        {
+          "id": "c12-f-id",
+          "kind": "id",
+          "name": "Cédula de identidad.jpg",
+          "fileType": "image",
+          "url": "#",
+          "sizeKb": 180,
+          "uploadedAt": "2025-04-22T10:00:00Z"
+        },
+        {
+          "id": "c12-f-inv",
+          "kind": "invoice",
+          "name": "Factura última compra.pdf",
+          "fileType": "pdf",
+          "url": "#",
+          "sizeKb": 96,
+          "uploadedAt": "2026-06-05T16:00:00Z"
+        }
+      ],
+      "activity": [
+        {
+          "id": "c12-a-payment",
+          "kind": "payment",
+          "title": "Pago recibido",
+          "detail": "Método: QR",
+          "at": "2026-06-12T16:00:00Z",
+          "agent": "Sistema",
+          "amount": {
+            "amount": 6067,
+            "currency": "BOB"
+          }
+        },
+        {
+          "id": "c12-a-booking",
+          "kind": "booking",
+          "title": "Reserva confirmada",
+          "detail": "Copa · Cancún",
+          "at": "2026-06-12T15:30:00Z",
+          "agent": "Lucía Pérez",
+          "amount": {
+            "amount": 6067,
+            "currency": "BOB"
+          }
+        },
+        {
+          "id": "c12-a-quote",
+          "kind": "quote",
+          "title": "Cotización enviada",
+          "detail": "Destino Cancún",
+          "at": "2026-06-10T10:00:00Z",
+          "agent": "Lucía Pérez"
+        },
+        {
+          "id": "c12-a-call",
+          "kind": "call",
+          "title": "Llamada de seguimiento",
+          "detail": "Confirmación de itinerario y preferencias.",
+          "at": "2026-06-05T16:00:00Z",
+          "agent": "Lucía Pérez"
+        },
+        {
+          "id": "c12-a-created",
+          "kind": "note",
+          "title": "Cliente registrado",
+          "at": "2025-04-22T10:00:00Z",
+          "agent": "Lucía Pérez"
+        }
+      ]
+    }
+  ],
+  "tickets": [
+    {
+      "id": "t1",
+      "code": "FA-20418",
+      "customerId": "c8",
+      "customerName": "Familia Gutiérrez",
+      "agentId": "a1",
+      "agentName": "Ana Flores",
+      "airline": "Iberia",
+      "airlineCode": "IB",
+      "pnr": "AB12CD",
+      "gds": "Amadeus",
+      "ticketNumber": "075-2401887766",
+      "originCity": "Santa Cruz",
+      "originCode": "VVI",
+      "destinationCity": "Madrid",
+      "destinationCode": "MAD",
+      "tripType": "round_trip",
+      "travelClass": "economy",
+      "travelDate": "2026-07-02",
+      "passengerCount": 4,
+      "fare": {
+        "amount": 14800,
+        "currency": "BOB"
+      },
+      "taxes": {
+        "amount": 3650,
+        "currency": "BOB"
+      },
+      "total": {
+        "amount": 18450,
+        "currency": "BOB"
+      },
+      "commission": {
+        "amount": 1480,
+        "currency": "BOB"
+      },
+      "profit": {
+        "amount": 2100,
+        "currency": "BOB"
+      },
+      "providerId": "p1",
+      "providerName": "Iberia Bolivia",
+      "status": "issued",
+      "createdAt": "2026-06-12T15:30:00Z",
+      "segments": [
+        {
+          "id": "t1-s1",
+          "airline": "Iberia",
+          "airlineCode": "IB",
+          "flightNumber": "IB701",
+          "originCity": "Santa Cruz",
+          "originCode": "VVI",
+          "destinationCity": "Madrid",
+          "destinationCode": "MAD",
+          "departAt": "2026-07-02T08:40:00Z",
+          "arriveAt": "2026-07-02T19:25:00Z",
+          "travelClass": "economy"
+        },
+        {
+          "id": "t1-s2",
+          "airline": "Iberia",
+          "airlineCode": "IB",
+          "flightNumber": "IB702",
+          "originCity": "Madrid",
+          "originCode": "MAD",
+          "destinationCity": "Santa Cruz",
+          "destinationCode": "VVI",
+          "departAt": "2026-07-02T21:10:00Z",
+          "arriveAt": "2026-07-02T23:55:00Z",
+          "travelClass": "economy"
+        }
+      ],
+      "extras": {
+        "baggage": "1 × 23 kg",
+        "seat": "18C",
+        "insurance": true,
+        "services": [
+          "Asientos juntos"
+        ]
+      }
+    },
+    {
+      "id": "t2",
+      "code": "FA-20419",
+      "customerId": "c1",
+      "customerName": "Roberto Áñez",
+      "agentId": "a1",
+      "agentName": "Ana Flores",
+      "airline": "American Airlines",
+      "airlineCode": "AA",
+      "pnr": "XK90PL",
+      "gds": "Sabre",
+      "ticketNumber": "001-7788990011",
+      "originCity": "Santa Cruz",
+      "originCode": "VVI",
+      "destinationCity": "Miami",
+      "destinationCode": "MIA",
+      "tripType": "round_trip",
+      "travelClass": "business",
+      "travelDate": "2026-07-10",
+      "passengerCount": 1,
+      "fare": {
+        "amount": 22400,
+        "currency": "BOB"
+      },
+      "taxes": {
+        "amount": 4100,
+        "currency": "BOB"
+      },
+      "total": {
+        "amount": 26500,
+        "currency": "BOB"
+      },
+      "commission": {
+        "amount": 2240,
+        "currency": "BOB"
+      },
+      "profit": {
+        "amount": 3200,
+        "currency": "BOB"
+      },
+      "providerId": "p2",
+      "providerName": "American Airlines",
+      "status": "confirmed",
+      "createdAt": "2026-06-20T11:00:00Z",
+      "segments": [
+        {
+          "id": "t2-s1",
+          "airline": "American Airlines",
+          "airlineCode": "AA",
+          "flightNumber": "AA702",
+          "originCity": "Santa Cruz",
+          "originCode": "VVI",
+          "destinationCity": "Miami",
+          "destinationCode": "MIA",
+          "departAt": "2026-07-10T08:40:00Z",
+          "arriveAt": "2026-07-10T19:25:00Z",
+          "travelClass": "business"
+        },
+        {
+          "id": "t2-s2",
+          "airline": "American Airlines",
+          "airlineCode": "AA",
+          "flightNumber": "AA703",
+          "originCity": "Miami",
+          "originCode": "MIA",
+          "destinationCity": "Santa Cruz",
+          "destinationCode": "VVI",
+          "departAt": "2026-07-10T21:10:00Z",
+          "arriveAt": "2026-07-10T23:55:00Z",
+          "travelClass": "business"
+        }
+      ],
+      "extras": {
+        "baggage": "2 × 32 kg",
+        "seat": "2A",
+        "insurance": true,
+        "services": [
+          "Sala VIP",
+          "Comida especial"
+        ]
+      }
+    },
+    {
+      "id": "t3",
+      "code": "FA-20420",
+      "customerId": "c3",
+      "customerName": "Pedro Quispe",
+      "agentId": "a2",
+      "agentName": "Carlos Mendoza",
+      "airline": "Gol",
+      "airlineCode": "G3",
+      "pnr": "RT55MN",
+      "gds": "Amadeus",
+      "ticketNumber": "127-3344556677",
+      "originCity": "Cochabamba",
+      "originCode": "CBB",
+      "destinationCity": "São Paulo",
+      "destinationCode": "GRU",
+      "tripType": "round_trip",
+      "travelClass": "economy",
+      "travelDate": "2026-07-05",
+      "passengerCount": 1,
+      "fare": {
+        "amount": 5200,
+        "currency": "BOB"
+      },
+      "taxes": {
+        "amount": 1400,
+        "currency": "BOB"
+      },
+      "total": {
+        "amount": 6600,
+        "currency": "BOB"
+      },
+      "commission": {
+        "amount": 520,
+        "currency": "BOB"
+      },
+      "profit": {
+        "amount": 680,
+        "currency": "BOB"
+      },
+      "providerId": "p3",
+      "providerName": "Gol Linhas Aéreas",
+      "status": "reserved",
+      "createdAt": "2026-06-28T09:00:00Z",
+      "segments": [
+        {
+          "id": "t3-s1",
+          "airline": "Gol",
+          "airlineCode": "G3",
+          "flightNumber": "G3703",
+          "originCity": "Cochabamba",
+          "originCode": "CBB",
+          "destinationCity": "São Paulo",
+          "destinationCode": "GRU",
+          "departAt": "2026-07-05T08:40:00Z",
+          "arriveAt": "2026-07-05T19:25:00Z",
+          "travelClass": "economy"
+        },
+        {
+          "id": "t3-s2",
+          "airline": "Gol",
+          "airlineCode": "G3",
+          "flightNumber": "G3704",
+          "originCity": "São Paulo",
+          "originCode": "GRU",
+          "destinationCity": "Cochabamba",
+          "destinationCode": "CBB",
+          "departAt": "2026-07-05T21:10:00Z",
+          "arriveAt": "2026-07-05T23:55:00Z",
+          "travelClass": "economy"
+        }
+      ],
+      "extras": {
+        "baggage": "1 × 23 kg",
+        "seat": "18C",
+        "insurance": false,
+        "services": []
+      }
+    },
+    {
+      "id": "t4",
+      "code": "FA-20421",
+      "customerId": "c11",
+      "customerName": "Luis Fernández",
+      "agentId": "a1",
+      "agentName": "Ana Flores",
+      "airline": "LATAM",
+      "airlineCode": "LA",
+      "pnr": "QW33ZX",
+      "gds": "Sabre",
+      "ticketNumber": "045-9900112233",
+      "originCity": "La Paz",
+      "originCode": "LPB",
+      "destinationCity": "Lima",
+      "destinationCode": "LIM",
+      "tripType": "one_way",
+      "travelClass": "economy",
+      "travelDate": "2026-07-08",
+      "passengerCount": 1,
+      "fare": {
+        "amount": 3100,
+        "currency": "BOB"
+      },
+      "taxes": {
+        "amount": 720,
+        "currency": "BOB"
+      },
+      "total": {
+        "amount": 3820,
+        "currency": "BOB"
+      },
+      "commission": {
+        "amount": 310,
+        "currency": "BOB"
+      },
+      "profit": {
+        "amount": 410,
+        "currency": "BOB"
+      },
+      "providerId": "p4",
+      "providerName": "LATAM Airlines",
+      "status": "issued",
+      "createdAt": "2026-06-24T14:00:00Z",
+      "segments": [
+        {
+          "id": "t4-s1",
+          "airline": "LATAM",
+          "airlineCode": "LA",
+          "flightNumber": "LA704",
+          "originCity": "La Paz",
+          "originCode": "LPB",
+          "destinationCity": "Lima",
+          "destinationCode": "LIM",
+          "departAt": "2026-07-08T08:40:00Z",
+          "arriveAt": "2026-07-08T19:25:00Z",
+          "travelClass": "economy"
+        }
+      ],
+      "extras": {
+        "baggage": "1 × 23 kg",
+        "seat": "18C",
+        "insurance": false,
+        "services": []
+      }
+    },
+    {
+      "id": "t5",
+      "code": "FA-20422",
+      "customerId": "c7",
+      "customerName": "Daniela Rocha",
+      "agentId": "a1",
+      "agentName": "Ana Flores",
+      "airline": "Gol",
+      "airlineCode": "G3",
+      "pnr": "LP77VB",
+      "gds": "Amadeus",
+      "ticketNumber": "127-1122334455",
+      "originCity": "Santa Cruz",
+      "originCode": "VVI",
+      "destinationCity": "Río de Janeiro",
+      "destinationCode": "GIG",
+      "tripType": "round_trip",
+      "travelClass": "premium_economy",
+      "travelDate": "2026-06-18",
+      "passengerCount": 2,
+      "fare": {
+        "amount": 11200,
+        "currency": "BOB"
+      },
+      "taxes": {
+        "amount": 2600,
+        "currency": "BOB"
+      },
+      "total": {
+        "amount": 13800,
+        "currency": "BOB"
+      },
+      "commission": {
+        "amount": 1120,
+        "currency": "BOB"
+      },
+      "profit": {
+        "amount": 1450,
+        "currency": "BOB"
+      },
+      "providerId": "p3",
+      "providerName": "Gol Linhas Aéreas",
+      "status": "issued",
+      "createdAt": "2026-06-02T10:00:00Z",
+      "segments": [
+        {
+          "id": "t5-s1",
+          "airline": "Gol",
+          "airlineCode": "G3",
+          "flightNumber": "G3705",
+          "originCity": "Santa Cruz",
+          "originCode": "VVI",
+          "destinationCity": "Río de Janeiro",
+          "destinationCode": "GIG",
+          "departAt": "2026-06-18T08:40:00Z",
+          "arriveAt": "2026-06-18T19:25:00Z",
+          "travelClass": "premium_economy"
+        },
+        {
+          "id": "t5-s2",
+          "airline": "Gol",
+          "airlineCode": "G3",
+          "flightNumber": "G3706",
+          "originCity": "Río de Janeiro",
+          "originCode": "GIG",
+          "destinationCity": "Santa Cruz",
+          "destinationCode": "VVI",
+          "departAt": "2026-06-18T21:10:00Z",
+          "arriveAt": "2026-06-18T23:55:00Z",
+          "travelClass": "premium_economy"
+        }
+      ],
+      "extras": {
+        "baggage": "1 × 23 kg",
+        "seat": "18C",
+        "insurance": true,
+        "services": []
+      }
+    },
+    {
+      "id": "t6",
+      "code": "FA-20423",
+      "customerId": "c10",
+      "customerName": "Patricia Vaca",
+      "agentId": "a2",
+      "agentName": "Carlos Mendoza",
+      "airline": "Copa",
+      "airlineCode": "CM",
+      "pnr": "MN22KL",
+      "gds": "Amadeus",
+      "ticketNumber": "230-5566778899",
+      "originCity": "Santa Cruz",
+      "originCode": "VVI",
+      "destinationCity": "Nueva York",
+      "destinationCode": "JFK",
+      "tripType": "round_trip",
+      "travelClass": "economy",
+      "travelDate": "2026-08-01",
+      "passengerCount": 2,
+      "fare": {
+        "amount": 15600,
+        "currency": "BOB"
+      },
+      "taxes": {
+        "amount": 3400,
+        "currency": "BOB"
+      },
+      "total": {
+        "amount": 19000,
+        "currency": "BOB"
+      },
+      "commission": {
+        "amount": 1560,
+        "currency": "BOB"
+      },
+      "profit": {
+        "amount": 1900,
+        "currency": "BOB"
+      },
+      "providerId": "p5",
+      "providerName": "Copa Airlines",
+      "status": "quote",
+      "createdAt": "2026-06-29T16:00:00Z",
+      "segments": [
+        {
+          "id": "t6-s1",
+          "airline": "Copa",
+          "airlineCode": "CM",
+          "flightNumber": "CM706",
+          "originCity": "Santa Cruz",
+          "originCode": "VVI",
+          "destinationCity": "Nueva York",
+          "destinationCode": "JFK",
+          "departAt": "2026-08-01T08:40:00Z",
+          "arriveAt": "2026-08-01T19:25:00Z",
+          "travelClass": "economy"
+        },
+        {
+          "id": "t6-s2",
+          "airline": "Copa",
+          "airlineCode": "CM",
+          "flightNumber": "CM707",
+          "originCity": "Nueva York",
+          "originCode": "JFK",
+          "destinationCity": "Santa Cruz",
+          "destinationCode": "VVI",
+          "departAt": "2026-08-01T21:10:00Z",
+          "arriveAt": "2026-08-01T23:55:00Z",
+          "travelClass": "economy"
+        }
+      ],
+      "extras": {
+        "baggage": "1 × 23 kg",
+        "seat": "18C",
+        "insurance": true,
+        "services": []
+      }
+    },
+    {
+      "id": "t7",
+      "code": "FA-20410",
+      "customerId": "c5",
+      "customerName": "Carmen Justiniano",
+      "agentId": "a1",
+      "agentName": "Ana Flores",
+      "airline": "American Airlines",
+      "airlineCode": "AA",
+      "pnr": "BV88GH",
+      "gds": "Sabre",
+      "ticketNumber": "001-2233445566",
+      "originCity": "Santa Cruz",
+      "originCode": "VVI",
+      "destinationCity": "Orlando",
+      "destinationCode": "MCO",
+      "tripType": "round_trip",
+      "travelClass": "economy",
+      "travelDate": "2026-05-20",
+      "passengerCount": 3,
+      "fare": {
+        "amount": 18900,
+        "currency": "BOB"
+      },
+      "taxes": {
+        "amount": 4200,
+        "currency": "BOB"
+      },
+      "total": {
+        "amount": 23100,
+        "currency": "BOB"
+      },
+      "commission": {
+        "amount": 1890,
+        "currency": "BOB"
+      },
+      "profit": {
+        "amount": 2300,
+        "currency": "BOB"
+      },
+      "providerId": "p2",
+      "providerName": "American Airlines",
+      "status": "refunded",
+      "createdAt": "2026-04-15T10:00:00Z",
+      "segments": [
+        {
+          "id": "t7-s1",
+          "airline": "American Airlines",
+          "airlineCode": "AA",
+          "flightNumber": "AA707",
+          "originCity": "Santa Cruz",
+          "originCode": "VVI",
+          "destinationCity": "Orlando",
+          "destinationCode": "MCO",
+          "departAt": "2026-05-20T08:40:00Z",
+          "arriveAt": "2026-05-20T19:25:00Z",
+          "travelClass": "economy"
+        },
+        {
+          "id": "t7-s2",
+          "airline": "American Airlines",
+          "airlineCode": "AA",
+          "flightNumber": "AA708",
+          "originCity": "Orlando",
+          "originCode": "MCO",
+          "destinationCity": "Santa Cruz",
+          "destinationCode": "VVI",
+          "departAt": "2026-05-20T21:10:00Z",
+          "arriveAt": "2026-05-20T23:55:00Z",
+          "travelClass": "economy"
+        }
+      ],
+      "extras": {
+        "baggage": "1 × 23 kg",
+        "seat": "18C",
+        "insurance": true,
+        "services": [
+          "Asientos juntos"
+        ]
+      }
+    },
+    {
+      "id": "t8",
+      "code": "FA-20411",
+      "customerId": "c12",
+      "customerName": "Sofía Antelo",
+      "agentId": "a3",
+      "agentName": "Lucía Pérez",
+      "airline": "Copa",
+      "airlineCode": "CM",
+      "pnr": "TY11RS",
+      "gds": "Amadeus",
+      "ticketNumber": "230-9988776655",
+      "originCity": "Santa Cruz",
+      "originCode": "VVI",
+      "destinationCity": "Cartagena",
+      "destinationCode": "CTG",
+      "tripType": "round_trip",
+      "travelClass": "economy",
+      "travelDate": "2026-06-25",
+      "passengerCount": 1,
+      "fare": {
+        "amount": 7100,
+        "currency": "BOB"
+      },
+      "taxes": {
+        "amount": 1700,
+        "currency": "BOB"
+      },
+      "total": {
+        "amount": 8800,
+        "currency": "BOB"
+      },
+      "commission": {
+        "amount": 710,
+        "currency": "BOB"
+      },
+      "profit": {
+        "amount": 760,
+        "currency": "BOB"
+      },
+      "providerId": "p5",
+      "providerName": "Copa Airlines",
+      "status": "issued",
+      "createdAt": "2026-06-05T12:00:00Z",
+      "segments": [
+        {
+          "id": "t8-s1",
+          "airline": "Copa",
+          "airlineCode": "CM",
+          "flightNumber": "CM708",
+          "originCity": "Santa Cruz",
+          "originCode": "VVI",
+          "destinationCity": "Cartagena",
+          "destinationCode": "CTG",
+          "departAt": "2026-06-25T08:40:00Z",
+          "arriveAt": "2026-06-25T19:25:00Z",
+          "travelClass": "economy"
+        },
+        {
+          "id": "t8-s2",
+          "airline": "Copa",
+          "airlineCode": "CM",
+          "flightNumber": "CM709",
+          "originCity": "Cartagena",
+          "originCode": "CTG",
+          "destinationCity": "Santa Cruz",
+          "destinationCode": "VVI",
+          "departAt": "2026-06-25T21:10:00Z",
+          "arriveAt": "2026-06-25T23:55:00Z",
+          "travelClass": "economy"
+        }
+      ],
+      "extras": {
+        "baggage": "1 × 23 kg",
+        "seat": "18C",
+        "insurance": false,
+        "services": []
+      }
+    },
+    {
+      "id": "t9",
+      "code": "FA-20424",
+      "customerId": "c2",
+      "customerName": "María Salazar",
+      "agentId": "a3",
+      "agentName": "Lucía Pérez",
+      "airline": "Avianca",
+      "airlineCode": "AV",
+      "pnr": "ZZ44WW",
+      "gds": "Sabre",
+      "ticketNumber": "134-6677889900",
+      "originCity": "La Paz",
+      "originCode": "LPB",
+      "destinationCity": "Punta Cana",
+      "destinationCode": "PUJ",
+      "tripType": "round_trip",
+      "travelClass": "economy",
+      "travelDate": "2026-12-12",
+      "passengerCount": 2,
+      "fare": {
+        "amount": 16800,
+        "currency": "BOB"
+      },
+      "taxes": {
+        "amount": 3700,
+        "currency": "BOB"
+      },
+      "total": {
+        "amount": 20500,
+        "currency": "BOB"
+      },
+      "commission": {
+        "amount": 1680,
+        "currency": "BOB"
+      },
+      "profit": {
+        "amount": 2050,
+        "currency": "BOB"
+      },
+      "providerId": "p6",
+      "providerName": "Avianca",
+      "status": "reserved",
+      "createdAt": "2026-06-30T11:30:00Z",
+      "segments": [
+        {
+          "id": "t9-s1",
+          "airline": "Avianca",
+          "airlineCode": "AV",
+          "flightNumber": "AV709",
+          "originCity": "La Paz",
+          "originCode": "LPB",
+          "destinationCity": "Punta Cana",
+          "destinationCode": "PUJ",
+          "departAt": "2026-12-12T08:40:00Z",
+          "arriveAt": "2026-12-12T19:25:00Z",
+          "travelClass": "economy"
+        },
+        {
+          "id": "t9-s2",
+          "airline": "Avianca",
+          "airlineCode": "AV",
+          "flightNumber": "AV710",
+          "originCity": "Punta Cana",
+          "originCode": "PUJ",
+          "destinationCity": "La Paz",
+          "destinationCode": "LPB",
+          "departAt": "2026-12-12T21:10:00Z",
+          "arriveAt": "2026-12-12T23:55:00Z",
+          "travelClass": "economy"
+        }
+      ],
+      "extras": {
+        "baggage": "1 × 23 kg",
+        "seat": "18C",
+        "insurance": true,
+        "services": []
+      }
+    },
+    {
+      "id": "t10",
+      "code": "FA-20425",
+      "customerId": "c6",
+      "customerName": "Jorge Mamani",
+      "agentId": "a2",
+      "agentName": "Carlos Mendoza",
+      "airline": "BoA",
+      "airlineCode": "OB",
+      "pnr": "HH99QP",
+      "gds": "Amadeus",
+      "ticketNumber": "930-1212343456",
+      "originCity": "La Paz",
+      "originCode": "LPB",
+      "destinationCity": "Cusco",
+      "destinationCode": "CUZ",
+      "tripType": "one_way",
+      "travelClass": "economy",
+      "travelDate": "2026-07-15",
+      "passengerCount": 1,
+      "fare": {
+        "amount": 1900,
+        "currency": "BOB"
+      },
+      "taxes": {
+        "amount": 420,
+        "currency": "BOB"
+      },
+      "total": {
+        "amount": 2320,
+        "currency": "BOB"
+      },
+      "commission": {
+        "amount": 190,
+        "currency": "BOB"
+      },
+      "profit": {
+        "amount": 210,
+        "currency": "BOB"
+      },
+      "providerId": "p7",
+      "providerName": "Boliviana de Aviación",
+      "status": "cancelled",
+      "createdAt": "2026-06-10T08:00:00Z",
+      "segments": [
+        {
+          "id": "t10-s1",
+          "airline": "BoA",
+          "airlineCode": "OB",
+          "flightNumber": "OB710",
+          "originCity": "La Paz",
+          "originCode": "LPB",
+          "destinationCity": "Cusco",
+          "destinationCode": "CUZ",
+          "departAt": "2026-07-15T08:40:00Z",
+          "arriveAt": "2026-07-15T19:25:00Z",
+          "travelClass": "economy"
+        }
+      ],
+      "extras": {
+        "baggage": "1 × 23 kg",
+        "seat": "18C",
+        "insurance": false,
+        "services": []
+      }
+    }
+  ],
+  "quotes": [
+    {
+      "id": "q1",
+      "code": "FA-Q1042",
+      "customerId": "c4",
+      "customerName": "Laura Vargas",
+      "customerEmail": "laura.vargas@gmail.com",
+      "customerPhone": "+591 73456789",
+      "agentName": "Lucía Pérez",
+      "items": [
+        {
+          "id": "i1",
+          "description": "Crucero Caribe 7 noches",
+          "detail": "Cabina balcón · 2 pasajeros",
+          "quantity": 2,
+          "unitPrice": 9800
+        },
+        {
+          "id": "i2",
+          "description": "Traslados aeropuerto-puerto",
+          "quantity": 2,
+          "unitPrice": 350
+        },
+        {
+          "id": "i3",
+          "description": "Seguro de viaje internacional",
+          "quantity": 2,
+          "unitPrice": 420
+        }
+      ],
+      "currency": "BOB",
+      "taxPct": 13,
+      "validUntil": "2026-07-10",
+      "status": "sent",
+      "notes": "Precio sujeto a disponibilidad. Incluye pensión completa a bordo.",
+      "createdAt": "2026-06-30T12:48:00Z"
+    },
+    {
+      "id": "q2",
+      "code": "FA-Q1041",
+      "customerId": "c9",
+      "customerName": "Andrés Camacho",
+      "customerEmail": "andres.camacho@gmail.com",
+      "agentName": "Lucía Pérez",
+      "items": [
+        {
+          "id": "i1",
+          "description": "Vuelo CBB → Madrid (ida y vuelta)",
+          "detail": "Económica · intercambio estudiantil",
+          "quantity": 1,
+          "unitPrice": 7200
+        },
+        {
+          "id": "i2",
+          "description": "Seguro estudiantil 6 meses",
+          "quantity": 1,
+          "unitPrice": 1850
+        }
+      ],
+      "currency": "BOB",
+      "taxPct": 13,
+      "validUntil": "2026-07-05",
+      "status": "draft",
+      "createdAt": "2026-06-28T17:30:00Z"
+    },
+    {
+      "id": "q3",
+      "code": "FA-Q1038",
+      "customerId": "c2",
+      "customerName": "María Salazar",
+      "customerEmail": "maria.salazar@outlook.com",
+      "agentName": "Lucía Pérez",
+      "items": [
+        {
+          "id": "i1",
+          "description": "Paquete luna de miel Punta Cana",
+          "detail": "Hotel 5★ todo incluido · 6 noches",
+          "quantity": 2,
+          "unitPrice": 8400
+        },
+        {
+          "id": "i2",
+          "description": "Excursión Isla Saona",
+          "quantity": 2,
+          "unitPrice": 480
+        }
+      ],
+      "currency": "BOB",
+      "taxPct": 13,
+      "validUntil": "2026-06-20",
+      "status": "converted",
+      "createdAt": "2026-06-01T10:00:00Z"
+    },
+    {
+      "id": "q4",
+      "code": "FA-Q1035",
+      "customerId": "c10",
+      "customerName": "Patricia Vaca",
+      "customerEmail": "patricia.vaca@gmail.com",
+      "agentName": "Carlos Mendoza",
+      "items": [
+        {
+          "id": "i1",
+          "description": "Vuelo VVI → Nueva York (ida y vuelta)",
+          "detail": "Económica · 2 pasajeros",
+          "quantity": 2,
+          "unitPrice": 9500
+        }
+      ],
+      "currency": "BOB",
+      "taxPct": 13,
+      "validUntil": "2026-07-12",
+      "status": "accepted",
+      "createdAt": "2026-06-25T15:00:00Z"
+    }
+  ],
+  "payments": [
+    {
+      "id": "pay1",
+      "code": "PG-3041",
+      "customerId": "c8",
+      "customerName": "Familia Gutiérrez",
+      "concept": "Boletos VVI → MAD (4 pax)",
+      "relatedCode": "FA-20418",
+      "method": "qr",
+      "total": {
+        "amount": 18450,
+        "currency": "BOB"
+      },
+      "paid": {
+        "amount": 18450,
+        "currency": "BOB"
+      },
+      "status": "paid",
+      "agentName": "Ana Flores",
+      "createdAt": "2026-06-12T16:00:00Z",
+      "transactions": [
+        {
+          "id": "x1",
+          "at": "2026-06-12T16:00:00Z",
+          "method": "qr",
+          "amount": {
+            "amount": 9450,
+            "currency": "BOB"
+          },
+          "reference": "QR-88123"
+        },
+        {
+          "id": "x2",
+          "at": "2026-06-20T10:00:00Z",
+          "method": "transfer",
+          "amount": {
+            "amount": 9000,
+            "currency": "BOB"
+          },
+          "reference": "TRX-55012"
+        }
+      ]
+    },
+    {
+      "id": "pay2",
+      "code": "PG-3042",
+      "customerId": "c1",
+      "customerName": "Roberto Áñez",
+      "concept": "Boleto VVI → MIA ejecutiva",
+      "relatedCode": "FA-20419",
+      "method": "card",
+      "total": {
+        "amount": 26500,
+        "currency": "BOB"
+      },
+      "paid": {
+        "amount": 13250,
+        "currency": "BOB"
+      },
+      "status": "partial",
+      "dueDate": "2026-07-08",
+      "agentName": "Ana Flores",
+      "createdAt": "2026-06-20T11:30:00Z",
+      "transactions": [
+        {
+          "id": "x1",
+          "at": "2026-06-20T11:30:00Z",
+          "method": "card",
+          "amount": {
+            "amount": 13250,
+            "currency": "BOB"
+          },
+          "reference": "VISA-4421"
+        }
+      ]
+    },
+    {
+      "id": "pay3",
+      "code": "PG-3043",
+      "customerId": "c3",
+      "customerName": "Pedro Quispe",
+      "concept": "Reserva CBB → GRU",
+      "relatedCode": "FA-20420",
+      "method": "transfer",
+      "total": {
+        "amount": 6600,
+        "currency": "BOB"
+      },
+      "paid": {
+        "amount": 0,
+        "currency": "BOB"
+      },
+      "status": "pending",
+      "dueDate": "2026-07-03",
+      "agentName": "Carlos Mendoza",
+      "createdAt": "2026-06-28T09:30:00Z",
+      "transactions": []
+    },
+    {
+      "id": "pay4",
+      "code": "PG-3044",
+      "customerId": "c4",
+      "customerName": "Laura Vargas",
+      "concept": "Anticipo crucero Caribe",
+      "relatedCode": "FA-Q1042",
+      "method": "qr",
+      "total": {
+        "amount": 23052,
+        "currency": "BOB"
+      },
+      "paid": {
+        "amount": 5000,
+        "currency": "BOB"
+      },
+      "status": "partial",
+      "dueDate": "2026-07-10",
+      "agentName": "Lucía Pérez",
+      "createdAt": "2026-06-30T13:00:00Z",
+      "transactions": [
+        {
+          "id": "x1",
+          "at": "2026-06-30T13:00:00Z",
+          "method": "qr",
+          "amount": {
+            "amount": 5000,
+            "currency": "BOB"
+          },
+          "reference": "QR-90455"
+        }
+      ]
+    },
+    {
+      "id": "pay5",
+      "code": "PG-3045",
+      "customerId": "c5",
+      "customerName": "Carmen Justiniano",
+      "concept": "Boletos VVI → MCO (reembolso)",
+      "relatedCode": "FA-20410",
+      "method": "card",
+      "total": {
+        "amount": 23100,
+        "currency": "BOB"
+      },
+      "paid": {
+        "amount": 23100,
+        "currency": "BOB"
+      },
+      "status": "refunded",
+      "agentName": "Ana Flores",
+      "createdAt": "2026-04-15T10:30:00Z",
+      "transactions": [
+        {
+          "id": "x1",
+          "at": "2026-04-15T10:30:00Z",
+          "method": "card",
+          "amount": {
+            "amount": 23100,
+            "currency": "BOB"
+          },
+          "reference": "VISA-9001"
+        },
+        {
+          "id": "x2",
+          "at": "2026-05-02T09:00:00Z",
+          "method": "transfer",
+          "amount": {
+            "amount": -23100,
+            "currency": "BOB"
+          },
+          "reference": "REEMB-12"
+        }
+      ]
+    },
+    {
+      "id": "pay6",
+      "code": "PG-3046",
+      "customerId": "c12",
+      "customerName": "Sofía Antelo",
+      "concept": "Boleto VVI → CTG",
+      "relatedCode": "FA-20411",
+      "method": "stripe",
+      "total": {
+        "amount": 8800,
+        "currency": "BOB"
+      },
+      "paid": {
+        "amount": 8800,
+        "currency": "BOB"
+      },
+      "status": "paid",
+      "agentName": "Lucía Pérez",
+      "createdAt": "2026-06-05T12:30:00Z",
+      "transactions": [
+        {
+          "id": "x1",
+          "at": "2026-06-05T12:30:00Z",
+          "method": "stripe",
+          "amount": {
+            "amount": 8800,
+            "currency": "BOB"
+          },
+          "reference": "ch_3PqX"
+        }
+      ]
+    },
+    {
+      "id": "pay7",
+      "code": "PG-3047",
+      "customerId": "c10",
+      "customerName": "Patricia Vaca",
+      "concept": "Anticipo VVI → JFK",
+      "relatedCode": "FA-20423",
+      "method": "paypal",
+      "total": {
+        "amount": 19000,
+        "currency": "BOB"
+      },
+      "paid": {
+        "amount": 9500,
+        "currency": "BOB"
+      },
+      "status": "partial",
+      "dueDate": "2026-07-20",
+      "agentName": "Carlos Mendoza",
+      "createdAt": "2026-06-29T16:30:00Z",
+      "transactions": [
+        {
+          "id": "x1",
+          "at": "2026-06-29T16:30:00Z",
+          "method": "paypal",
+          "amount": {
+            "amount": 9500,
+            "currency": "BOB"
+          },
+          "reference": "PP-77231"
+        }
+      ]
+    }
+  ],
+  "documents": [
+    {
+      "id": "d1",
+      "code": "FAC-10231",
+      "kind": "invoice",
+      "customerName": "Familia Gutiérrez",
+      "customerEmail": "gutierrez.familia@gmail.com",
+      "relatedCode": "FA-20418",
+      "concept": "Boletos VVI → MAD (4 pax)",
+      "amount": {
+        "amount": 18450,
+        "currency": "BOB"
+      },
+      "issuedAt": "2026-06-20",
+      "status": "issued",
+      "agentName": "Ana Flores",
+      "createdAt": "2026-06-20T10:05:00Z"
+    },
+    {
+      "id": "d2",
+      "code": "REC-20489",
+      "kind": "receipt",
+      "customerName": "Familia Gutiérrez",
+      "customerEmail": "gutierrez.familia@gmail.com",
+      "relatedCode": "PG-3041",
+      "concept": "Pago total boletos Madrid",
+      "amount": {
+        "amount": 18450,
+        "currency": "BOB"
+      },
+      "issuedAt": "2026-06-20",
+      "status": "issued",
+      "agentName": "Ana Flores",
+      "createdAt": "2026-06-20T10:06:00Z"
+    },
+    {
+      "id": "d3",
+      "code": "VOU-5512",
+      "kind": "voucher",
+      "customerName": "Sofía Antelo",
+      "relatedCode": "FA-20411",
+      "concept": "Hotel Cartagena · 4 noches",
+      "amount": {
+        "amount": 3200,
+        "currency": "BOB"
+      },
+      "issuedAt": "2026-06-06",
+      "status": "issued",
+      "agentName": "Lucía Pérez",
+      "createdAt": "2026-06-06T09:00:00Z"
+    },
+    {
+      "id": "d4",
+      "code": "ITN-8841",
+      "kind": "itinerary",
+      "customerName": "Roberto Áñez",
+      "relatedCode": "FA-20419",
+      "concept": "Itinerario VVI → MIA ida y vuelta",
+      "issuedAt": "2026-06-21",
+      "status": "issued",
+      "agentName": "Ana Flores",
+      "createdAt": "2026-06-21T08:00:00Z"
+    },
+    {
+      "id": "d5",
+      "code": "CNF-3120",
+      "kind": "confirmation",
+      "customerName": "Patricia Vaca",
+      "relatedCode": "FA-20423",
+      "concept": "Confirmación de reserva VVI → JFK",
+      "issuedAt": "2026-06-29",
+      "status": "issued",
+      "agentName": "Carlos Mendoza",
+      "createdAt": "2026-06-29T17:00:00Z"
+    },
+    {
+      "id": "d6",
+      "code": "CTR-1190",
+      "kind": "contract",
+      "customerName": "Laura Vargas",
+      "customerEmail": "laura.vargas@gmail.com",
+      "relatedCode": "FA-Q1042",
+      "concept": "Contrato de servicios turísticos (crucero)",
+      "amount": {
+        "amount": 23052,
+        "currency": "BOB"
+      },
+      "issuedAt": "2026-06-30",
+      "status": "issued",
+      "agentName": "Lucía Pérez",
+      "createdAt": "2026-06-30T13:30:00Z"
+    },
+    {
+      "id": "d7",
+      "code": "NC-0042",
+      "kind": "credit_note",
+      "customerName": "Carmen Justiniano",
+      "customerEmail": "carmen.justiniano@gmail.com",
+      "relatedCode": "FAC-10180",
+      "concept": "Nota de crédito por reembolso VVI → MCO",
+      "amount": {
+        "amount": 23100,
+        "currency": "BOB"
+      },
+      "issuedAt": "2026-05-02",
+      "status": "issued",
+      "agentName": "Ana Flores",
+      "createdAt": "2026-05-02T09:30:00Z"
+    },
+    {
+      "id": "d8",
+      "code": "FAC-10198",
+      "kind": "invoice",
+      "customerName": "Sofía Antelo",
+      "relatedCode": "FA-20411",
+      "concept": "Boleto VVI → CTG",
+      "amount": {
+        "amount": 8800,
+        "currency": "BOB"
+      },
+      "issuedAt": "2026-06-06",
+      "status": "issued",
+      "agentName": "Lucía Pérez",
+      "createdAt": "2026-06-06T10:00:00Z"
+    }
+  ],
+  "packages": [
+    {
+      "id": "pk1",
+      "code": "PKG-501",
+      "name": "Crucero Caribe 7 noches",
+      "type": "cruise",
+      "destination": "Caribe",
+      "durationDays": 8,
+      "price": {
+        "amount": 9800,
+        "currency": "BOB"
+      },
+      "providerName": "Royal Caribbean",
+      "includes": [
+        "Cabina balcón",
+        "Pensión completa",
+        "Espectáculos"
+      ],
+      "status": "active",
+      "soldCount": 24,
+      "description": "Crucero por el Caribe con escalas en Cozumel y Roatán.",
+      "createdAt": "2026-03-01T10:00:00Z"
+    },
+    {
+      "id": "pk2",
+      "code": "PKG-502",
+      "name": "Cancún Todo Incluido 5★",
+      "type": "hotel",
+      "destination": "Cancún",
+      "durationDays": 6,
+      "price": {
+        "amount": 8400,
+        "currency": "BOB"
+      },
+      "providerName": "Riu Hotels",
+      "includes": [
+        "All inclusive",
+        "Vista al mar",
+        "Spa"
+      ],
+      "status": "active",
+      "soldCount": 41,
+      "createdAt": "2026-02-15T10:00:00Z"
+    },
+    {
+      "id": "pk3",
+      "code": "PKG-503",
+      "name": "Tour Salar de Uyuni 3D/2N",
+      "type": "tour",
+      "destination": "Uyuni",
+      "durationDays": 3,
+      "price": {
+        "amount": 2200,
+        "currency": "BOB"
+      },
+      "providerName": "Andes Expeditions",
+      "includes": [
+        "Guía",
+        "Hospedaje",
+        "Comidas"
+      ],
+      "status": "active",
+      "soldCount": 67,
+      "createdAt": "2026-01-10T10:00:00Z"
+    },
+    {
+      "id": "pk4",
+      "code": "PKG-504",
+      "name": "Excursión Isla del Sol",
+      "type": "excursion",
+      "destination": "Lago Titicaca",
+      "durationDays": 1,
+      "price": {
+        "amount": 450,
+        "currency": "BOB"
+      },
+      "providerName": "Titicaca Tours",
+      "includes": [
+        "Transporte",
+        "Almuerzo",
+        "Guía"
+      ],
+      "status": "active",
+      "soldCount": 88,
+      "createdAt": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "pk5",
+      "code": "PKG-505",
+      "name": "Traslado VIP aeropuerto VVI",
+      "type": "transfer",
+      "destination": "Santa Cruz",
+      "durationDays": 1,
+      "price": {
+        "amount": 180,
+        "currency": "BOB"
+      },
+      "providerName": "Trans Oriente",
+      "includes": [
+        "Vehículo privado",
+        "Chofer bilingüe"
+      ],
+      "status": "active",
+      "soldCount": 132,
+      "createdAt": "2026-02-01T10:00:00Z"
+    },
+    {
+      "id": "pk6",
+      "code": "PKG-506",
+      "name": "Seguro de viaje internacional",
+      "type": "insurance",
+      "destination": "Internacional",
+      "durationDays": 30,
+      "price": {
+        "amount": 420,
+        "currency": "BOB"
+      },
+      "providerName": "Assist Card",
+      "includes": [
+        "Cobertura médica USD 60k",
+        "Equipaje",
+        "Cancelación"
+      ],
+      "status": "active",
+      "soldCount": 210,
+      "createdAt": "2026-01-05T10:00:00Z"
+    },
+    {
+      "id": "pk7",
+      "code": "PKG-507",
+      "name": "Alquiler de auto Miami",
+      "type": "vehicle",
+      "destination": "Miami",
+      "durationDays": 7,
+      "price": {
+        "amount": 2900,
+        "currency": "BOB"
+      },
+      "providerName": "Hertz",
+      "includes": [
+        "SUV",
+        "Seguro",
+        "GPS"
+      ],
+      "status": "draft",
+      "soldCount": 0,
+      "createdAt": "2026-06-20T10:00:00Z"
+    },
+    {
+      "id": "pk8",
+      "code": "PKG-508",
+      "name": "Europa Clásica 12 días",
+      "type": "tour",
+      "destination": "Europa",
+      "durationDays": 12,
+      "price": {
+        "amount": 24500,
+        "currency": "BOB"
+      },
+      "providerName": "Europamundo",
+      "includes": [
+        "8 ciudades",
+        "Hoteles 4★",
+        "Bus turístico"
+      ],
+      "status": "active",
+      "soldCount": 19,
+      "createdAt": "2026-02-28T10:00:00Z"
+    },
+    {
+      "id": "pk9",
+      "code": "PKG-509",
+      "name": "Buenos Aires City Break",
+      "type": "hotel",
+      "destination": "Buenos Aires",
+      "durationDays": 4,
+      "price": {
+        "amount": 4600,
+        "currency": "BOB"
+      },
+      "providerName": "Meliá",
+      "includes": [
+        "Hotel céntrico",
+        "Desayuno",
+        "City tour"
+      ],
+      "status": "inactive",
+      "soldCount": 12,
+      "createdAt": "2025-11-10T10:00:00Z"
+    }
+  ],
+  "providers": [
+    {
+      "id": "pv1",
+      "name": "Boliviana de Aviación",
+      "type": "airline",
+      "contactName": "Mesa comercial",
+      "email": "ventas@boa.bo",
+      "phone": "+591 2 2900100",
+      "city": "Cochabamba",
+      "country": "Bolivia",
+      "rating": 4.2,
+      "status": "active",
+      "balance": {
+        "amount": 0,
+        "currency": "BOB"
+      },
+      "createdAt": "2023-01-10T10:00:00Z"
+    },
+    {
+      "id": "pv2",
+      "name": "Iberia Bolivia",
+      "type": "airline",
+      "contactName": "Gabriela Soto",
+      "email": "gabriela@iberia.com",
+      "phone": "+591 3 3445500",
+      "city": "Santa Cruz",
+      "country": "Bolivia",
+      "rating": 4.6,
+      "status": "active",
+      "balance": {
+        "amount": 14800,
+        "currency": "BOB"
+      },
+      "createdAt": "2023-02-15T10:00:00Z"
+    },
+    {
+      "id": "pv3",
+      "name": "Riu Hotels & Resorts",
+      "type": "hotel",
+      "contactName": "Reservas LATAM",
+      "email": "latam@riu.com",
+      "phone": "+34 971 743 030",
+      "city": "Cancún",
+      "country": "México",
+      "rating": 4.5,
+      "status": "active",
+      "balance": {
+        "amount": 8400,
+        "currency": "BOB"
+      },
+      "createdAt": "2023-05-01T10:00:00Z"
+    },
+    {
+      "id": "pv4",
+      "name": "Royal Caribbean",
+      "type": "wholesaler",
+      "contactName": "Trade Desk",
+      "email": "trade@rccl.com",
+      "phone": "+1 305 539 6000",
+      "city": "Miami",
+      "country": "EE.UU.",
+      "rating": 4.7,
+      "status": "active",
+      "balance": {
+        "amount": 19600,
+        "currency": "BOB"
+      },
+      "createdAt": "2023-03-20T10:00:00Z"
+    },
+    {
+      "id": "pv5",
+      "name": "Assist Card",
+      "type": "insurance",
+      "contactName": "Soporte agencias",
+      "email": "agencias@assistcard.com",
+      "phone": "+591 800 100200",
+      "city": "La Paz",
+      "country": "Bolivia",
+      "rating": 4.3,
+      "status": "active",
+      "balance": {
+        "amount": 0,
+        "currency": "BOB"
+      },
+      "createdAt": "2023-04-12T10:00:00Z"
+    },
+    {
+      "id": "pv6",
+      "name": "Trans Oriente",
+      "type": "transport",
+      "contactName": "Marco Rivero",
+      "email": "marco@transoriente.bo",
+      "phone": "+591 70099887",
+      "city": "Santa Cruz",
+      "country": "Bolivia",
+      "rating": 4,
+      "status": "active",
+      "balance": {
+        "amount": 1200,
+        "currency": "BOB"
+      },
+      "createdAt": "2024-01-08T10:00:00Z"
+    },
+    {
+      "id": "pv7",
+      "name": "Andes Expeditions",
+      "type": "operator",
+      "contactName": "Lucía Mamani",
+      "email": "info@andesexp.bo",
+      "phone": "+591 71200345",
+      "city": "Uyuni",
+      "country": "Bolivia",
+      "rating": 4.4,
+      "status": "active",
+      "balance": {
+        "amount": 3300,
+        "currency": "BOB"
+      },
+      "createdAt": "2023-09-14T10:00:00Z"
+    },
+    {
+      "id": "pv8",
+      "name": "Europamundo",
+      "type": "wholesaler",
+      "contactName": "Agencias Sudamérica",
+      "email": "sudamerica@europamundo.com",
+      "phone": "+34 915 246 400",
+      "city": "Madrid",
+      "country": "España",
+      "rating": 4.5,
+      "status": "active",
+      "balance": {
+        "amount": 24500,
+        "currency": "BOB"
+      },
+      "createdAt": "2023-06-30T10:00:00Z"
+    },
+    {
+      "id": "pv9",
+      "name": "Copa Airlines",
+      "type": "airline",
+      "contactName": "Mesa BSP",
+      "email": "ventas@copaair.com",
+      "phone": "+507 217 2672",
+      "city": "Panamá",
+      "country": "Panamá",
+      "rating": 4.4,
+      "status": "active",
+      "balance": {
+        "amount": 0,
+        "currency": "BOB"
+      },
+      "createdAt": "2023-02-01T10:00:00Z"
+    },
+    {
+      "id": "pv10",
+      "name": "Meliá Hotels",
+      "type": "hotel",
+      "contactName": "Reservas corporativas",
+      "email": "corp@melia.com",
+      "phone": "+34 912 762 700",
+      "city": "Buenos Aires",
+      "country": "Argentina",
+      "rating": 4.2,
+      "status": "inactive",
+      "balance": {
+        "amount": 0,
+        "currency": "BOB"
+      },
+      "createdAt": "2024-03-22T10:00:00Z"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "tk1",
+      "title": "Llamar a cliente por reemisión LPB→LIM",
+      "description": "Confirmar nueva fecha y diferencia tarifaria.",
+      "priority": "urgent",
+      "status": "todo",
+      "dueDate": "2026-06-30",
+      "assigneeId": "a1",
+      "assignee": "Ana Flores",
+      "assigneeInitials": "AF",
+      "relatedTo": "FA-20421",
+      "createdAt": "2026-06-29T09:00:00Z"
+    },
+    {
+      "id": "tk2",
+      "title": "Enviar voucher hotel Cancún",
+      "description": "Adjuntar voucher RIU y datos de check-in.",
+      "priority": "high",
+      "status": "in_progress",
+      "dueDate": "2026-07-01",
+      "assigneeId": "a2",
+      "assignee": "Carlos Mendoza",
+      "assigneeInitials": "CM",
+      "relatedTo": "PKG-502",
+      "createdAt": "2026-06-28T11:00:00Z"
+    },
+    {
+      "id": "tk3",
+      "title": "Confirmar asientos grupo corporativo",
+      "description": "Grupo de 8 pax, solicitar asientos contiguos.",
+      "priority": "medium",
+      "status": "todo",
+      "dueDate": "2026-07-01",
+      "assigneeId": "a3",
+      "assignee": "Lucía Pérez",
+      "assigneeInitials": "LP",
+      "createdAt": "2026-06-29T14:00:00Z"
+    },
+    {
+      "id": "tk4",
+      "title": "Cargar comprobante de transferencia",
+      "description": "Pago PG-3043 pendiente de conciliación.",
+      "priority": "low",
+      "status": "todo",
+      "dueDate": "2026-07-02",
+      "assigneeId": "a2",
+      "assignee": "Carlos Mendoza",
+      "assigneeInitials": "CM",
+      "relatedTo": "PG-3043",
+      "createdAt": "2026-06-28T16:00:00Z"
+    },
+    {
+      "id": "tk5",
+      "title": "Seguimiento cotización crucero",
+      "description": "Cliente Laura Vargas, validez hasta 10/07.",
+      "priority": "high",
+      "status": "in_progress",
+      "dueDate": "2026-07-03",
+      "assigneeId": "a3",
+      "assignee": "Lucía Pérez",
+      "assigneeInitials": "LP",
+      "relatedTo": "FA-Q1042",
+      "createdAt": "2026-06-30T10:00:00Z"
+    },
+    {
+      "id": "tk6",
+      "title": "Recordar renovación de pasaporte",
+      "description": "Carmen Justiniano, pasaporte vence 12/07.",
+      "priority": "medium",
+      "status": "todo",
+      "dueDate": "2026-07-04",
+      "assigneeId": "a1",
+      "assignee": "Ana Flores",
+      "assigneeInitials": "AF",
+      "relatedTo": "c5",
+      "createdAt": "2026-06-25T09:00:00Z"
+    },
+    {
+      "id": "tk7",
+      "title": "Emitir boletos VVI→MAD familia Gutiérrez",
+      "priority": "high",
+      "status": "done",
+      "dueDate": "2026-06-12",
+      "assigneeId": "a1",
+      "assignee": "Ana Flores",
+      "assigneeInitials": "AF",
+      "relatedTo": "FA-20418",
+      "createdAt": "2026-06-11T09:00:00Z"
+    },
+    {
+      "id": "tk8",
+      "title": "Cotizar Europa Clásica para prospecto",
+      "priority": "medium",
+      "status": "done",
+      "dueDate": "2026-06-26",
+      "assigneeId": "a2",
+      "assignee": "Carlos Mendoza",
+      "assigneeInitials": "CM",
+      "relatedTo": "PKG-508",
+      "createdAt": "2026-06-24T09:00:00Z"
+    },
+    {
+      "id": "tk9",
+      "title": "Campaña reactivación clientes inactivos",
+      "description": "Segmento sin compras en 6+ meses.",
+      "priority": "low",
+      "status": "in_progress",
+      "dueDate": "2026-07-08",
+      "assigneeId": "a1",
+      "assignee": "Ana Flores",
+      "assigneeInitials": "AF",
+      "createdAt": "2026-06-27T12:00:00Z"
+    }
+  ],
+  "calendar": [
+    {
+      "id": "ev1",
+      "kind": "departure",
+      "title": "Salida VVI → MAD",
+      "date": "2026-07-02",
+      "time": "23:40",
+      "customerName": "Familia Gutiérrez"
+    },
+    {
+      "id": "ev2",
+      "kind": "payment",
+      "title": "Vence pago parcial PG-3043",
+      "date": "2026-07-03",
+      "customerName": "Pedro Quispe"
+    },
+    {
+      "id": "ev3",
+      "kind": "follow_up",
+      "title": "Seguimiento cotización crucero",
+      "date": "2026-07-03",
+      "time": "10:00",
+      "customerName": "Laura Vargas"
+    },
+    {
+      "id": "ev4",
+      "kind": "birthday",
+      "title": "Cumpleaños cliente VIP",
+      "date": "2026-07-04",
+      "customerName": "Roberto Áñez"
+    },
+    {
+      "id": "ev5",
+      "kind": "passport_renewal",
+      "title": "Pasaporte por vencer",
+      "date": "2026-07-12",
+      "customerName": "Carmen Justiniano"
+    },
+    {
+      "id": "ev6",
+      "kind": "flight",
+      "title": "Vuelo VVI → MIA ejecutiva",
+      "date": "2026-07-10",
+      "time": "08:40",
+      "customerName": "Roberto Áñez"
+    },
+    {
+      "id": "ev7",
+      "kind": "departure",
+      "title": "Salida CBB → GRU",
+      "date": "2026-07-05",
+      "time": "06:15",
+      "customerName": "Pedro Quispe"
+    },
+    {
+      "id": "ev8",
+      "kind": "meeting",
+      "title": "Reunión proveedor Europamundo",
+      "date": "2026-07-07",
+      "time": "15:00"
+    },
+    {
+      "id": "ev9",
+      "kind": "payment",
+      "title": "Vence anticipo crucero",
+      "date": "2026-07-10",
+      "customerName": "Laura Vargas"
+    },
+    {
+      "id": "ev10",
+      "kind": "departure",
+      "title": "Salida LPB → LIM",
+      "date": "2026-07-08",
+      "time": "07:30",
+      "customerName": "Luis Fernández"
+    },
+    {
+      "id": "ev11",
+      "kind": "reminder",
+      "title": "Cierre de comisiones del mes",
+      "date": "2026-06-30"
+    },
+    {
+      "id": "ev12",
+      "kind": "follow_up",
+      "title": "Llamada post-venta",
+      "date": "2026-06-30",
+      "time": "16:00",
+      "customerName": "Sofía Antelo"
+    },
+    {
+      "id": "ev13",
+      "kind": "departure",
+      "title": "Salida LPB → CUZ",
+      "date": "2026-07-15",
+      "time": "09:20",
+      "customerName": "Jorge Mamani"
+    },
+    {
+      "id": "ev14",
+      "kind": "meeting",
+      "title": "Capacitación GDS Amadeus",
+      "date": "2026-07-14",
+      "time": "09:00"
+    },
+    {
+      "id": "ev15",
+      "kind": "birthday",
+      "title": "Cumpleaños Patricia Vaca",
+      "date": "2026-07-18",
+      "customerName": "Patricia Vaca"
+    }
+  ],
+  "campaigns": [
+    {
+      "id": "cm1",
+      "name": "Promo invierno Caribe 2026",
+      "channel": "email",
+      "status": "active",
+      "audience": "frequent",
+      "subject": "❄️ Escapá del frío: Punta Cana desde Bs 8.900",
+      "owner": "María Fernández",
+      "sentAt": "2026-06-20T13:00:00Z",
+      "metrics": {
+        "audience": 540,
+        "sent": 540,
+        "opened": 318,
+        "clicked": 142,
+        "converted": 23,
+        "revenue": {
+          "amount": 204700,
+          "currency": "BOB"
+        }
+      },
+      "createdAt": "2026-06-18T10:00:00Z"
+    },
+    {
+      "id": "cm2",
+      "name": "Reactivación clientes inactivos",
+      "channel": "whatsapp",
+      "status": "active",
+      "audience": "inactive",
+      "subject": "Te extrañamos ✈️ Tenemos una sorpresa para tu próximo viaje",
+      "owner": "María Fernández",
+      "sentAt": "2026-06-24T15:30:00Z",
+      "metrics": {
+        "audience": 210,
+        "sent": 210,
+        "opened": 188,
+        "clicked": 64,
+        "converted": 11,
+        "revenue": {
+          "amount": 78400,
+          "currency": "BOB"
+        }
+      },
+      "createdAt": "2026-06-23T09:00:00Z"
+    },
+    {
+      "id": "cm3",
+      "name": "Cumpleañeros de julio",
+      "channel": "email",
+      "status": "scheduled",
+      "audience": "birthday",
+      "subject": "🎂 Tu regalo: 10% en tu próxima reserva",
+      "owner": "María Fernández",
+      "scheduledAt": "2026-07-01T12:00:00Z",
+      "metrics": {
+        "audience": 86,
+        "sent": 0,
+        "opened": 0,
+        "clicked": 0,
+        "converted": 0
+      },
+      "createdAt": "2026-06-27T11:00:00Z"
+    },
+    {
+      "id": "cm4",
+      "name": "Recordatorio saldos pendientes",
+      "channel": "sms",
+      "status": "completed",
+      "audience": "with_balance",
+      "subject": "Tu reserva tiene un saldo por confirmar antes del viaje",
+      "owner": "Diego Quispe",
+      "sentAt": "2026-06-10T14:00:00Z",
+      "metrics": {
+        "audience": 64,
+        "sent": 64,
+        "opened": 64,
+        "clicked": 19,
+        "converted": 14,
+        "revenue": {
+          "amount": 41200,
+          "currency": "BOB"
+        }
+      },
+      "createdAt": "2026-06-09T10:00:00Z"
+    },
+    {
+      "id": "cm5",
+      "name": "Lanzamiento paquetes Europa",
+      "channel": "email",
+      "status": "completed",
+      "audience": "all",
+      "subject": "Nuevos paquetes Europa 2026 — cupos limitados",
+      "owner": "María Fernández",
+      "sentAt": "2026-05-28T13:00:00Z",
+      "metrics": {
+        "audience": 1240,
+        "sent": 1240,
+        "opened": 642,
+        "clicked": 233,
+        "converted": 38,
+        "revenue": {
+          "amount": 512300,
+          "currency": "BOB"
+        }
+      },
+      "createdAt": "2026-05-26T10:00:00Z"
+    },
+    {
+      "id": "cm6",
+      "name": "Push app: ofertas relámpago",
+      "channel": "push",
+      "status": "paused",
+      "audience": "all",
+      "subject": "⚡ 48h: tarifas nacionales desde Bs 590",
+      "owner": "María Fernández",
+      "metrics": {
+        "audience": 870,
+        "sent": 430,
+        "opened": 210,
+        "clicked": 58,
+        "converted": 6,
+        "revenue": {
+          "amount": 18600,
+          "currency": "BOB"
+        }
+      },
+      "createdAt": "2026-06-15T10:00:00Z"
+    },
+    {
+      "id": "cm7",
+      "name": "Bienvenida nuevos clientes",
+      "channel": "email",
+      "status": "active",
+      "audience": "new",
+      "subject": "Bienvenido a FlyAlways ✈️ Así sacás el máximo provecho",
+      "owner": "Carlos Mendoza",
+      "sentAt": "2026-06-26T16:00:00Z",
+      "metrics": {
+        "audience": 95,
+        "sent": 95,
+        "opened": 71,
+        "clicked": 33,
+        "converted": 8,
+        "revenue": {
+          "amount": 52800,
+          "currency": "BOB"
+        }
+      },
+      "createdAt": "2026-06-25T10:00:00Z"
+    },
+    {
+      "id": "cm8",
+      "name": "Encuesta de satisfacción post-viaje",
+      "channel": "whatsapp",
+      "status": "draft",
+      "audience": "custom",
+      "subject": "¿Cómo estuvo tu viaje? Contanos en 1 minuto",
+      "owner": "Carlos Mendoza",
+      "metrics": {
+        "audience": 0,
+        "sent": 0,
+        "opened": 0,
+        "clicked": 0,
+        "converted": 0
+      },
+      "createdAt": "2026-06-28T10:00:00Z"
+    }
+  ],
+  "funnel": [
+    {
+      "label": "Audiencia",
+      "value": 3325
+    },
+    {
+      "label": "Enviados",
+      "value": 2579
+    },
+    {
+      "label": "Abiertos",
+      "value": 1521
+    },
+    {
+      "label": "Clics",
+      "value": 612
+    },
+    {
+      "label": "Convertidos",
+      "value": 113
+    }
+  ],
+  "automations": [
+    {
+      "id": "au1",
+      "name": "Recordatorio de pago pendiente",
+      "trigger": "payment_due",
+      "channel": "whatsapp",
+      "status": "active",
+      "timing": "3 días antes del vencimiento",
+      "runs": 248,
+      "lastRunAt": "2026-06-29T09:00:00Z",
+      "createdAt": "2025-11-02T10:00:00Z"
+    },
+    {
+      "id": "au2",
+      "name": "Aviso de viaje próximo",
+      "trigger": "trip_upcoming",
+      "channel": "email",
+      "status": "active",
+      "timing": "48 horas antes de la salida",
+      "runs": 412,
+      "lastRunAt": "2026-06-30T06:00:00Z",
+      "createdAt": "2025-09-14T10:00:00Z"
+    },
+    {
+      "id": "au3",
+      "name": "Saludo de cumpleaños",
+      "trigger": "birthday",
+      "channel": "whatsapp",
+      "status": "active",
+      "timing": "El día del cumpleaños, 09:00",
+      "runs": 134,
+      "lastRunAt": "2026-06-30T09:00:00Z",
+      "createdAt": "2025-08-01T10:00:00Z"
+    },
+    {
+      "id": "au4",
+      "name": "Reactivación de cliente inactivo",
+      "trigger": "inactive_client",
+      "channel": "email",
+      "status": "active",
+      "timing": "Sin compras por más de 6 meses",
+      "runs": 76,
+      "lastRunAt": "2026-06-25T11:00:00Z",
+      "createdAt": "2025-12-10T10:00:00Z"
+    },
+    {
+      "id": "au5",
+      "name": "Seguimiento de cotización sin respuesta",
+      "trigger": "quote_followup",
+      "channel": "whatsapp",
+      "status": "active",
+      "timing": "2 días después de enviar la cotización",
+      "runs": 189,
+      "lastRunAt": "2026-06-28T16:00:00Z",
+      "createdAt": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "au6",
+      "name": "Alerta de pasaporte por vencer",
+      "trigger": "passport_expiry",
+      "channel": "email",
+      "status": "paused",
+      "timing": "6 meses antes del vencimiento",
+      "runs": 41,
+      "lastRunAt": "2026-05-30T08:00:00Z",
+      "createdAt": "2026-02-18T10:00:00Z"
+    },
+    {
+      "id": "au7",
+      "name": "Recordatorio de pago — SMS de respaldo",
+      "trigger": "payment_due",
+      "channel": "sms",
+      "status": "paused",
+      "timing": "El día del vencimiento",
+      "runs": 58,
+      "lastRunAt": "2026-06-12T10:00:00Z",
+      "createdAt": "2026-03-05T10:00:00Z"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "nt1",
+      "kind": "payment",
+      "channel": "whatsapp",
+      "status": "sent",
+      "title": "Recordatorio de pago enviado",
+      "body": "Saldo de Bs 2.400 de Lucía Vargas vence el 03/07. Mensaje entregado por WhatsApp.",
+      "recipient": "Lucía Vargas",
+      "at": "2026-06-30T09:05:00Z"
+    },
+    {
+      "id": "nt2",
+      "kind": "trip",
+      "channel": "email",
+      "status": "sent",
+      "title": "Aviso de viaje próximo",
+      "body": "Vuelo VVI→MIA de Roberto Áñez sale en 48 horas. Itinerario reenviado.",
+      "recipient": "Roberto Áñez",
+      "at": "2026-06-30T06:00:00Z"
+    },
+    {
+      "id": "nt3",
+      "kind": "birthday",
+      "channel": "whatsapp",
+      "status": "sent",
+      "title": "Saludo de cumpleaños",
+      "body": "Se envió el saludo automático y el cupón de 10% a 3 clientes.",
+      "recipient": "3 clientes",
+      "at": "2026-06-30T09:00:00Z"
+    },
+    {
+      "id": "nt4",
+      "kind": "task",
+      "channel": "in_app",
+      "status": "read",
+      "title": "Tarea asignada",
+      "body": "Carlos Mendoza te asignó: «Confirmar bloqueo hotelero Cancún».",
+      "recipient": "Ana Rojas",
+      "at": "2026-06-29T17:20:00Z"
+    },
+    {
+      "id": "nt5",
+      "kind": "campaign",
+      "channel": "email",
+      "status": "sent",
+      "title": "Campaña finalizada",
+      "body": "«Reactivación clientes inactivos» alcanzó 188 aperturas y 11 conversiones.",
+      "recipient": "Todos",
+      "at": "2026-06-29T12:00:00Z"
+    },
+    {
+      "id": "nt6",
+      "kind": "payment",
+      "channel": "sms",
+      "status": "failed",
+      "title": "SMS no entregado",
+      "body": "Número inválido para Pedro Gutiérrez. Reintentar por WhatsApp.",
+      "recipient": "Pedro Gutiérrez",
+      "at": "2026-06-29T10:15:00Z"
+    },
+    {
+      "id": "nt7",
+      "kind": "trip",
+      "channel": "push",
+      "status": "scheduled",
+      "title": "Notificación push programada",
+      "body": "Recordatorio de check-in para el grupo Uyuni el 02/07 a las 18:00.",
+      "recipient": "Grupo Uyuni (6)",
+      "at": "2026-07-02T22:00:00Z"
+    },
+    {
+      "id": "nt8",
+      "kind": "system",
+      "channel": "in_app",
+      "status": "read",
+      "title": "Respaldo completado",
+      "body": "Respaldo automático de la base de datos finalizado correctamente.",
+      "recipient": "Sistema",
+      "at": "2026-06-29T03:00:00Z"
+    },
+    {
+      "id": "nt9",
+      "kind": "payment",
+      "channel": "whatsapp",
+      "status": "sent",
+      "title": "Confirmación de pago",
+      "body": "Pago de Bs 5.600 de Daniela Soliz registrado. Recibo enviado.",
+      "recipient": "Daniela Soliz",
+      "at": "2026-06-28T18:40:00Z"
+    },
+    {
+      "id": "nt10",
+      "kind": "campaign",
+      "channel": "email",
+      "status": "scheduled",
+      "title": "Campaña programada",
+      "body": "«Cumpleañeros de julio» se enviará el 01/07 a las 08:00 a 86 contactos.",
+      "recipient": "86 clientes",
+      "at": "2026-07-01T12:00:00Z"
+    }
+  ],
+  "dashboard": {
+    "currency": "BOB",
+    "periods": {
+      "today": {
+        "kpis": [
+          {
+            "id": "sales-today",
+            "label": "Ventas de hoy",
+            "value": 28900,
+            "unit": "money",
+            "deltaPct": 12
+          },
+          {
+            "id": "tickets-today",
+            "label": "Boletos emitidos",
+            "value": 19,
+            "unit": "int",
+            "deltaPct": 8
+          },
+          {
+            "id": "new-clients",
+            "label": "Clientes nuevos",
+            "value": 4,
+            "unit": "int",
+            "deltaPct": 33
+          },
+          {
+            "id": "pending",
+            "label": "Reservas pendientes",
+            "value": 7,
+            "unit": "int",
+            "deltaPct": -10,
+            "invert": true
+          },
+          {
+            "id": "margin",
+            "label": "Margen promedio",
+            "value": 18,
+            "unit": "pct",
+            "deltaPct": 3
+          }
+        ],
+        "revenue": [
+          {
+            "label": "Lun",
+            "revenue": 14200,
+            "sales": 9
+          },
+          {
+            "label": "Mar",
+            "revenue": 18600,
+            "sales": 12
+          },
+          {
+            "label": "Mié",
+            "revenue": 12100,
+            "sales": 7
+          },
+          {
+            "label": "Jue",
+            "revenue": 21400,
+            "sales": 15
+          },
+          {
+            "label": "Vie",
+            "revenue": 28900,
+            "sales": 19
+          },
+          {
+            "label": "Sáb",
+            "revenue": 16700,
+            "sales": 11
+          },
+          {
+            "label": "Dom",
+            "revenue": 9800,
+            "sales": 6
+          }
+        ]
+      },
+      "7d": {
+        "kpis": [
+          {
+            "id": "sales-7d",
+            "label": "Ventas (7 días)",
+            "value": 121700,
+            "unit": "money",
+            "deltaPct": 9
+          },
+          {
+            "id": "tickets-7d",
+            "label": "Boletos emitidos",
+            "value": 79,
+            "unit": "int",
+            "deltaPct": 14
+          },
+          {
+            "id": "new-clients-7d",
+            "label": "Clientes nuevos",
+            "value": 23,
+            "unit": "int",
+            "deltaPct": 18
+          },
+          {
+            "id": "confirmed-7d",
+            "label": "Reservas confirmadas",
+            "value": 64,
+            "unit": "int",
+            "deltaPct": 11
+          },
+          {
+            "id": "margin-7d",
+            "label": "Margen promedio",
+            "value": 17,
+            "unit": "pct",
+            "deltaPct": 1
+          }
+        ],
+        "revenue": [
+          {
+            "label": "Lun",
+            "revenue": 14200,
+            "sales": 9
+          },
+          {
+            "label": "Mar",
+            "revenue": 18600,
+            "sales": 12
+          },
+          {
+            "label": "Mié",
+            "revenue": 12100,
+            "sales": 7
+          },
+          {
+            "label": "Jue",
+            "revenue": 21400,
+            "sales": 15
+          },
+          {
+            "label": "Vie",
+            "revenue": 28900,
+            "sales": 19
+          },
+          {
+            "label": "Sáb",
+            "revenue": 16700,
+            "sales": 11
+          },
+          {
+            "label": "Dom",
+            "revenue": 9800,
+            "sales": 6
+          }
+        ]
+      },
+      "30d": {
+        "kpis": [
+          {
+            "id": "sales-30d",
+            "label": "Ventas del mes",
+            "value": 431100,
+            "unit": "money",
+            "deltaPct": 15
+          },
+          {
+            "id": "tickets-30d",
+            "label": "Boletos emitidos",
+            "value": 282,
+            "unit": "int",
+            "deltaPct": 12
+          },
+          {
+            "id": "new-clients-30d",
+            "label": "Clientes nuevos",
+            "value": 96,
+            "unit": "int",
+            "deltaPct": 22
+          },
+          {
+            "id": "confirmed-30d",
+            "label": "Reservas confirmadas",
+            "value": 241,
+            "unit": "int",
+            "deltaPct": 9
+          },
+          {
+            "id": "margin-30d",
+            "label": "Margen promedio",
+            "value": 18,
+            "unit": "pct",
+            "deltaPct": 2
+          }
+        ],
+        "revenue": [
+          {
+            "label": "Sem 1",
+            "revenue": 96400,
+            "sales": 61
+          },
+          {
+            "label": "Sem 2",
+            "revenue": 112300,
+            "sales": 74
+          },
+          {
+            "label": "Sem 3",
+            "revenue": 87600,
+            "sales": 58
+          },
+          {
+            "label": "Sem 4",
+            "revenue": 134800,
+            "sales": 89
+          }
+        ]
+      },
+      "90d": {
+        "kpis": [
+          {
+            "id": "sales-90d",
+            "label": "Ventas (90 días)",
+            "value": 1274800,
+            "unit": "money",
+            "deltaPct": 21
+          },
+          {
+            "id": "tickets-90d",
+            "label": "Boletos emitidos",
+            "value": 836,
+            "unit": "int",
+            "deltaPct": 17
+          },
+          {
+            "id": "new-clients-90d",
+            "label": "Clientes nuevos",
+            "value": 287,
+            "unit": "int",
+            "deltaPct": 26
+          },
+          {
+            "id": "confirmed-90d",
+            "label": "Reservas confirmadas",
+            "value": 712,
+            "unit": "int",
+            "deltaPct": 14
+          },
+          {
+            "id": "margin-90d",
+            "label": "Margen promedio",
+            "value": 18,
+            "unit": "pct",
+            "deltaPct": 1
+          }
+        ],
+        "revenue": [
+          {
+            "label": "Abr",
+            "revenue": 384200,
+            "sales": 248
+          },
+          {
+            "label": "May",
+            "revenue": 421700,
+            "sales": 276
+          },
+          {
+            "label": "Jun",
+            "revenue": 468900,
+            "sales": 312
+          }
+        ]
+      }
+    },
+    "salesByChannel": [
+      {
+        "label": "Mostrador",
+        "value": 42,
+        "color": "#3a23a8"
+      },
+      {
+        "label": "WhatsApp",
+        "value": 31,
+        "color": "#1ca71c"
+      },
+      {
+        "label": "Web",
+        "value": 18,
+        "color": "#8b7bf5"
+      },
+      {
+        "label": "Referidos",
+        "value": 9,
+        "color": "#e0a106"
+      }
+    ],
+    "topAgents": [
+      {
+        "id": "a1",
+        "name": "Ana Flores",
+        "initials": "AF",
+        "sales": 89,
+        "revenue": 168400,
+        "goalPct": 112
+      },
+      {
+        "id": "a2",
+        "name": "Carlos Mendoza",
+        "initials": "CM",
+        "sales": 76,
+        "revenue": 142800,
+        "goalPct": 95
+      },
+      {
+        "id": "a3",
+        "name": "Lucía Pérez",
+        "initials": "LP",
+        "sales": 64,
+        "revenue": 118900,
+        "goalPct": 88
+      },
+      {
+        "id": "a4",
+        "name": "Diego Rojas",
+        "initials": "DR",
+        "sales": 53,
+        "revenue": 97200,
+        "goalPct": 71
+      }
+    ],
+    "topDestinations": [
+      {
+        "id": "d1",
+        "label": "Santa Cruz → Madrid",
+        "bookings": 142,
+        "trendPct": 18
+      },
+      {
+        "id": "d2",
+        "label": "La Paz → Miami",
+        "bookings": 118,
+        "trendPct": 9
+      },
+      {
+        "id": "d3",
+        "label": "Cochabamba → Buenos Aires",
+        "bookings": 96,
+        "trendPct": -4
+      },
+      {
+        "id": "d4",
+        "label": "Santa Cruz → São Paulo",
+        "bookings": 81,
+        "trendPct": 12
+      },
+      {
+        "id": "d5",
+        "label": "La Paz → Lima",
+        "bookings": 74,
+        "trendPct": 6
+      }
+    ],
+    "recentActivity": [
+      {
+        "id": "ac1",
+        "kind": "sale",
+        "title": "Venta confirmada — VCB→MAD",
+        "description": "Familia Gutiérrez · 3 pax",
+        "actor": "Ana Flores",
+        "at": "2026-06-30T14:05:00Z",
+        "amount": {
+          "amount": 18450,
+          "currency": "BOB"
+        }
+      },
+      {
+        "id": "ac2",
+        "kind": "payment",
+        "title": "Pago recibido (QR)",
+        "description": "Reserva #FA-20418",
+        "actor": "Sistema",
+        "at": "2026-06-30T13:32:00Z",
+        "amount": {
+          "amount": 6200,
+          "currency": "BOB"
+        }
+      },
+      {
+        "id": "ac3",
+        "kind": "quote",
+        "title": "Cotización enviada por WhatsApp",
+        "description": "Crucero Caribe · 2 pax",
+        "actor": "Carlos Mendoza",
+        "at": "2026-06-30T12:48:00Z"
+      },
+      {
+        "id": "ac4",
+        "kind": "client",
+        "title": "Nuevo cliente registrado",
+        "description": "María Salazar",
+        "actor": "Lucía Pérez",
+        "at": "2026-06-30T11:20:00Z"
+      },
+      {
+        "id": "ac5",
+        "kind": "ticket",
+        "title": "Boleto emitido — LPB→MIA",
+        "description": "PNR AB12CD · BoA",
+        "actor": "Diego Rojas",
+        "at": "2026-06-30T10:02:00Z"
+      },
+      {
+        "id": "ac6",
+        "kind": "task",
+        "title": "Tarea completada",
+        "description": "Seguimiento post-venta",
+        "actor": "Ana Flores",
+        "at": "2026-06-30T09:15:00Z"
+      }
+    ],
+    "upcomingEvents": [
+      {
+        "id": "e1",
+        "kind": "departure",
+        "title": "Salida VCB → MAD",
+        "date": "2026-07-02",
+        "time": "23:40",
+        "customerName": "Familia Gutiérrez"
+      },
+      {
+        "id": "e2",
+        "kind": "payment",
+        "title": "Vence pago parcial #FA-20390",
+        "date": "2026-07-03",
+        "customerName": "Pedro Quispe"
+      },
+      {
+        "id": "e3",
+        "kind": "follow_up",
+        "title": "Seguimiento cotización crucero",
+        "date": "2026-07-03",
+        "time": "10:00",
+        "customerName": "Laura Vargas"
+      },
+      {
+        "id": "e4",
+        "kind": "birthday",
+        "title": "Cumpleaños cliente VIP",
+        "date": "2026-07-04",
+        "customerName": "Roberto Áñez"
+      },
+      {
+        "id": "e5",
+        "kind": "passport_renewal",
+        "title": "Pasaporte por vencer",
+        "date": "2026-07-06",
+        "customerName": "Carmen Justiniano"
+      }
+    ],
+    "pendingTasks": [
+      {
+        "id": "t1",
+        "title": "Llamar a cliente por reemisión LPB→LIM",
+        "priority": "urgent",
+        "status": "todo",
+        "dueDate": "2026-06-30",
+        "assignee": "Ana Flores",
+        "assigneeInitials": "AF"
+      },
+      {
+        "id": "t2",
+        "title": "Enviar voucher hotel Cancún",
+        "priority": "high",
+        "status": "in_progress",
+        "dueDate": "2026-07-01",
+        "assignee": "Carlos Mendoza",
+        "assigneeInitials": "CM"
+      },
+      {
+        "id": "t3",
+        "title": "Confirmar asientos grupo corporativo",
+        "priority": "medium",
+        "status": "todo",
+        "dueDate": "2026-07-01",
+        "assignee": "Lucía Pérez",
+        "assigneeInitials": "LP"
+      },
+      {
+        "id": "t4",
+        "title": "Cargar comprobante de transferencia",
+        "priority": "low",
+        "status": "todo",
+        "dueDate": "2026-07-02",
+        "assignee": "Diego Rojas",
+        "assigneeInitials": "DR"
+      }
+    ],
+    "bookingsPending": 7,
+    "bookingsConfirmed": 64,
+    "bookingsCancelled": 3,
+    "ticketsIssued": 282,
+    "newCustomers": 96,
+    "frequentCustomers": 38
+  },
+  "reports": {
+    "currency": "BOB",
+    "kpis": [
+      {
+        "id": "income",
+        "label": "Ingresos",
+        "value": 71370,
+        "unit": "money",
+        "deltaPct": 15
+      },
+      {
+        "id": "profit",
+        "label": "Utilidad",
+        "value": 7920,
+        "unit": "money",
+        "deltaPct": 12
+      },
+      {
+        "id": "commissions",
+        "label": "Comisiones",
+        "value": 24047,
+        "unit": "money",
+        "deltaPct": 8
+      },
+      {
+        "id": "expense",
+        "label": "Egresos (por pagar)",
+        "value": 71800,
+        "unit": "money",
+        "deltaPct": -5,
+        "invert": true
+      }
+    ],
+    "monthly": [
+      {
+        "label": "Feb",
+        "income": 312000,
+        "expense": 248000,
+        "profit": 41000,
+        "sales": 198
+      },
+      {
+        "label": "Mar",
+        "income": 384200,
+        "expense": 301000,
+        "profit": 52400,
+        "sales": 248
+      },
+      {
+        "label": "Abr",
+        "income": 421700,
+        "expense": 332000,
+        "profit": 58900,
+        "sales": 276
+      },
+      {
+        "label": "May",
+        "income": 468900,
+        "expense": 366000,
+        "profit": 64200,
+        "sales": 312
+      },
+      {
+        "label": "Jun",
+        "income": 431100,
+        "expense": 338000,
+        "profit": 61800,
+        "sales": 282
+      }
+    ],
+    "byAgent": [
+      {
+        "name": "Ana Flores",
+        "sales": 89,
+        "revenue": 168400,
+        "commission": 10104
+      },
+      {
+        "name": "Carlos Mendoza",
+        "sales": 76,
+        "revenue": 142800,
+        "commission": 7140
+      },
+      {
+        "name": "Lucía Pérez",
+        "sales": 64,
+        "revenue": 118900,
+        "commission": 5945
+      },
+      {
+        "name": "María Salazar",
+        "sales": 12,
+        "revenue": 28600,
+        "commission": 858
+      }
+    ],
+    "byDestination": [
+      {
+        "destination": "Miami",
+        "bookings": 1,
+        "revenue": 26500
+      },
+      {
+        "destination": "Madrid",
+        "bookings": 1,
+        "revenue": 18450
+      },
+      {
+        "destination": "Río de Janeiro",
+        "bookings": 1,
+        "revenue": 13800
+      },
+      {
+        "destination": "Cartagena",
+        "bookings": 1,
+        "revenue": 8800
+      },
+      {
+        "destination": "Lima",
+        "bookings": 1,
+        "revenue": 3820
+      }
+    ],
+    "byAirline": [
+      {
+        "airline": "American Airlines",
+        "tickets": 1,
+        "revenue": 26500
+      },
+      {
+        "airline": "Iberia",
+        "tickets": 4,
+        "revenue": 18450
+      },
+      {
+        "airline": "Gol",
+        "tickets": 2,
+        "revenue": 13800
+      },
+      {
+        "airline": "Copa",
+        "tickets": 1,
+        "revenue": 8800
+      },
+      {
+        "airline": "LATAM",
+        "tickets": 1,
+        "revenue": 3820
+      }
+    ],
+    "byProvider": [
+      {
+        "provider": "Europamundo",
+        "bookings": 0,
+        "payable": 24500
+      },
+      {
+        "provider": "Royal Caribbean",
+        "bookings": 0,
+        "payable": 19600
+      },
+      {
+        "provider": "Iberia Bolivia",
+        "bookings": 1,
+        "payable": 14800
+      },
+      {
+        "provider": "Riu Hotels & Resorts",
+        "bookings": 0,
+        "payable": 8400
+      },
+      {
+        "provider": "Andes Expeditions",
+        "bookings": 0,
+        "payable": 3300
+      },
+      {
+        "provider": "Trans Oriente",
+        "bookings": 0,
+        "payable": 1200
+      },
+      {
+        "provider": "Boliviana de Aviación",
+        "bookings": 0,
+        "payable": 0
+      },
+      {
+        "provider": "Assist Card",
+        "bookings": 0,
+        "payable": 0
+      },
+      {
+        "provider": "Copa Airlines",
+        "bookings": 1,
+        "payable": 0
+      },
+      {
+        "provider": "Meliá Hotels",
+        "bookings": 0,
+        "payable": 0
+      }
+    ],
+    "topCustomers": [
+      {
+        "name": "Roberto Áñez",
+        "trips": 18,
+        "spent": 184500
+      },
+      {
+        "name": "Familia Gutiérrez",
+        "trips": 11,
+        "spent": 98700
+      },
+      {
+        "name": "Luis Fernández",
+        "trips": 12,
+        "spent": 73900
+      },
+      {
+        "name": "Carmen Justiniano",
+        "trips": 9,
+        "spent": 67400
+      },
+      {
+        "name": "Daniela Rocha",
+        "trips": 7,
+        "spent": 52100
+      },
+      {
+        "name": "Pedro Quispe",
+        "trips": 6,
+        "spent": 41200
+      },
+      {
+        "name": "Patricia Vaca",
+        "trips": 4,
+        "spent": 35600
+      },
+      {
+        "name": "María Salazar",
+        "trips": 2,
+        "spent": 23800
+      }
+    ]
+  }
+}

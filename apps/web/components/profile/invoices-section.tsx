@@ -12,6 +12,29 @@ const STATUS: Record<Invoice["status"], { label: string; tone: "success" | "warn
 };
 
 export function InvoicesSection({ invoices }: { invoices: Invoice[] }) {
+  function downloadInvoice(inv: Invoice) {
+    const content = [
+      "FlyAlways — Comprobante de factura",
+      "----------------------------------",
+      `Factura:  ${inv.number}`,
+      `Reserva:  ${inv.bookingReference}`,
+      `Fecha:    ${formatDate(inv.date)}`,
+      `Importe:  ${formatMoney(inv.amount.amount, inv.amount.currency)}`,
+      `Estado:   ${STATUS[inv.status].label}`,
+      "",
+      "Gracias por viajar con FlyAlways.",
+    ].join("\n");
+    const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${inv.number}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
+
   return (
     <div className="overflow-hidden rounded-3xl border border-border bg-surface shadow-[var(--shadow-sm)]">
       {/* Cabecera (desktop) */}
@@ -45,6 +68,7 @@ export function InvoicesSection({ invoices }: { invoices: Invoice[] }) {
               </span>
               <button
                 type="button"
+                onClick={() => downloadInvoice(inv)}
                 aria-label={`Descargar ${inv.number}`}
                 className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
               >

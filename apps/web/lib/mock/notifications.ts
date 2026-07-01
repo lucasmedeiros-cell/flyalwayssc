@@ -5,7 +5,7 @@ export const NOTIFICATIONS: AppNotification[] = [
   {
     id: "n-1",
     title: "Reserva confirmada",
-    body: "Tu reserva VL-7K2A (Lima → Cusco) está confirmada. ¡Buen viaje!",
+    body: "Tu reserva VL-7K2A (Santa Cruz → La Paz) está confirmada. ¡Buen viaje!",
     channel: "email",
     category: "booking",
     createdAt: "2026-06-27T13:55:00",
@@ -15,7 +15,7 @@ export const NOTIFICATIONS: AppNotification[] = [
   {
     id: "n-2",
     title: "Tu vuelo está en ruta",
-    body: "El vuelo Lima → Cusco despegó. Sigue su recorrido en tiempo real.",
+    body: "El vuelo Santa Cruz → La Paz despegó. Sigue su recorrido en tiempo real.",
     channel: "push",
     category: "trip",
     createdAt: "2026-06-27T08:35:00",
@@ -25,7 +25,7 @@ export const NOTIFICATIONS: AppNotification[] = [
   {
     id: "n-3",
     title: "Recordatorio de embarque",
-    body: "Tu bus a Arequipa (VL-8QP1) sale hoy 21:30. Llega 30 min antes.",
+    body: "Tu bus a Copacabana (VL-8QP1) sale hoy 07:30. Llega 30 min antes.",
     channel: "whatsapp",
     category: "trip",
     createdAt: "2026-06-27T17:30:00",
@@ -45,7 +45,7 @@ export const NOTIFICATIONS: AppNotification[] = [
   {
     id: "n-5",
     title: "Check-in abierto",
-    body: "Ya puedes hacer el check-in del tren Ollantaytambo → Machu Picchu.",
+    body: "Ya puedes hacer el check-in del tren Oruro → Uyuni.",
     channel: "sms",
     category: "trip",
     createdAt: "2026-06-26T14:00:00",
@@ -85,8 +85,8 @@ export const NOTIFICATIONS: AppNotification[] = [
 
 export const NOTIFICATION_PREFERENCES: NotificationPreferences = {
   email: "maria.gonzalez@example.com",
-  phone: "+51 999 888 777",
-  whatsapp: "+51 999 888 777",
+  phone: "+591 71234567",
+  whatsapp: "+591 71234567",
   categories: [
     { category: "booking", channels: { email: true, sms: true, push: true, whatsapp: true } },
     { category: "trip", channels: { email: false, sms: true, push: true, whatsapp: true } },

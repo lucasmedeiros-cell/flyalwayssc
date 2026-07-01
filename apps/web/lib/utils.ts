@@ -27,7 +27,7 @@ export function formatDate(iso: string): string {
   return d.toLocaleDateString("es", { day: "numeric", month: "short", year: "numeric" });
 }
 
-/** Formatea importe + moneda como "S/ 129.90" / "$129.90". */
+/** Formatea importe + moneda como "Bs 129,90" / "$129.90". */
 export function formatMoney(amount: number, currency: string): string {
   try {
     return new Intl.NumberFormat("es-BO", {

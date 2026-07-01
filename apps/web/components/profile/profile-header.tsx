@@ -5,11 +5,11 @@ import { formatDate } from "@/lib/utils";
 export function ProfileHeader({ account }: { account: Account }) {
   const { user, bookings, favorites } = account;
   const upcoming = bookings.filter((b) => b.status === "upcoming").length;
-  const trips = bookings.filter((b) => b.status !== "cancelled").length;
+  const completed = bookings.filter((b) => b.status === "completed").length;
 
   const stats = [
     { label: "Próximos viajes", value: upcoming },
-    { label: "Viajes realizados", value: trips },
+    { label: "Viajes realizados", value: completed },
     { label: "Rutas favoritas", value: favorites.length },
   ];
 

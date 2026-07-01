@@ -2,9 +2,11 @@
 
 import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Plane, QrCode, X } from "lucide-react";
-import type { BookingRecord } from "@vialta/types";
+import { Plane, Bus, TrainFront, Car, QrCode, X, type LucideIcon } from "lucide-react";
+import type { BookingRecord, TransportMode } from "@vialta/types";
 import { TRANSPORT_MODE_META, TRAVEL_CLASS_LABEL } from "@vialta/types";
+
+const MODE_ICON: Record<TransportMode, LucideIcon> = { air: Plane, bus: Bus, train: TrainFront, private: Car };
 import { formatDate, formatMoney, formatTime } from "@/lib/utils";
 import { LogoBadge } from "@/components/ui/logo-badge";
 
@@ -49,6 +51,7 @@ export function TicketModal({
 
 function Ticket({ record, onClose }: { record: BookingRecord; onClose: () => void }) {
   const meta = TRANSPORT_MODE_META[record.mode];
+  const ModeIcon = MODE_ICON[record.mode];
   return (
     <>
       <div className="relative bg-aurora p-5">
@@ -80,7 +83,7 @@ function Ticket({ record, onClose }: { record: BookingRecord; onClose: () => voi
             {record.originCity} · {record.originCode}
           </p>
         </div>
-        <Plane className="h-5 w-5 rotate-90 text-primary" />
+        <ModeIcon className={`h-5 w-5 text-primary${record.mode === "air" ? " rotate-90" : ""}`} />
         <div className="text-right">
           <p className="text-2xl font-bold tabular-nums">{formatTime(record.arriveAt)}</p>
           <p className="text-xs text-muted-foreground">

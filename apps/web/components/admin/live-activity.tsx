@@ -23,14 +23,14 @@ const META: Record<EventType, { icon: React.ComponentType<{ className?: string }
   company: { icon: Building2, tone: "text-warning bg-warning/16" },
 };
 
-const ROUTES = ["Lima → Cusco", "Lima → Arequipa", "Ollantaytambo → Machu Picchu", "Cusco → Lima", "Lima → Trujillo"];
-const AMOUNTS = ["S/ 168.90", "S/ 219.90", "S/ 410.00", "S/ 79.00", "S/ 130.00", "S/ 205.00"];
+const ROUTES = ["Santa Cruz → La Paz", "La Paz → Cochabamba", "Oruro → Uyuni", "Cochabamba → Santa Cruz", "Santa Cruz → Miami"];
+const AMOUNTS = ["Bs 168,90", "Bs 219,90", "Bs 410,00", "Bs 79,00", "Bs 130,00", "Bs 205,00"];
 
 const SEED: LiveEvent[] = [
-  { id: 1, type: "booking", text: "Reserva Lima → Cusco", amount: "S/ 219.90", age: 6 },
+  { id: 1, type: "booking", text: "Reserva Santa Cruz → La Paz", amount: "Bs 219,90", age: 6 },
   { id: 2, type: "user", text: "Nuevo usuario registrado", age: 23 },
-  { id: 3, type: "payment", text: "Pago confirmado", amount: "S/ 410.00", age: 48 },
-  { id: 4, type: "company", text: "Andina Air actualizó tarifas", age: 95 },
+  { id: 3, type: "payment", text: "Pago confirmado", amount: "Bs 410,00", age: 48 },
+  { id: 4, type: "company", text: "Boliviana de Aviación actualizó tarifas", age: 95 },
 ];
 
 function ageLabel(age: number): string {

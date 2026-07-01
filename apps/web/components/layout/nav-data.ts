@@ -1,8 +1,11 @@
 import {
   Activity,
+  BedDouble,
   BookOpen,
   Building2,
+  Car,
   ClipboardCheck,
+  Compass,
   CreditCard,
   FileText,
   Flame,
@@ -18,8 +21,10 @@ import {
   Phone,
   Plane,
   RotateCcw,
+  ShieldCheck,
   Sparkles,
   Tag,
+  Ticket,
   Workflow,
   type LucideIcon,
 } from "lucide-react";
@@ -68,6 +73,21 @@ export const NAV: NavItem[] = [
         { label: "Guías de viaje", description: "Inspiración para tu ruta", href: "/#inspiracion", icon: BookOpen },
       ],
       cta: { label: "Buscar vuelos", href: "/buscar?mode=air" },
+    },
+  },
+  {
+    label: "Servicios",
+    href: "/servicios",
+    mega: {
+      links: [
+        { label: "Hoteles", description: "Estadías con cancelación gratuita", href: "/servicios", icon: BedDouble, badge: "popular" },
+        { label: "Tours guiados", description: "Guías certificados por todo el país", href: "/servicios", icon: Compass },
+        { label: "Alquiler de autos", description: "Recoge al llegar y muévete a tu ritmo", href: "/servicios", icon: Car },
+        { label: "Seguro de viaje", description: "Cobertura médica y de equipaje", href: "/servicios", icon: ShieldCheck, badge: "recomendado" },
+        { label: "Actividades", description: "Entradas a museos y espectáculos", href: "/servicios", icon: Ticket, badge: "nuevo" },
+        { label: "Excursiones", description: "Aventuras de un día a paisajes únicos", href: "/servicios", icon: MapPin },
+      ],
+      cta: { label: "Ver todos los servicios", href: "/servicios" },
     },
   },
   {

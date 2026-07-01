@@ -1,0 +1,13 @@
+import type { CrmTask } from "@vialta/types";
+
+export const MOCK_TASKS: CrmTask[] = [
+  { id: "tk1", title: "Llamar a cliente por reemisión LPB→LIM", description: "Confirmar nueva fecha y diferencia tarifaria.", priority: "urgent", status: "todo", dueDate: "2026-06-30", assigneeId: "a1", assignee: "Ana Flores", assigneeInitials: "AF", relatedTo: "FA-20421", createdAt: "2026-06-29T09:00:00Z" },
+  { id: "tk2", title: "Enviar voucher hotel Cancún", description: "Adjuntar voucher RIU y datos de check-in.", priority: "high", status: "in_progress", dueDate: "2026-07-01", assigneeId: "a2", assignee: "Carlos Mendoza", assigneeInitials: "CM", relatedTo: "PKG-502", createdAt: "2026-06-28T11:00:00Z" },
+  { id: "tk3", title: "Confirmar asientos grupo corporativo", description: "Grupo de 8 pax, solicitar asientos contiguos.", priority: "medium", status: "todo", dueDate: "2026-07-01", assigneeId: "a3", assignee: "Lucía Pérez", assigneeInitials: "LP", createdAt: "2026-06-29T14:00:00Z" },
+  { id: "tk4", title: "Cargar comprobante de transferencia", description: "Pago PG-3043 pendiente de conciliación.", priority: "low", status: "todo", dueDate: "2026-07-02", assigneeId: "a2", assignee: "Carlos Mendoza", assigneeInitials: "CM", relatedTo: "PG-3043", createdAt: "2026-06-28T16:00:00Z" },
+  { id: "tk5", title: "Seguimiento cotización crucero", description: "Cliente Laura Vargas, validez hasta 10/07.", priority: "high", status: "in_progress", dueDate: "2026-07-03", assigneeId: "a3", assignee: "Lucía Pérez", assigneeInitials: "LP", relatedTo: "FA-Q1042", createdAt: "2026-06-30T10:00:00Z" },
+  { id: "tk6", title: "Recordar renovación de pasaporte", description: "Carmen Justiniano, pasaporte vence 12/07.", priority: "medium", status: "todo", dueDate: "2026-07-04", assigneeId: "a1", assignee: "Ana Flores", assigneeInitials: "AF", relatedTo: "c5", createdAt: "2026-06-25T09:00:00Z" },
+  { id: "tk7", title: "Emitir boletos VVI→MAD familia Gutiérrez", priority: "high", status: "done", dueDate: "2026-06-12", assigneeId: "a1", assignee: "Ana Flores", assigneeInitials: "AF", relatedTo: "FA-20418", createdAt: "2026-06-11T09:00:00Z" },
+  { id: "tk8", title: "Cotizar Europa Clásica para prospecto", priority: "medium", status: "done", dueDate: "2026-06-26", assigneeId: "a2", assignee: "Carlos Mendoza", assigneeInitials: "CM", relatedTo: "PKG-508", createdAt: "2026-06-24T09:00:00Z" },
+  { id: "tk9", title: "Campaña reactivación clientes inactivos", description: "Segmento sin compras en 6+ meses.", priority: "low", status: "in_progress", dueDate: "2026-07-08", assigneeId: "a1", assignee: "Ana Flores", assigneeInitials: "AF", createdAt: "2026-06-27T12:00:00Z" },
+];

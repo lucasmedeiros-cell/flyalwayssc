@@ -20,7 +20,7 @@ export function OverviewSection({ data }: { data: OperatorConsole }) {
           (billable.reduce((a, d) => a + d.seatsSold / d.seatsTotal, 0) / billable.length) * 100
         );
   const revenue = billable.reduce((a, d) => a + d.seatsSold * d.price.amount, 0);
-  const currency = data.departures[0]?.price.currency ?? "PEN";
+  const currency = data.departures[0]?.price.currency ?? "BOB";
 
   const kpis = [
     { icon: Bus, label: "Vehículos activos", value: `${activeVehicles}/${data.vehicles.length}` },

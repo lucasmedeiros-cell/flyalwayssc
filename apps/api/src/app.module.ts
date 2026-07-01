@@ -5,6 +5,9 @@ import { HealthModule } from "./health/health.module";
 import { CatalogModule } from "./catalog/catalog.module";
 import { OperatorsModule } from "./operators/operators.module";
 import { TripsModule } from "./trips/trips.module";
+import { WebModule } from "./web/web.module";
+import { CrmAuthModule } from "./crm-auth/crm-auth.module";
+import { CrmModule } from "./crm/crm.module";
 
 @Module({
   imports: [
@@ -14,7 +17,10 @@ import { TripsModule } from "./trips/trips.module";
     CatalogModule,
     OperatorsModule,
     TripsModule,
-    // Próximos: AuthModule, BookingsModule, PaymentsModule, AdminModule (ver roadmap).
+    WebModule,
+    // CRM FLYALWAYS — autenticación real (JWT+bcrypt) y endpoints de gestión interna.
+    CrmAuthModule,
+    CrmModule,
   ],
 })
 export class AppModule {}
