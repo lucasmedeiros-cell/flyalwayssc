@@ -3682,6 +3682,139 @@
   "dashboard": {
     "currency": "BOB",
     "periods": {
+      "now": {
+        "kpis": [
+          {
+            "id": "sales-now",
+            "label": "Ventas ahora",
+            "value": 6800,
+            "unit": "money",
+            "deltaPct": 5
+          },
+          {
+            "id": "tickets-now",
+            "label": "Boletos emitidos",
+            "value": 4,
+            "unit": "int",
+            "deltaPct": 2
+          },
+          {
+            "id": "new-clients-now",
+            "label": "Clientes nuevos",
+            "value": 1,
+            "unit": "int",
+            "deltaPct": 0
+          },
+          {
+            "id": "pending",
+            "label": "Reservas pendientes",
+            "value": 3,
+            "unit": "int",
+            "deltaPct": -5,
+            "invert": true
+          },
+          {
+            "id": "margin-now",
+            "label": "Margen promedio",
+            "value": 18,
+            "unit": "pct",
+            "deltaPct": 1
+          }
+        ],
+        "revenue": [
+          {
+            "label": "09h",
+            "revenue": 1800,
+            "sales": 1
+          },
+          {
+            "label": "11h",
+            "revenue": 3200,
+            "sales": 2
+          },
+          {
+            "label": "13h",
+            "revenue": 1500,
+            "sales": 1
+          },
+          {
+            "label": "15h",
+            "revenue": 4100,
+            "sales": 3
+          },
+          {
+            "label": "Ahora",
+            "revenue": 2600,
+            "sales": 2
+          }
+        ]
+      },
+      "yesterday": {
+        "kpis": [
+          {
+            "id": "sales-yesterday",
+            "label": "Ventas de ayer",
+            "value": 24100,
+            "unit": "money",
+            "deltaPct": -6
+          },
+          {
+            "id": "tickets-yesterday",
+            "label": "Boletos emitidos",
+            "value": 16,
+            "unit": "int",
+            "deltaPct": -3
+          },
+          {
+            "id": "new-clients-yesterday",
+            "label": "Clientes nuevos",
+            "value": 5,
+            "unit": "int",
+            "deltaPct": 25
+          },
+          {
+            "id": "confirmed-yesterday",
+            "label": "Reservas confirmadas",
+            "value": 12,
+            "unit": "int",
+            "deltaPct": 8
+          },
+          {
+            "id": "margin-yesterday",
+            "label": "Margen promedio",
+            "value": 17,
+            "unit": "pct",
+            "deltaPct": -1
+          }
+        ],
+        "revenue": [
+          {
+            "label": "08h",
+            "revenue": 2800,
+            "sales": 2
+          },
+          {
+            "label": "11h",
+            "revenue": 4900,
+            "sales": 3
+          },
+          {
+            "label": "14h",
+            "revenue": 5300,
+            "sales": 4
+          },
+          {
+            "label": "17h",
+            "revenue": 6100,
+            "sales": 4
+          },
+          {
+            "label": "20h",
+            "revenue": 5000,
+            "sales": 3
+          }
+        ]
+      },
       "today": {
         "kpis": [
           {
@@ -3723,150 +3856,64 @@
         ],
         "revenue": [
           {
-            "label": "Lun",
-            "revenue": 14200,
-            "sales": 9
+            "label": "08h",
+            "revenue": 3200,
+            "sales": 2
           },
           {
-            "label": "Mar",
-            "revenue": 18600,
-            "sales": 12
+            "label": "11h",
+            "revenue": 5600,
+            "sales": 4
           },
           {
-            "label": "Mié",
-            "revenue": 12100,
-            "sales": 7
+            "label": "14h",
+            "revenue": 4100,
+            "sales": 3
           },
           {
-            "label": "Jue",
-            "revenue": 21400,
-            "sales": 15
-          },
-          {
-            "label": "Vie",
-            "revenue": 28900,
-            "sales": 19
-          },
-          {
-            "label": "Sáb",
-            "revenue": 16700,
-            "sales": 11
-          },
-          {
-            "label": "Dom",
-            "revenue": 9800,
+            "label": "17h",
+            "revenue": 8900,
             "sales": 6
+          },
+          {
+            "label": "20h",
+            "revenue": 7100,
+            "sales": 4
           }
         ]
       },
-      "7d": {
+      "month": {
         "kpis": [
           {
-            "id": "sales-7d",
-            "label": "Ventas (7 días)",
-            "value": 121700,
-            "unit": "money",
-            "deltaPct": 9
-          },
-          {
-            "id": "tickets-7d",
-            "label": "Boletos emitidos",
-            "value": 79,
-            "unit": "int",
-            "deltaPct": 14
-          },
-          {
-            "id": "new-clients-7d",
-            "label": "Clientes nuevos",
-            "value": 23,
-            "unit": "int",
-            "deltaPct": 18
-          },
-          {
-            "id": "confirmed-7d",
-            "label": "Reservas confirmadas",
-            "value": 64,
-            "unit": "int",
-            "deltaPct": 11
-          },
-          {
-            "id": "margin-7d",
-            "label": "Margen promedio",
-            "value": 17,
-            "unit": "pct",
-            "deltaPct": 1
-          }
-        ],
-        "revenue": [
-          {
-            "label": "Lun",
-            "revenue": 14200,
-            "sales": 9
-          },
-          {
-            "label": "Mar",
-            "revenue": 18600,
-            "sales": 12
-          },
-          {
-            "label": "Mié",
-            "revenue": 12100,
-            "sales": 7
-          },
-          {
-            "label": "Jue",
-            "revenue": 21400,
-            "sales": 15
-          },
-          {
-            "label": "Vie",
-            "revenue": 28900,
-            "sales": 19
-          },
-          {
-            "label": "Sáb",
-            "revenue": 16700,
-            "sales": 11
-          },
-          {
-            "label": "Dom",
-            "revenue": 9800,
-            "sales": 6
-          }
-        ]
-      },
-      "30d": {
-        "kpis": [
-          {
-            "id": "sales-30d",
+            "id": "sales-month",
             "label": "Ventas del mes",
             "value": 431100,
             "unit": "money",
             "deltaPct": 15
           },
           {
-            "id": "tickets-30d",
+            "id": "tickets-month",
             "label": "Boletos emitidos",
             "value": 282,
             "unit": "int",
             "deltaPct": 12
           },
           {
-            "id": "new-clients-30d",
+            "id": "new-clients-month",
             "label": "Clientes nuevos",
             "value": 96,
             "unit": "int",
             "deltaPct": 22
           },
           {
-            "id": "confirmed-30d",
+            "id": "confirmed-month",
             "label": "Reservas confirmadas",
             "value": 241,
             "unit": "int",
             "deltaPct": 9
           },
           {
-            "id": "margin-30d",
+            "id": "margin-month",
             "label": "Margen promedio",
             "value": 18,
             "unit": "pct",
@@ -3896,38 +3943,38 @@
           }
         ]
       },
-      "90d": {
+      "year": {
         "kpis": [
           {
-            "id": "sales-90d",
-            "label": "Ventas (90 días)",
-            "value": 1274800,
+            "id": "sales-year",
+            "label": "Ventas del año",
+            "value": 4890200,
             "unit": "money",
-            "deltaPct": 21
+            "deltaPct": 24
           },
           {
-            "id": "tickets-90d",
+            "id": "tickets-year",
             "label": "Boletos emitidos",
-            "value": 836,
+            "value": 3120,
             "unit": "int",
-            "deltaPct": 17
+            "deltaPct": 19
           },
           {
-            "id": "new-clients-90d",
+            "id": "new-clients-year",
             "label": "Clientes nuevos",
-            "value": 287,
+            "value": 1180,
             "unit": "int",
-            "deltaPct": 26
+            "deltaPct": 28
           },
           {
-            "id": "confirmed-90d",
+            "id": "confirmed-year",
             "label": "Reservas confirmadas",
-            "value": 712,
+            "value": 2860,
             "unit": "int",
-            "deltaPct": 14
+            "deltaPct": 16
           },
           {
-            "id": "margin-90d",
+            "id": "margin-year",
             "label": "Margen promedio",
             "value": 18,
             "unit": "pct",
@@ -3935,6 +3982,21 @@
           }
         ],
         "revenue": [
+          {
+            "label": "Ene",
+            "revenue": 342100,
+            "sales": 224
+          },
+          {
+            "label": "Feb",
+            "revenue": 368400,
+            "sales": 241
+          },
+          {
+            "label": "Mar",
+            "revenue": 401900,
+            "sales": 262
+          },
           {
             "label": "Abr",
             "revenue": 384200,

@@ -5,24 +5,41 @@ import type { CrmDashboard, CrmKpi, CrmRevenuePoint } from "@vialta/types";
 
 const kpis = (vals: CrmKpi[]) => vals;
 
-const revenue7d: CrmRevenuePoint[] = [
-  { label: "Lun", revenue: 14200, sales: 9 },
-  { label: "Mar", revenue: 18600, sales: 12 },
-  { label: "Mié", revenue: 12100, sales: 7 },
-  { label: "Jue", revenue: 21400, sales: 15 },
-  { label: "Vie", revenue: 28900, sales: 19 },
-  { label: "Sáb", revenue: 16700, sales: 11 },
-  { label: "Dom", revenue: 9800, sales: 6 },
+const revenueNow: CrmRevenuePoint[] = [
+  { label: "09h", revenue: 1800, sales: 1 },
+  { label: "11h", revenue: 3200, sales: 2 },
+  { label: "13h", revenue: 1500, sales: 1 },
+  { label: "15h", revenue: 4100, sales: 3 },
+  { label: "Ahora", revenue: 2600, sales: 2 },
 ];
 
-const revenue30d: CrmRevenuePoint[] = [
+const revenueToday: CrmRevenuePoint[] = [
+  { label: "08h", revenue: 3200, sales: 2 },
+  { label: "11h", revenue: 5600, sales: 4 },
+  { label: "14h", revenue: 4100, sales: 3 },
+  { label: "17h", revenue: 8900, sales: 6 },
+  { label: "20h", revenue: 7100, sales: 4 },
+];
+
+const revenueYesterday: CrmRevenuePoint[] = [
+  { label: "08h", revenue: 2800, sales: 2 },
+  { label: "11h", revenue: 4900, sales: 3 },
+  { label: "14h", revenue: 5300, sales: 4 },
+  { label: "17h", revenue: 6100, sales: 4 },
+  { label: "20h", revenue: 5000, sales: 3 },
+];
+
+const revenueMonth: CrmRevenuePoint[] = [
   { label: "Sem 1", revenue: 96400, sales: 61 },
   { label: "Sem 2", revenue: 112300, sales: 74 },
   { label: "Sem 3", revenue: 87600, sales: 58 },
   { label: "Sem 4", revenue: 134800, sales: 89 },
 ];
 
-const revenue90d: CrmRevenuePoint[] = [
+const revenueYear: CrmRevenuePoint[] = [
+  { label: "Ene", revenue: 342100, sales: 224 },
+  { label: "Feb", revenue: 368400, sales: 241 },
+  { label: "Mar", revenue: 401900, sales: 262 },
   { label: "Abr", revenue: 384200, sales: 248 },
   { label: "May", revenue: 421700, sales: 276 },
   { label: "Jun", revenue: 468900, sales: 312 },
@@ -31,6 +48,26 @@ const revenue90d: CrmRevenuePoint[] = [
 export const MOCK_DASHBOARD: CrmDashboard = {
   currency: "BOB",
   periods: {
+    now: {
+      kpis: kpis([
+        { id: "sales-now", label: "Ventas ahora", value: 6800, unit: "money", deltaPct: 5 },
+        { id: "tickets-now", label: "Boletos emitidos", value: 4, unit: "int", deltaPct: 2 },
+        { id: "new-clients-now", label: "Clientes nuevos", value: 1, unit: "int", deltaPct: 0 },
+        { id: "pending", label: "Reservas pendientes", value: 3, unit: "int", deltaPct: -5, invert: true },
+        { id: "margin-now", label: "Margen promedio", value: 18, unit: "pct", deltaPct: 1 },
+      ]),
+      revenue: revenueNow,
+    },
+    yesterday: {
+      kpis: kpis([
+        { id: "sales-yesterday", label: "Ventas de ayer", value: 24100, unit: "money", deltaPct: -6 },
+        { id: "tickets-yesterday", label: "Boletos emitidos", value: 16, unit: "int", deltaPct: -3 },
+        { id: "new-clients-yesterday", label: "Clientes nuevos", value: 5, unit: "int", deltaPct: 25 },
+        { id: "confirmed-yesterday", label: "Reservas confirmadas", value: 12, unit: "int", deltaPct: 8 },
+        { id: "margin-yesterday", label: "Margen promedio", value: 17, unit: "pct", deltaPct: -1 },
+      ]),
+      revenue: revenueYesterday,
+    },
     today: {
       kpis: kpis([
         { id: "sales-today", label: "Ventas de hoy", value: 28900, unit: "money", deltaPct: 12 },
@@ -39,37 +76,27 @@ export const MOCK_DASHBOARD: CrmDashboard = {
         { id: "pending", label: "Reservas pendientes", value: 7, unit: "int", deltaPct: -10, invert: true },
         { id: "margin", label: "Margen promedio", value: 18, unit: "pct", deltaPct: 3 },
       ]),
-      revenue: revenue7d,
+      revenue: revenueToday,
     },
-    "7d": {
+    month: {
       kpis: kpis([
-        { id: "sales-7d", label: "Ventas (7 días)", value: 121700, unit: "money", deltaPct: 9 },
-        { id: "tickets-7d", label: "Boletos emitidos", value: 79, unit: "int", deltaPct: 14 },
-        { id: "new-clients-7d", label: "Clientes nuevos", value: 23, unit: "int", deltaPct: 18 },
-        { id: "confirmed-7d", label: "Reservas confirmadas", value: 64, unit: "int", deltaPct: 11 },
-        { id: "margin-7d", label: "Margen promedio", value: 17, unit: "pct", deltaPct: 1 },
+        { id: "sales-month", label: "Ventas del mes", value: 431100, unit: "money", deltaPct: 15 },
+        { id: "tickets-month", label: "Boletos emitidos", value: 282, unit: "int", deltaPct: 12 },
+        { id: "new-clients-month", label: "Clientes nuevos", value: 96, unit: "int", deltaPct: 22 },
+        { id: "confirmed-month", label: "Reservas confirmadas", value: 241, unit: "int", deltaPct: 9 },
+        { id: "margin-month", label: "Margen promedio", value: 18, unit: "pct", deltaPct: 2 },
       ]),
-      revenue: revenue7d,
+      revenue: revenueMonth,
     },
-    "30d": {
+    year: {
       kpis: kpis([
-        { id: "sales-30d", label: "Ventas del mes", value: 431100, unit: "money", deltaPct: 15 },
-        { id: "tickets-30d", label: "Boletos emitidos", value: 282, unit: "int", deltaPct: 12 },
-        { id: "new-clients-30d", label: "Clientes nuevos", value: 96, unit: "int", deltaPct: 22 },
-        { id: "confirmed-30d", label: "Reservas confirmadas", value: 241, unit: "int", deltaPct: 9 },
-        { id: "margin-30d", label: "Margen promedio", value: 18, unit: "pct", deltaPct: 2 },
+        { id: "sales-year", label: "Ventas del año", value: 4890200, unit: "money", deltaPct: 24 },
+        { id: "tickets-year", label: "Boletos emitidos", value: 3120, unit: "int", deltaPct: 19 },
+        { id: "new-clients-year", label: "Clientes nuevos", value: 1180, unit: "int", deltaPct: 28 },
+        { id: "confirmed-year", label: "Reservas confirmadas", value: 2860, unit: "int", deltaPct: 16 },
+        { id: "margin-year", label: "Margen promedio", value: 18, unit: "pct", deltaPct: 1 },
       ]),
-      revenue: revenue30d,
-    },
-    "90d": {
-      kpis: kpis([
-        { id: "sales-90d", label: "Ventas (90 días)", value: 1274800, unit: "money", deltaPct: 21 },
-        { id: "tickets-90d", label: "Boletos emitidos", value: 836, unit: "int", deltaPct: 17 },
-        { id: "new-clients-90d", label: "Clientes nuevos", value: 287, unit: "int", deltaPct: 26 },
-        { id: "confirmed-90d", label: "Reservas confirmadas", value: 712, unit: "int", deltaPct: 14 },
-        { id: "margin-90d", label: "Margen promedio", value: 18, unit: "pct", deltaPct: 1 },
-      ]),
-      revenue: revenue90d,
+      revenue: revenueYear,
     },
   },
   salesByChannel: [

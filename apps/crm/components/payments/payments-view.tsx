@@ -7,6 +7,7 @@ import type { PaymentDetail, PaymentMethod, PaymentStatus, DocumentKind } from "
 import { PAYMENT_METHOD_LABEL, PAYMENT_STATUS_LABEL, DOCUMENT_KIND_LABEL, paymentBalance, paymentStatusFor } from "@vialta/types";
 import { Badge, Button, DataTable, type Column, Tabs, Input, cn, formatMoney, formatInt } from "@vialta/ui";
 import { useAuth } from "@/components/auth/auth-provider";
+import { useMoneyMask } from "@/components/privacy/privacy-provider";
 import { PAYMENT_STATUS_TONE, PAYMENT_METHOD_ICON } from "./payment-utils";
 import { PaymentForm } from "./payment-form";
 import { PaymentDetailModal } from "./payment-detail-modal";
@@ -25,6 +26,7 @@ const DOC_PREFIX: Partial<Record<DocumentKind, string>> = { receipt: "REC", invo
 
 export function PaymentsView({ initialPayments }: { initialPayments: PaymentDetail[] }) {
   const { can } = useAuth();
+  const { mask } = useMoneyMask();
   const canManage = can("payments.manage");
   const [payments, setPayments] = useState<PaymentDetail[]>(initialPayments);
   const [search, setSearch] = useState("");
@@ -108,15 +110,15 @@ export function PaymentsView({ initialPayments }: { initialPayments: PaymentDeta
         );
       },
     },
-    { key: "total", header: "Total", width: "1fr", align: "right", cell: (p) => <span className="tabular-nums">{formatMoney(p.total.amount, p.total.currency)}</span> },
-    { key: "paid", header: "Pagado", width: "1fr", align: "right", hideOnMobile: true, cell: (p) => <span className="tabular-nums text-success">{formatMoney(p.paid.amount, p.paid.currency)}</span> },
-    { key: "balance", header: "Saldo", width: "1fr", align: "right", cell: (p) => { const b = paymentBalance(p); return <span className={cn("font-medium tabular-nums", b > 0 ? "text-warning" : "text-muted-foreground")}>{formatMoney(b, p.total.currency)}</span>; } },
+    { key: "total", header: "Total", width: "1fr", align: "right", cell: (p) => <span className="tabular-nums">{mask(formatMoney(p.total.amount, p.total.currency))}</span> },
+    { key: "paid", header: "Pagado", width: "1fr", align: "right", hideOnMobile: true, cell: (p) => <span className="tabular-nums text-success">{mask(formatMoney(p.paid.amount, p.paid.currency))}</span> },
+    { key: "balance", header: "Saldo", width: "1fr", align: "right", cell: (p) => { const b = paymentBalance(p); return <span className={cn("font-medium tabular-nums", b > 0 ? "text-warning" : "text-muted-foreground")}>{mask(formatMoney(b, p.total.currency))}</span>; } },
     { key: "status", header: "Estado", width: "auto", align: "right", cell: (p) => <Badge tone={PAYMENT_STATUS_TONE[p.status]}>{PAYMENT_STATUS_LABEL[p.status]}</Badge> },
   ];
 
   const statCards = [
-    { label: "Cobrado", value: formatMoney(stats.collected, "BOB"), icon: TrendingUp, tone: "bg-success/14 text-success", filter: "paid" },
-    { label: "Por cobrar", value: formatMoney(stats.pending, "BOB"), icon: Clock, tone: "bg-warning/16 text-warning", filter: "with_balance" },
+    { label: "Cobrado", value: mask(formatMoney(stats.collected, "BOB")), icon: TrendingUp, tone: "bg-success/14 text-success", filter: "paid" },
+    { label: "Por cobrar", value: mask(formatMoney(stats.pending, "BOB")), icon: Clock, tone: "bg-warning/16 text-warning", filter: "with_balance" },
     { label: "Pagos", value: formatInt(stats.count), icon: Wallet, tone: "bg-primary/12 text-primary", filter: "all" },
     { label: "Vencidos", value: formatInt(stats.overdue), icon: AlertTriangle, tone: "bg-danger/14 text-danger", filter: "overdue" },
   ];

@@ -112,7 +112,10 @@ export function generateTrips(query: SearchQuery, ctx: GenCtx): any[] {
   const destination = (query.destinationId && ctx.findPlace(query.destinationId)) || places[places.length - 1];
   if (!origin || !destination) return [];
 
-  const dateStr = query.departDate ?? "2026-07-01";
+  // Validamos la fecha: un valor malformado produciría `Invalid Date` y
+  // `toISOString()` lanzaría RangeError (→ 500). Ante duda usamos el default.
+  const rawDate = query.departDate ?? "2026-07-01";
+  const dateStr = Number.isNaN(new Date(`${rawDate}T00:00:00`).getTime()) ? "2026-07-01" : rawDate;
   const rng = mulberry32(hashString(`${mode}|${origin.id}|${destination.id}|${dateStr}`));
   const allowedClasses = CLASSES_BY_MODE[mode];
   const count = 7 + Math.floor(rng() * 6);

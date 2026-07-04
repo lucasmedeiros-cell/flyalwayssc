@@ -10,6 +10,7 @@ export * from "./operator-console";
 export * from "./admin";
 export * from "./tracking";
 export * from "./notification";
+export * from "./promo";
 export * from "./crm";
 export * from "./crm-auth";
 export * from "./crm-customer";

@@ -8,6 +8,7 @@ import type { Ticket, TicketStatus } from "@vialta/types";
 import { TICKET_STATUS_LABEL, TRAVEL_CLASS_LABEL } from "@vialta/types";
 import { Avatar, Badge, Button, DataTable, type Column, Tabs, Input, cn, formatMoney, formatInt } from "@vialta/ui";
 import { useAuth } from "@/components/auth/auth-provider";
+import { useMoneyMask } from "@/components/privacy/privacy-provider";
 import { TICKET_STATUS_TONE } from "./ticket-utils";
 import { TicketForm } from "./ticket-form";
 
@@ -25,6 +26,7 @@ const FILTERS: { key: string; label: string }[] = [
 export function TicketsView({ initialTickets }: { initialTickets: Ticket[] }) {
   const router = useRouter();
   const { can } = useAuth();
+  const { mask } = useMoneyMask();
   const [tickets, setTickets] = useState<Ticket[]>(initialTickets);
   const [search, setSearch] = useState("");
   const requestedFilter = useSearchParams().get("filter");
@@ -120,8 +122,8 @@ export function TicketsView({ initialTickets }: { initialTickets: Ticket[] }) {
   ];
 
   const statCards = [
-    { label: "Ingresos (ventas)", value: formatMoney(stats.revenue, "BOB"), icon: TrendingUp, tone: "bg-success/14 text-success", filter: "all" },
-    { label: "Utilidad", value: formatMoney(stats.profit, "BOB"), icon: Plane, tone: "bg-primary/12 text-primary", filter: "all" },
+    { label: "Ingresos (ventas)", value: mask(formatMoney(stats.revenue, "BOB")), icon: TrendingUp, tone: "bg-success/14 text-success", filter: "all" },
+    { label: "Utilidad", value: mask(formatMoney(stats.profit, "BOB")), icon: Plane, tone: "bg-primary/12 text-primary", filter: "all" },
     { label: "Boletos emitidos", value: formatInt(stats.issued), icon: TicketIcon, tone: "bg-accent/14 text-accent-strong dark:text-accent", filter: "issued" },
     { label: "En proceso", value: formatInt(stats.pending), icon: Clock, tone: "bg-warning/16 text-warning", filter: "in_process" },
   ];

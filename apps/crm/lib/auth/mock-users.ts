@@ -2,22 +2,25 @@ import type { CrmUser } from "@vialta/types";
 
 /** Usuario mock con credencial (solo Fase 1 — el backend real con bcrypt llega en Fase 9). */
 export interface MockCrmUser extends CrmUser {
+  /** Nombre de usuario para iniciar sesión (alternativa al correo). */
+  username?: string;
   password: string;
 }
 
-/* Personal de FLYALWAYS. Contraseña demo para todos: "demo1234". */
+/* Personal de FLYALWAYS. Acceso demo: usuario "admin" / contraseña "admin". */
 export const MOCK_USERS: MockCrmUser[] = [
   {
     id: "u-admin",
     name: "Ana Flores",
     initials: "AF",
     email: "ana@flyalways.bo",
+    username: "admin",
     role: "admin",
     color: "#3a23a8",
     active: true,
     twoFactorEnabled: true,
     lastActiveAt: "2026-06-30T14:05:00Z",
-    password: "demo1234",
+    password: "admin",
   },
   {
     id: "u-super",
@@ -77,9 +80,15 @@ export function findUserById(id: string): CrmUser | null {
   return pub;
 }
 
-/** Valida credenciales y devuelve el usuario público. */
-export function verifyCredentials(email: string, password: string): CrmUser | null {
-  const u = MOCK_USERS.find((x) => x.email.toLowerCase() === email.toLowerCase().trim());
+/**
+ * Valida credenciales y devuelve el usuario público.
+ * El identificador acepta el nombre de usuario (p. ej. "admin") o el correo.
+ */
+export function verifyCredentials(identifier: string, password: string): CrmUser | null {
+  const id = identifier.toLowerCase().trim();
+  const u = MOCK_USERS.find(
+    (x) => x.username?.toLowerCase() === id || x.email.toLowerCase() === id,
+  );
   if (!u || u.password !== password || !u.active) return null;
   const { password: _pw, ...pub } = u;
   return pub;

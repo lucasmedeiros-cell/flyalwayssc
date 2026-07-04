@@ -69,7 +69,7 @@ export function QuoteBuilder({
   function submit(e: React.FormEvent) {
     e.preventDefault();
     const q: Quote = {
-      id: `q-${Date.now()}`,
+      id: `q-${crypto.randomUUID()}`,
       code: nextCode,
       customerName,
       customerEmail: customerEmail || undefined,

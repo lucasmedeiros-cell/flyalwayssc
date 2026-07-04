@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { BLUR_DATA_URL, type CuratedImage } from "@/lib/images";
 
@@ -27,6 +27,12 @@ export function SmartImage({
   imgClassName?: string;
 }) {
   const [failed, setFailed] = useState(false);
+
+  // Si la imagen cambia (misma instancia, distinto src), reintentamos: sin esto
+  // un fallo previo dejaría el estado `failed` pegado y ocultaría la nueva foto.
+  useEffect(() => {
+    setFailed(false);
+  }, [image.src]);
 
   return (
     <div className={cn("absolute inset-0 overflow-hidden", className)}>

@@ -11,7 +11,7 @@ import { NotificationsBell } from "@/components/notifications/notifications-bell
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-export function SiteHeader() {
+export function SiteHeader({ promoActive = false }: { promoActive?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export function SiteHeader() {
             <BrandLogo />
           </Link>
 
-          <DesktopNav />
+          <DesktopNav promoActive={promoActive} />
 
           <div className="flex items-center gap-2">
             <LocaleCurrency className="hidden lg:block" />
@@ -54,7 +54,7 @@ export function SiteHeader() {
                 Ingresar
               </Button>
             </Link>
-            <MobileNav />
+            <MobileNav promoActive={promoActive} />
           </div>
         </div>
       </div>

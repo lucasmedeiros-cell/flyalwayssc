@@ -235,6 +235,43 @@ body {
   will-change: transform;
 }
 
+/* Barra de progreso del autoplay del carrusel de destinos. Se rellena de 0 a 100%
+   en linear; `animation-play-state: paused` la congela (hover/foco) sin perder el
+   avance, y el evento `animationend` dispara el paso al siguiente destino. */
+@keyframes carousel-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.carousel-progress-bar {
+  transform-origin: left center;
+  animation: carousel-progress linear forwards;
+  will-change: transform;
+}
+
+/* Ken Burns muy sutil para la fotografía activa del carrusel (zoom + deriva lenta). */
+@keyframes ken-burns {
+  from {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.12) translate3d(-1.5%, -1%, 0);
+  }
+}
+.ken-burns {
+  animation: ken-burns 9s ease-out forwards;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .carousel-progress-bar,
+  .ken-burns {
+    animation: none;
+  }
+}
+
 /* Blob decorativo flotante para fondos del hero. */
 @keyframes blob-float {
   0%,

@@ -5,7 +5,6 @@ import { motion, type Variants } from "framer-motion";
 import { CheckCircle2, ChevronLeft, ChevronRight, ShieldCheck, Sparkles, Zap } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { SectionHeading } from "@/components/ui/section";
-import { SPRING_SOFT } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 type Step = {

@@ -20,13 +20,14 @@ export const CRM_ROLE_LABEL: Record<CrmRole, string> = {
 /* Indicadores y dashboard ejecutivo.                                  */
 /* ------------------------------------------------------------------ */
 
-export type CrmPeriod = "today" | "7d" | "30d" | "90d";
+export type CrmPeriod = "now" | "yesterday" | "today" | "month" | "year";
 
 export const CRM_PERIOD_LABEL: Record<CrmPeriod, string> = {
+  now: "Ahora",
+  yesterday: "Ayer",
   today: "Hoy",
-  "7d": "7 días",
-  "30d": "30 días",
-  "90d": "90 días",
+  month: "Mes",
+  year: "Año",
 };
 
 /** KPI presentacional (números crudos, igual que `AdminKpi`). */

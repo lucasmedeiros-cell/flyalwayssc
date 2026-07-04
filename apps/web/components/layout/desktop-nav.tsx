@@ -3,11 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown, Flame } from "lucide-react";
 import { BADGE_META, NAV, type MegaLink } from "./nav-data";
 import { cn } from "@/lib/utils";
 
-export function DesktopNav() {
+export function DesktopNav({ promoActive = false }: { promoActive?: boolean }) {
   const [active, setActive] = useState<number | null>(null);
   const reduced = useReducedMotion();
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
@@ -62,6 +62,17 @@ export function DesktopNav() {
             </div>
           );
         })}
+
+        {promoActive && (
+          <Link
+            href="/promo"
+            onMouseEnter={() => setActive(null)}
+            className="ml-1 inline-flex items-center gap-1.5 rounded-full bg-danger/12 px-4 py-2 text-sm font-semibold text-danger transition-colors duration-200 hover:bg-danger/20"
+          >
+            <Flame className="h-4 w-4" />
+            Oferta
+          </Link>
+        )}
       </nav>
 
       <AnimatePresence>

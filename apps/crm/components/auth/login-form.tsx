@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Mail, Lock, Loader2, AlertCircle } from "lucide-react";
+import { User, Lock, Loader2, AlertCircle } from "lucide-react";
 import { Button, GlassCard, Input, Field, BrandLogo } from "@vialta/ui";
 
 export function LoginForm() {
   const router = useRouter();
   const params = useSearchParams();
-  const [email, setEmail] = useState("ana@flyalways.bo");
+  const [email, setEmail] = useState("admin");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -49,15 +49,15 @@ export function LoginForm() {
       </div>
 
       <form onSubmit={onSubmit} className="mt-7 space-y-4" suppressHydrationWarning>
-        <Field label="Correo" htmlFor="email">
+        <Field label="Usuario" htmlFor="email">
           <Input
             id="email"
-            type="email"
-            autoComplete="email"
-            icon={Mail}
+            type="text"
+            autoComplete="username"
+            icon={User}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="tucorreo@flyalways.bo"
+            placeholder="admin"
             required
           />
         </Field>
@@ -96,10 +96,8 @@ export function LoginForm() {
       <div className="mt-6 rounded-2xl border border-border bg-surface/60 px-4 py-3 text-xs text-muted-foreground">
         <p className="font-semibold text-foreground">Acceso de demostración</p>
         <p className="mt-1">
-          Contraseña <code className="rounded bg-surface-2 px-1 py-0.5">demo1234</code> · Roles:{" "}
-          <code className="rounded bg-surface-2 px-1 py-0.5">ana@</code> (admin),{" "}
-          <code className="rounded bg-surface-2 px-1 py-0.5">lucia@</code> (agente),{" "}
-          <code className="rounded bg-surface-2 px-1 py-0.5">diego@</code> (contabilidad)
+          Usuario <code className="rounded bg-surface-2 px-1 py-0.5">admin</code> · Contraseña{" "}
+          <code className="rounded bg-surface-2 px-1 py-0.5">admin</code>
         </p>
       </div>
     </GlassCard>

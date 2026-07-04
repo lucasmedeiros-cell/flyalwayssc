@@ -21,13 +21,13 @@ import { RecentActivity } from "./recent-activity";
 import { MiniAgenda } from "./mini-agenda";
 import { TasksWidget } from "./tasks-widget";
 
-const PERIODS: CrmPeriod[] = ["today", "7d", "30d", "90d"];
+const PERIODS: CrmPeriod[] = ["now", "yesterday", "today", "month", "year"];
 
 /** Afford­ance de tarjeta clickeable (lift + foco accesible). */
 const CARD_LINK = "block rounded-3xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40";
 
 export function DashboardView({ data }: { data: CrmDashboard }) {
-  const [period, setPeriod] = useState<CrmPeriod>("30d");
+  const [period, setPeriod] = useState<CrmPeriod>("month");
   const pd = data.periods[period];
 
   const stats = [

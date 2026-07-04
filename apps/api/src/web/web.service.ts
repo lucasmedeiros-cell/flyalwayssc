@@ -11,6 +11,9 @@ import {
 
 const money = (amount: number, currency: string) => ({ amount, currency });
 
+const VALID_MODES: readonly Mode[] = ["air", "bus", "train", "private"];
+const isValidMode = (m: unknown): m is Mode => typeof m === "string" && VALID_MODES.includes(m as Mode);
+
 @Injectable()
 export class WebService {
   constructor(
@@ -32,17 +35,23 @@ export class WebService {
   }
 
   async search(body: { query: SearchQuery; filters?: SearchFilters; sort?: SortKey; page?: number; pageSize?: number }) {
+    const page = Math.max(1, Math.trunc(body?.page ?? 1));
+    const pageSize = Math.min(100, Math.max(1, Math.trunc(body?.pageSize ?? 20)));
+    // Sin un modo válido no hay contexto que generar: respondemos vacío (200) en
+    // vez de dejar que `mode.toUpperCase()`/Prisma lancen un 500.
+    if (!isValidMode(body?.query?.mode)) {
+      return { items: [], total: 0, page, pageSize };
+    }
     const ctx = await this.ctx(body.query.mode);
     const all = generateTrips(body.query, ctx);
     const filtered = applyFilters(all, body.filters);
     const sorted = sortTrips(filtered, body.sort ?? "recommended");
-    const page = body.page ?? 1;
-    const pageSize = body.pageSize ?? 20;
     const start = (page - 1) * pageSize;
     return { items: sorted.slice(start, start + pageSize), total: sorted.length, page, pageSize };
   }
 
   async facets(query: SearchQuery) {
+    if (!isValidMode(query?.mode)) return computeFacets([]);
     const ctx = await this.ctx(query.mode);
     return computeFacets(generateTrips(query, ctx));
   }
@@ -125,5 +134,72 @@ export class WebService {
 
   getOperatorConsole() {
     return OPERATOR_CONSOLE;
+  }
+
+  /* -------------------- Landing promocional (producto) --------------------- */
+
+  private mapPromo(p: NonNullable<Awaited<ReturnType<PrismaService["promoLanding"]["findUnique"]>>>) {
+    return {
+      active: p.active,
+      eyebrow: p.eyebrow,
+      title: p.title,
+      subtitle: p.subtitle,
+      productName: p.productName,
+      description: p.description,
+      badge: p.badge ?? undefined,
+      price: money(p.priceAmount, p.priceCurrency),
+      originalPrice: p.originalPriceAmount != null ? money(p.originalPriceAmount, p.originalPriceCurrency ?? p.priceCurrency) : undefined,
+      ctaLabel: p.ctaLabel,
+      ctaHref: p.ctaHref,
+      imageUrl: p.imageUrl ?? undefined,
+      accentColor: p.accentColor ?? undefined,
+      highlights: p.highlights,
+      stats: p.stats,
+      validUntil: p.validUntil ?? undefined,
+      updatedAt: p.updatedAt.toISOString(),
+    };
+  }
+
+  /** Público: sólo devuelve la promo si está activa. */
+  async getPublicPromo() {
+    const p = await this.prisma.promoLanding.findUnique({ where: { id: "default" } });
+    if (!p || !p.active) return { active: false };
+    return this.mapPromo(p);
+  }
+
+  /** Admin: devuelve la configuración completa (activa o no) para editar. */
+  async getAdminPromo() {
+    const p = await this.prisma.promoLanding.findUnique({ where: { id: "default" } });
+    return p ? this.mapPromo(p) : null;
+  }
+
+  /** Admin: actualiza/activa la landing promocional. */
+  async updatePromo(body: any) {
+    const data = {
+      active: Boolean(body.active),
+      eyebrow: String(body.eyebrow ?? ""),
+      title: String(body.title ?? ""),
+      subtitle: String(body.subtitle ?? ""),
+      productName: String(body.productName ?? ""),
+      description: String(body.description ?? ""),
+      badge: body.badge ? String(body.badge) : null,
+      priceAmount: Number(body.price?.amount ?? 0),
+      priceCurrency: String(body.price?.currency ?? "BOB"),
+      originalPriceAmount: body.originalPrice?.amount != null ? Number(body.originalPrice.amount) : null,
+      originalPriceCurrency: body.originalPrice?.currency ? String(body.originalPrice.currency) : null,
+      ctaLabel: String(body.ctaLabel ?? "Reservar"),
+      ctaHref: String(body.ctaHref ?? "/buscar"),
+      imageUrl: body.imageUrl ? String(body.imageUrl) : null,
+      accentColor: body.accentColor ? String(body.accentColor) : null,
+      highlights: Array.isArray(body.highlights) ? body.highlights : [],
+      stats: Array.isArray(body.stats) ? body.stats : [],
+      validUntil: body.validUntil ? String(body.validUntil) : null,
+    };
+    const p = await this.prisma.promoLanding.upsert({
+      where: { id: "default" },
+      create: { id: "default", ...data },
+      update: data,
+    });
+    return this.mapPromo(p);
   }
 }

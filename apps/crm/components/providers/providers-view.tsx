@@ -6,6 +6,7 @@ import type { Provider, ProviderType } from "@vialta/types";
 import { PROVIDER_TYPE_LABEL, PROVIDER_STATUS_LABEL } from "@vialta/types";
 import { Avatar, Badge, Button, DataTable, type Column, Tabs, Input, cn, formatMoney, formatInt, initials } from "@vialta/ui";
 import { useAuth } from "@/components/auth/auth-provider";
+import { useMoneyMask } from "@/components/privacy/privacy-provider";
 import { ProviderForm } from "./provider-form";
 
 const FILTERS: { key: string; label: string }[] = [
@@ -20,6 +21,7 @@ const FILTERS: { key: string; label: string }[] = [
 
 export function ProvidersView({ initialProviders }: { initialProviders: Provider[] }) {
   const { can } = useAuth();
+  const { mask } = useMoneyMask();
   const canManage = can("providers.manage");
   const [providers, setProviders] = useState<Provider[]>(initialProviders);
   const [search, setSearch] = useState("");
@@ -76,14 +78,14 @@ export function ProvidersView({ initialProviders }: { initialProviders: Provider
       ),
     },
     { key: "rating", header: "Rating", width: "auto", hideOnMobile: true, cell: (p) => <span className="inline-flex items-center gap-1 text-sm"><Star className="h-3.5 w-3.5 fill-warning text-warning" />{p.rating.toFixed(1)}</span> },
-    { key: "balance", header: "Por pagar", width: "1fr", align: "right", cell: (p) => { const b = p.balance?.amount ?? 0; return <span className={cn("tabular-nums", b > 0 ? "text-warning font-medium" : "text-muted-foreground")}>{formatMoney(b, p.balance?.currency ?? "BOB")}</span>; } },
+    { key: "balance", header: "Por pagar", width: "1fr", align: "right", cell: (p) => { const b = p.balance?.amount ?? 0; return <span className={cn("tabular-nums", b > 0 ? "text-warning font-medium" : "text-muted-foreground")}>{mask(formatMoney(b, p.balance?.currency ?? "BOB"))}</span>; } },
     { key: "status", header: "Estado", width: "auto", align: "right", cell: (p) => <Badge tone={p.status === "active" ? "success" : "neutral"}>{PROVIDER_STATUS_LABEL[p.status]}</Badge> },
   ];
 
   const statCards = [
     { label: "Proveedores", value: formatInt(stats.total), icon: Building2, tone: "bg-primary/12 text-primary", filter: "all" },
     { label: "Activos", value: formatInt(stats.active), icon: Star, tone: "bg-success/14 text-success", filter: "st_active" },
-    { label: "Cuentas por pagar", value: formatMoney(stats.payable, "BOB"), icon: Wallet, tone: "bg-warning/16 text-warning", filter: "st_payable" },
+    { label: "Cuentas por pagar", value: mask(formatMoney(stats.payable, "BOB")), icon: Wallet, tone: "bg-warning/16 text-warning", filter: "st_payable" },
   ];
 
   return (

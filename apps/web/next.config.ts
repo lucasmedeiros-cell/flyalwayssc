@@ -1,7 +1,11 @@
 import type { NextConfig } from "next";
+import { version } from "./package.json";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  // Versión del sistema expuesta al cliente (se actualiza sola con package.json).
+  // Requisito Petrobox #2: mostrar la versión debajo del logo.
+  env: { NEXT_PUBLIC_APP_VERSION: version },
   // Permite importar el paquete del workspace (TS fuente) sin pre-compilarlo.
   transpilePackages: ["@vialta/types"],
   images: {

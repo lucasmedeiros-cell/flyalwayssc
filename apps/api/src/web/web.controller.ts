@@ -1,4 +1,4 @@
-import { Body, Controller, Get, NotFoundException, Param, Post } from "@nestjs/common";
+import { Body, Controller, Get, NotFoundException, Param, Post, Put } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { WebService } from "./web.service";
 import type { SearchQuery, SearchFilters, SortKey } from "./web.generator";
@@ -65,5 +65,27 @@ export class WebController {
   @Get("operator-console")
   getOperatorConsole() {
     return this.web.getOperatorConsole();
+  }
+
+  /* -------------------- Landing promocional (producto) --------------------- */
+
+  /** Público: la promo activa (o { active: false }). */
+  @Get("promo")
+  getPromo() {
+    return this.web.getPublicPromo();
+  }
+
+  /** Admin: configuración completa para editar. */
+  @Get("admin/promo")
+  async getAdminPromo() {
+    const p = await this.web.getAdminPromo();
+    if (!p) throw new NotFoundException();
+    return p;
+  }
+
+  /** Admin: guardar/activar la landing promocional. */
+  @Put("admin/promo")
+  updatePromo(@Body() body: unknown) {
+    return this.web.updatePromo(body);
   }
 }

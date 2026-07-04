@@ -1,7 +1,7 @@
 import type {
   Operator, Place, TransportMode, Paginated, Trip, SearchQuery, SearchFilters, SortKey,
   SearchFacets, SeatMapLayout, Account, OperatorConsole, AdminDashboard, TripTracking,
-  AppNotification, NotificationPreferences,
+  AppNotification, NotificationPreferences, PromoProduct,
 } from "@vialta/types";
 import { MockDataSource } from "./mock-data-source";
 
@@ -92,5 +92,15 @@ export class HttpDataSource extends MockDataSource {
 
   async getNotificationPreferences(): Promise<NotificationPreferences> {
     return this.get<NotificationPreferences>("/web/notification-preferences");
+  }
+
+  async getPromo(): Promise<PromoProduct | null> {
+    // No es crítica: si el API no responde, la web sigue sin la promo.
+    try {
+      const p = await this.get<PromoProduct | { active: false }>("/web/promo");
+      return p && (p as PromoProduct).active ? (p as PromoProduct) : null;
+    } catch {
+      return null;
+    }
   }
 }

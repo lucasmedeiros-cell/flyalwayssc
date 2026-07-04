@@ -3,14 +3,14 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
+import { ArrowRight, ChevronDown, Flame, Menu, X } from "lucide-react";
 import { BrandLogo } from "@/components/ui/brand-logo";
 import { Button } from "@/components/ui/button";
 import { LocaleCurrency } from "./locale-currency";
 import { BADGE_META, NAV } from "./nav-data";
 import { cn } from "@/lib/utils";
 
-export function MobileNav() {
+export function MobileNav({ promoActive = false }: { promoActive?: boolean }) {
   const [open, setOpen] = useState(false);
   const [section, setSection] = useState<number | null>(0);
 
@@ -71,6 +71,21 @@ export function MobileNav() {
               </div>
 
               <nav className="flex-1 overflow-y-auto px-3 py-2">
+                {promoActive && (
+                  <Link
+                    href="/promo"
+                    onClick={close}
+                    className="mb-1 flex items-center gap-3 rounded-2xl bg-danger/10 p-3 transition-colors hover:bg-danger/15"
+                  >
+                    <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-danger/15 text-danger">
+                      <Flame className="h-[18px] w-[18px]" />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block text-sm font-semibold text-danger">Oferta destacada</span>
+                      <span className="block text-xs text-muted-foreground">No te pierdas el producto en promoción</span>
+                    </span>
+                  </Link>
+                )}
                 {NAV.map((item, i) => (
                   <Accordion
                     key={item.label}

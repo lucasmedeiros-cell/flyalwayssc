@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Sora } from "next/font/google";
 import "./globals.css";
+import { getDataSource } from "@/lib/services";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
@@ -49,17 +50,18 @@ export const viewport: Viewport = {
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const promo = await getDataSource().getPromo();
   return (
     <html lang="es-BO" suppressHydrationWarning className={`${sans.variable} ${display.variable} h-full`}>
       <body className="min-h-full flex flex-col antialiased">
         <ThemeProvider>
           <ScrollProgress />
-          <SiteHeader />
+          <SiteHeader promoActive={!!promo} />
           <main className="flex-1">{children}</main>
           <SiteFooter />
         </ThemeProvider>

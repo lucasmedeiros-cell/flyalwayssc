@@ -7,6 +7,7 @@ import type {
   OperatorConsole,
   Paginated,
   Place,
+  PromoProduct,
   SearchFacets,
   SearchFilters,
   SearchQuery,
@@ -46,4 +47,6 @@ export interface DataSource {
   getNotifications(): Promise<AppNotification[]>;
   /** Preferencias de notificación por categoría y canal. */
   getNotificationPreferences(): Promise<NotificationPreferences>;
+  /** Landing del producto destacado (o null si no hay promoción activa). */
+  getPromo(): Promise<PromoProduct | null>;
 }

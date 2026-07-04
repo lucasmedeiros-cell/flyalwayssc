@@ -776,3 +776,28 @@ model WebTripTracking {
   path            Json
   waypoints       Json
 }
+
+/// Landing promocional de un único producto destacado. Fila única ("default").
+/// Se administra/activa desde el panel de administración y se publica en /promo.
+model PromoLanding {
+  id                    String   @id @default("default")
+  active                Boolean  @default(false)
+  eyebrow               String
+  title                 String
+  subtitle              String
+  productName           String
+  description           String
+  badge                 String?
+  priceAmount           Float
+  priceCurrency         String   @default("BOB")
+  originalPriceAmount   Float?
+  originalPriceCurrency String?
+  ctaLabel              String
+  ctaHref               String
+  imageUrl              String?
+  accentColor           String?
+  highlights            Json
+  stats                 Json
+  validUntil            String?
+  updatedAt             DateTime @updatedAt
+}

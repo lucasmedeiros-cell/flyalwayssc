@@ -11,7 +11,6 @@ import {
 } from "lucide-react";
 import { BrandLogo } from "@/components/ui/brand-logo";
 import { NewsletterForm } from "@/components/layout/newsletter-form";
-import { LocaleCurrency } from "@/components/layout/locale-currency";
 
 const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
   {
@@ -59,7 +58,12 @@ const SOCIALS = [
   { icon: Linkedin, label: "LinkedIn", href: "#" },
 ];
 
-const PAYMENTS = ["VISA", "Mastercard", "Amex", "QR Simple", "Tigo Money", "PayPal"];
+// Medios de pago con logotipo oficial: a color en tema claro y en blanco en
+// tema oscuro (mismo tratamiento que el muro de aerolíneas).
+const PAYMENTS = [
+  { name: "Visa", src: "/logos/payments/visa.png" },
+  { name: "Mastercard", src: "/logos/payments/mastercard.svg" },
+];
 
 export function SiteFooter() {
   return (
@@ -86,6 +90,10 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-7xl grid-cols-2 gap-10 px-4 py-14 sm:px-6 md:grid-cols-6 lg:px-8">
         <div className="col-span-2">
           <BrandLogo />
+          {/* Versión del sistema — requisito Petrobox #2 (debajo del logo). */}
+          <p className="mt-1.5 text-xs font-medium text-muted-foreground/70">
+            v{process.env.NEXT_PUBLIC_APP_VERSION}
+          </p>
           <p className="mt-4 max-w-xs text-sm text-muted-foreground">
             Tu agencia de vuelos en Bolivia. Compara y reserva vuelos nacionales e
             internacionales en un solo lugar, con precio transparente.
@@ -159,14 +167,16 @@ export function SiteFooter() {
               Empresas verificadas
             </span>
           </div>
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-4">
             {PAYMENTS.map((p) => (
-              <span
-                key={p}
-                className="inline-flex h-7 items-center rounded-md border border-border bg-surface px-2.5 text-[11px] font-semibold tracking-wide text-muted-foreground"
-              >
-                {p}
-              </span>
+              // eslint-disable-next-line @next/next/no-img-element -- logo estático local
+              <img
+                key={p.name}
+                src={p.src}
+                alt={p.name}
+                decoding="async"
+                className="h-6 w-auto object-contain dark:[filter:brightness(0)_invert(1)]"
+              />
             ))}
           </div>
         </div>
@@ -176,10 +186,17 @@ export function SiteFooter() {
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-xs text-muted-foreground sm:flex-row sm:px-6 lg:px-8">
           <p>© {new Date().getFullYear()} FlyAlways. Todos los derechos reservados.</p>
-          <div className="flex items-center gap-4">
-            <span className="hidden sm:inline">Hecho con foco en experiencia y velocidad.</span>
-            <LocaleCurrency />
-          </div>
+          <p className="flex items-center gap-1.5">
+            <span>Desarrollado por</span>
+            <a
+              href="https://petrobox.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-foreground transition-colors hover:text-primary"
+            >
+              Petrobox
+            </a>
+          </p>
         </div>
       </div>
     </footer>
