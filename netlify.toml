@@ -1,0 +1,14 @@
+# Runtime de Next.js para los sitios del monorepo desplegados en Netlify
+# (flyalwayssc → apps/web y flyalwayssc-crm → apps/crm).
+#
+# Ambos sitios usan base directory = raíz del repo, por eso la config vive acá.
+# NO se define [build] a propósito: el comando de build de cada sitio se toma de
+# su propia configuración en Netlify (build_settings), que ya apunta al workspace
+# correcto:
+#   web → npm --workspace web run build   (publish apps/web/.next)
+#   crm → npm --workspace crm run build   (publish apps/crm/.next)
+#
+# Solo declaramos el plugin oficial de Next.js para que Netlify genere las
+# funciones SSR y el enrutado (sin esto, publica el .next como estático → 404).
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
