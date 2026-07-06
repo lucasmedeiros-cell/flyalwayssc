@@ -1,0 +1,16 @@
+# Contexto de build Docker (para apps/api/Dockerfile). Mantiene el contexto
+# liviano y evita filtrar secretos/artefactos: todo se reconstruye dentro.
+**/node_modules
+**/.next
+**/dist
+**/.turbo
+.git
+.github
+.netlify
+**/*.log
+**/*.tsbuildinfo
+**/.env
+**/.env.*
+!**/.env.example
+**/coverage
+apps/api/shotpromo.mjs

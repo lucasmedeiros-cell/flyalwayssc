@@ -26,8 +26,10 @@ async function bootstrap() {
   SwaggerModule.setup("api/docs", app, doc);
 
   const port = Number(process.env.PORT ?? 4000);
-  await app.listen(port);
-  Logger.log(`Vialta API en http://localhost:${port}/api (docs en /api/docs)`, "Bootstrap");
+  // Bind a 0.0.0.0 para que funcione dentro de contenedores (Render, Railway,
+  // Fly, Docker). En local sigue siendo accesible por http://localhost:PORT.
+  await app.listen(port, "0.0.0.0");
+  Logger.log(`Vialta API en http://0.0.0.0:${port}/api (docs en /api/docs)`, "Bootstrap");
 }
 
 void bootstrap();
