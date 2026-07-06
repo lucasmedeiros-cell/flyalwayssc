@@ -4,10 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { BrandLogo } from "@/components/ui/brand-logo";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { LocaleCurrency } from "@/components/layout/locale-currency";
 import { DesktopNav } from "@/components/layout/desktop-nav";
 import { MobileNav } from "@/components/layout/mobile-nav";
-import { NotificationsBell } from "@/components/notifications/notifications-bell";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -46,8 +44,6 @@ export function SiteHeader({ promoActive = false }: { promoActive?: boolean }) {
           <DesktopNav promoActive={promoActive} />
 
           <div className="flex items-center gap-2">
-            <LocaleCurrency className="hidden lg:block" />
-            <NotificationsBell />
             <ThemeToggle />
             <Link href="/perfil" className="hidden sm:block">
               <Button variant="outline" size="sm">

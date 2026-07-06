@@ -8,6 +8,7 @@ import {
   Smartphone,
   Twitter,
   Youtube,
+  ExternalLink,
 } from "lucide-react";
 import { BrandLogo } from "@/components/ui/brand-logo";
 import { NewsletterForm } from "@/components/layout/newsletter-form";
@@ -64,6 +65,10 @@ const PAYMENTS = [
   { name: "Visa", src: "/logos/payments/visa.png" },
   { name: "Mastercard", src: "/logos/payments/mastercard.svg" },
 ];
+
+// URL del CRM (panel administrativo). Configurable por entorno; en desarrollo
+// apunta al CRM local. Enlaza la web pública con el sistema de administración.
+const CRM_URL = process.env.NEXT_PUBLIC_CRM_URL ?? "http://localhost:3001";
 
 export function SiteFooter() {
   return (
@@ -186,15 +191,30 @@ export function SiteFooter() {
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-xs text-muted-foreground sm:flex-row sm:px-6 lg:px-8">
           <p>© {new Date().getFullYear()} FlyAlways. Todos los derechos reservados.</p>
+
+          {/* Acceso al CRM: enlaza la web pública con el panel administrativo.
+              Mismo patrón que "Acceso empleados" de FloresOnline (ícono candado
+              + texto de acento, discreto), pero abre el CRM en otra pestaña. */}
+          <a
+            href={CRM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 font-semibold text-primary transition-colors hover:text-primary/80"
+          >
+            <Lock className="h-3.5 w-3.5" />
+            Acceso empleados
+            <ExternalLink className="h-3 w-3 opacity-60" />
+          </a>
+
           <p className="flex items-center gap-1.5">
             <span>Desarrollado por</span>
             <a
-              href="https://petrobox.com"
+              href="https://easypaybo.com"
               target="_blank"
               rel="noopener noreferrer"
               className="font-semibold text-foreground transition-colors hover:text-primary"
             >
-              Petrobox
+              EasyPayBo
             </a>
           </p>
         </div>

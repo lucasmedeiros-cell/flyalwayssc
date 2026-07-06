@@ -38,33 +38,40 @@ export function DataTable<T>({
   const alignClass = (a?: Column<T>["align"]) =>
     a === "right" ? "text-right justify-end" : a === "center" ? "text-center justify-center" : "text-left";
 
+  // Encabezado y filas comparten UNA sola grilla mediante `subgrid`: así las
+  // columnas quedan perfectamente alineadas aunque usen anchos `auto`/`fr`
+  // (que de otro modo se calcularían distinto en cada grilla independiente).
+  const spanAll: React.CSSProperties = { gridColumn: "1 / -1", gridTemplateColumns: "subgrid" };
+
   return (
     <div className={cn("overflow-hidden rounded-3xl border border-border bg-surface shadow-[var(--shadow-sm)]", className)}>
-      {/* Cabecera (solo desktop) */}
-      <div
-        className="hidden gap-4 border-b border-border px-5 py-3 text-xs font-medium uppercase tracking-wide text-muted-foreground sm:grid"
-        style={{ gridTemplateColumns: gridTemplate }}
-      >
-        {columns.map((c) => (
-          <span key={c.key} className={cn(alignClass(c.align), c.hideOnMobile && "hidden sm:block")}>
-            {c.header}
-          </span>
-        ))}
-      </div>
+      <div className="sm:grid" style={{ gridTemplateColumns: gridTemplate }}>
+        {/* Cabecera (solo desktop) */}
+        <div
+          className="hidden gap-4 border-b border-border px-5 py-3 text-xs font-medium uppercase tracking-wide text-muted-foreground sm:grid"
+          style={spanAll}
+        >
+          {columns.map((c) => (
+            <span key={c.key} className={cn(alignClass(c.align), c.hideOnMobile && "hidden sm:block")}>
+              {c.header}
+            </span>
+          ))}
+        </div>
 
-      {rows.length === 0 ? (
-        <div className="px-5 py-12 text-center text-sm text-muted-foreground">{empty}</div>
-      ) : (
-        <ul className="divide-y divide-border">
-          {rows.map((row) => (
-            <li
+        {rows.length === 0 ? (
+          <div className="px-5 py-12 text-center text-sm text-muted-foreground" style={{ gridColumn: "1 / -1" }}>
+            {empty}
+          </div>
+        ) : (
+          rows.map((row) => (
+            <div
               key={keyOf(row)}
               onClick={onRowClick ? () => onRowClick(row) : undefined}
               className={cn(
-                "flex flex-col gap-2 px-5 py-3.5 sm:grid sm:items-center sm:gap-4",
+                "flex flex-col gap-2 border-b border-border px-5 py-3.5 last:border-b-0 sm:grid sm:items-center sm:gap-4",
                 onRowClick && "cursor-pointer transition-colors hover:bg-surface-2/60"
               )}
-              style={{ gridTemplateColumns: gridTemplate }}
+              style={spanAll}
             >
               {columns.map((c) => (
                 <div
@@ -74,10 +81,10 @@ export function DataTable<T>({
                   {c.cell(row)}
                 </div>
               ))}
-            </li>
-          ))}
-        </ul>
-      )}
+            </div>
+          ))
+        )}
+      </div>
     </div>
   );
 }

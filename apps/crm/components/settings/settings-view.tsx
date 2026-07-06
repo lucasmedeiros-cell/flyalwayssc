@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Check, Minus, ShieldCheck, Smartphone, Monitor, LogOut } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { Check, Minus, ShieldCheck, Smartphone, Monitor, LogOut, Settings, Users, KeyRound, History, Lock } from "lucide-react";
 import type { CrmUser, CrmRole, CrmActiveSession, CrmAuditEntry, CrmAuditAction } from "@vialta/types";
 import {
   CRM_ROLE_LABEL,
@@ -47,13 +48,100 @@ const ROLE_TONE: Record<CrmRole, BadgeTone> = {
   marketing: "neutral",
 };
 
+/* --------------------------- Bloques reutilizables ------------------------- */
+
+type Tone = "primary" | "success" | "accent" | "warning" | "danger" | "neutral";
+
+const TONE_CLASSES: Record<Tone, string> = {
+  primary: "bg-primary/12 text-primary",
+  success: "bg-success/14 text-success",
+  accent: "bg-accent/14 text-accent-strong dark:text-accent",
+  warning: "bg-warning/14 text-warning",
+  danger: "bg-danger/12 text-danger",
+  neutral: "bg-surface-2 text-muted-foreground",
+};
+
+/** Tarjeta de sección con encabezado icónico, al estilo de un panel de ajustes limpio. */
+function SectionCard({
+  icon: Icon,
+  title,
+  description,
+  tone = "primary",
+  action,
+  bodyClassName = "px-5 py-5 sm:px-6",
+  children,
+}: {
+  icon: LucideIcon;
+  title: string;
+  description?: string;
+  tone?: Tone;
+  action?: React.ReactNode;
+  bodyClassName?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section className="overflow-hidden rounded-3xl border border-border bg-surface shadow-[var(--shadow-sm)]">
+      <header className="flex items-center gap-3 border-b border-border px-5 py-4 sm:px-6">
+        <span className={cn("inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl", TONE_CLASSES[tone])}>
+          <Icon className="h-5 w-5" />
+        </span>
+        <div className="min-w-0 flex-1">
+          <h2 className="font-[family-name:var(--font-display)] text-base font-bold leading-tight">{title}</h2>
+          {description && <p className="mt-0.5 text-sm text-muted-foreground">{description}</p>}
+        </div>
+        {action}
+      </header>
+      <div className={bodyClassName}>{children}</div>
+    </section>
+  );
+}
+
+/** Fila con interruptor: icono + título + subtítulo + Switch, con divisores entre filas. */
+function ToggleRow({
+  icon: Icon,
+  title,
+  desc,
+  checked,
+  onChange,
+  tone = "primary",
+}: {
+  icon: LucideIcon;
+  title: string;
+  desc: string;
+  checked: boolean;
+  onChange: (v: boolean) => void;
+  tone?: Tone;
+}) {
+  return (
+    <div className="flex items-center gap-4 py-4 first:pt-0 last:pb-0">
+      <span className={cn("inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl", TONE_CLASSES[tone])}>
+        <Icon className="h-5 w-5" />
+      </span>
+      <div className="min-w-0 flex-1">
+        <p className="font-medium">{title}</p>
+        <p className="text-sm text-muted-foreground">{desc}</p>
+      </div>
+      <Switch checked={checked} onChange={onChange} aria-label={title} />
+    </div>
+  );
+}
+
+/* --------------------------------- Vista ---------------------------------- */
+
 export function SettingsView({ data }: { data: CrmSettingsData }) {
   const [tab, setTab] = useState("users");
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-      <h1 className="font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight sm:text-3xl">Ajustes</h1>
-      <p className="mt-1 text-sm text-muted-foreground">Usuarios, roles, permisos, seguridad y auditoría.</p>
+    <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="flex items-center gap-3">
+        <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-primary/12 text-primary">
+          <Settings className="h-5.5 w-5.5" />
+        </span>
+        <div>
+          <h1 className="font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight sm:text-3xl">Ajustes</h1>
+          <p className="mt-0.5 text-sm text-muted-foreground">Usuarios, roles, permisos, seguridad y auditoría.</p>
+        </div>
+      </div>
 
       <div className="mt-6 overflow-x-auto pb-1">
         <Tabs items={TABS} value={tab} onChange={setTab} layoutId="settings-tab" />
@@ -141,12 +229,20 @@ function UsersTab({ users: initialUsers }: { users: CrmUser[] }) {
   ];
 
   return (
-    <div>
-      <div className="mb-4 flex items-center justify-between">
-        <p className="text-sm text-muted-foreground">{users.length} usuarios</p>
-        <Button size="sm" onClick={() => setInviteOpen(true)}>Invitar usuario</Button>
-      </div>
-      <DataTable columns={columns} rows={users} keyOf={(u) => u.id} />
+    <>
+      <SectionCard
+        icon={Users}
+        title="Usuarios y roles"
+        description={`${users.length} usuarios con acceso al CRM`}
+        bodyClassName="p-0"
+        action={
+          <Button size="sm" onClick={() => setInviteOpen(true)}>
+            Invitar usuario
+          </Button>
+        }
+      >
+        <DataTable columns={columns} rows={users} keyOf={(u) => u.id} className="rounded-none border-0 bg-transparent shadow-none" />
+      </SectionCard>
 
       <Modal
         open={inviteOpen}
@@ -176,7 +272,7 @@ function UsersTab({ users: initialUsers }: { users: CrmUser[] }) {
           </Field>
         </form>
       </Modal>
-    </div>
+    </>
   );
 }
 
@@ -185,39 +281,41 @@ function UsersTab({ users: initialUsers }: { users: CrmUser[] }) {
 function PermissionsTab() {
   const roles = Object.keys(CRM_ROLE_PERMISSIONS) as CrmRole[];
   return (
-    <div className="overflow-x-auto rounded-3xl border border-border bg-surface shadow-[var(--shadow-sm)]">
-      <table className="w-full min-w-[640px] border-collapse text-sm">
-        <thead>
-          <tr className="border-b border-border">
-            <th className="px-5 py-3 text-left text-xs font-medium uppercase tracking-wide text-muted-foreground">Permiso</th>
-            {roles.map((r) => (
-              <th key={r} className="px-3 py-3 text-center text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                {CRM_ROLE_LABEL[r]}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {CRM_ALL_PERMISSIONS.map((perm) => (
-            <tr key={perm} className="border-b border-border last:border-0 hover:bg-surface-2/50">
-              <td className="px-5 py-2.5">{CRM_PERMISSION_LABEL[perm]}</td>
-              {roles.map((r) => {
-                const has = CRM_ROLE_PERMISSIONS[r].includes(perm);
-                return (
-                  <td key={r} className="px-3 py-2.5 text-center">
-                    {has ? (
-                      <Check className="mx-auto h-4 w-4 text-success" />
-                    ) : (
-                      <Minus className="mx-auto h-4 w-4 text-muted-foreground/40" />
-                    )}
-                  </td>
-                );
-              })}
+    <SectionCard icon={KeyRound} title="Permisos por rol" description="Qué puede hacer cada rol dentro del sistema." tone="accent" bodyClassName="p-0">
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[640px] border-collapse text-sm">
+          <thead>
+            <tr className="border-b border-border">
+              <th className="px-5 py-3 text-left text-xs font-medium uppercase tracking-wide text-muted-foreground sm:px-6">Permiso</th>
+              {roles.map((r) => (
+                <th key={r} className="px-3 py-3 text-center text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                  {CRM_ROLE_LABEL[r]}
+                </th>
+              ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {CRM_ALL_PERMISSIONS.map((perm) => (
+              <tr key={perm} className="border-b border-border last:border-0 hover:bg-surface-2/50">
+                <td className="px-5 py-2.5 sm:px-6">{CRM_PERMISSION_LABEL[perm]}</td>
+                {roles.map((r) => {
+                  const has = CRM_ROLE_PERMISSIONS[r].includes(perm);
+                  return (
+                    <td key={r} className="px-3 py-2.5 text-center">
+                      {has ? (
+                        <Check className="mx-auto h-4 w-4 text-success" />
+                      ) : (
+                        <Minus className="mx-auto h-4 w-4 text-muted-foreground/40" />
+                      )}
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </SectionCard>
   );
 }
 
@@ -228,45 +326,34 @@ function SecurityTab() {
   const [loginAlerts, setLoginAlerts] = useState(true);
   const [forceStrong, setForceStrong] = useState(false);
 
-  const rows = [
-    {
-      icon: ShieldCheck,
-      title: "Autenticación en dos pasos (2FA)",
-      desc: "Exige un código adicional al iniciar sesión.",
-      value: twoFa,
-      set: setTwoFa,
-    },
-    {
-      icon: Monitor,
-      title: "Alertas de inicio de sesión",
-      desc: "Notifica cuando se accede desde un dispositivo nuevo.",
-      value: loginAlerts,
-      set: setLoginAlerts,
-    },
-    {
-      icon: ShieldCheck,
-      title: "Forzar contraseñas robustas",
-      desc: "Mínimo 12 caracteres con números y símbolos.",
-      value: forceStrong,
-      set: setForceStrong,
-    },
-  ];
-
   return (
-    <div className="space-y-3">
-      {rows.map((r) => (
-        <div key={r.title} className="flex items-center gap-4 rounded-3xl border border-border bg-surface p-5 shadow-[var(--shadow-sm)]">
-          <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-primary/12 text-primary">
-            <r.icon className="h-5 w-5" />
-          </span>
-          <div className="min-w-0 flex-1">
-            <p className="font-medium">{r.title}</p>
-            <p className="text-sm text-muted-foreground">{r.desc}</p>
-          </div>
-          <Switch checked={r.value} onChange={r.set} aria-label={r.title} />
-        </div>
-      ))}
-    </div>
+    <SectionCard icon={Lock} title="Seguridad de la cuenta" description="Protege el acceso de tu equipo al CRM." tone="success">
+      <div className="divide-y divide-border">
+        <ToggleRow
+          icon={ShieldCheck}
+          tone="success"
+          title="Autenticación en dos pasos (2FA)"
+          desc="Exige un código adicional al iniciar sesión."
+          checked={twoFa}
+          onChange={setTwoFa}
+        />
+        <ToggleRow
+          icon={Monitor}
+          title="Alertas de inicio de sesión"
+          desc="Notifica cuando se accede desde un dispositivo nuevo."
+          checked={loginAlerts}
+          onChange={setLoginAlerts}
+        />
+        <ToggleRow
+          icon={ShieldCheck}
+          tone="warning"
+          title="Forzar contraseñas robustas"
+          desc="Mínimo 12 caracteres con números y símbolos."
+          checked={forceStrong}
+          onChange={setForceStrong}
+        />
+      </div>
+    </SectionCard>
   );
 }
 
@@ -280,32 +367,34 @@ function SessionsTab({ sessions: initialSessions }: { sessions: CrmActiveSession
   }
 
   return (
-    <div className="space-y-3">
-      {sessions.map((s) => {
-        const Icon = s.device.toLowerCase().includes("iphone") || s.device.toLowerCase().includes("android") ? Smartphone : Monitor;
-        return (
-          <div key={s.id} className="flex items-center gap-4 rounded-3xl border border-border bg-surface p-5 shadow-[var(--shadow-sm)]">
-            <span className={cn("inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl", s.current ? "bg-success/14 text-success" : "bg-surface-2 text-muted-foreground")}>
-              <Icon className="h-5 w-5" />
-            </span>
-            <div className="min-w-0 flex-1">
-              <p className="flex items-center gap-2 font-medium">
-                {s.device} · {s.browser}
-                {s.current && <Badge tone="success">Esta sesión</Badge>}
-              </p>
-              <p className="text-sm text-muted-foreground">
-                {s.location} · {s.ip} · <RelativeTime iso={s.lastActiveAt} />
-              </p>
+    <SectionCard icon={Monitor} title="Sesiones activas" description="Dispositivos con acceso a tu cuenta ahora mismo." tone="neutral">
+      <div className="divide-y divide-border">
+        {sessions.map((s) => {
+          const Icon = s.device.toLowerCase().includes("iphone") || s.device.toLowerCase().includes("android") ? Smartphone : Monitor;
+          return (
+            <div key={s.id} className="flex items-center gap-4 py-4 first:pt-0 last:pb-0">
+              <span className={cn("inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl", s.current ? "bg-success/14 text-success" : "bg-surface-2 text-muted-foreground")}>
+                <Icon className="h-5 w-5" />
+              </span>
+              <div className="min-w-0 flex-1">
+                <p className="flex items-center gap-2 font-medium">
+                  {s.device} · {s.browser}
+                  {s.current && <Badge tone="success">Esta sesión</Badge>}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  {s.location} · {s.ip} · <RelativeTime iso={s.lastActiveAt} />
+                </p>
+              </div>
+              {!s.current && (
+                <Button variant="outline" size="sm" onClick={() => revoke(s.id)}>
+                  <LogOut className="h-4 w-4" /> Revocar
+                </Button>
+              )}
             </div>
-            {!s.current && (
-              <Button variant="outline" size="sm" onClick={() => revoke(s.id)}>
-                <LogOut className="h-4 w-4" /> Revocar
-              </Button>
-            )}
-          </div>
-        );
-      })}
-    </div>
+          );
+        })}
+      </div>
+    </SectionCard>
   );
 }
 
@@ -348,5 +437,9 @@ function AuditTab({ audit }: { audit: CrmAuditEntry[] }) {
     },
     { key: "at", header: "Cuándo", width: "auto", align: "right", hideOnMobile: true, cell: (a) => <RelativeTime iso={a.at} className="text-xs text-muted-foreground" /> },
   ];
-  return <DataTable columns={columns} rows={audit} keyOf={(a) => a.id} />;
+  return (
+    <SectionCard icon={History} title="Registro de auditoría" description="Acciones recientes del equipo sobre datos sensibles." tone="warning" bodyClassName="p-0">
+      <DataTable columns={columns} rows={audit} keyOf={(a) => a.id} className="rounded-none border-0 bg-transparent shadow-none" />
+    </SectionCard>
+  );
 }

@@ -17,6 +17,8 @@ export * from "./components/switch";
 export * from "./components/skeleton";
 export * from "./components/avatar";
 export * from "./components/brand-logo";
+export * from "./components/flying-plane";
+export * from "./components/section";
 export * from "./components/relative-time";
 export * from "./components/modal";
 export * from "./components/tabs";

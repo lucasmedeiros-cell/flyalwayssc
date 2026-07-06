@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
+import { FlyingPlane } from "@vialta/ui";
 import { getServerUser } from "@/lib/auth/session";
 import { LoginForm } from "@/components/auth/login-form";
 
@@ -18,6 +19,8 @@ export default async function LoginPage() {
       {/* Fondo aurora de marca */}
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-aurora opacity-70" />
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-background/40" />
+      {/* Avioncito que cruza la pantalla para dar la bienvenida al ingresar. */}
+      <FlyingPlane size={32} />
       <Suspense>
         <LoginForm />
       </Suspense>

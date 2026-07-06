@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { Search, Plus, Plane, TrendingUp, Ticket as TicketIcon, Clock } from "lucide-react";
 import type { Ticket, TicketStatus } from "@vialta/types";
 import { TICKET_STATUS_LABEL, TRAVEL_CLASS_LABEL } from "@vialta/types";
-import { Avatar, Badge, Button, DataTable, type Column, Tabs, Input, cn, formatMoney, formatInt } from "@vialta/ui";
+import { Avatar, Badge, Button, DataTable, type Column, Tabs, Input, cn, formatMoney, formatInt, PageHeader, SectionCard } from "@vialta/ui";
 import { useAuth } from "@/components/auth/auth-provider";
 import { useMoneyMask } from "@/components/privacy/privacy-provider";
 import { TICKET_STATUS_TONE } from "./ticket-utils";
@@ -130,17 +130,18 @@ export function TicketsView({ initialTickets }: { initialTickets: Ticket[] }) {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight sm:text-3xl">Pasajes</h1>
-          <p className="mt-1 text-sm text-muted-foreground">Pipeline de ventas y emisión de boletos</p>
-        </div>
-        {canSell && (
-          <Button onClick={() => setFormOpen(true)}>
-            <Plus className="h-4 w-4" /> Nueva venta
-          </Button>
-        )}
-      </div>
+      <PageHeader
+        icon={Plane}
+        title="Pasajes"
+        subtitle="Pipeline de ventas y emisión de boletos"
+        action={
+          canSell && (
+            <Button onClick={() => setFormOpen(true)}>
+              <Plus className="h-4 w-4" /> Nueva venta
+            </Button>
+          )
+        }
+      />
 
       <div className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
         {statCards.map((s) => (
@@ -166,23 +167,31 @@ export function TicketsView({ initialTickets }: { initialTickets: Ticket[] }) {
         ))}
       </div>
 
-      <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="w-full max-w-sm">
-          <Input icon={Search} placeholder="Buscar por código, cliente, aerolínea, PNR o ruta…" value={search} onChange={(e) => setSearch(e.target.value)} />
-        </div>
-        <div className="overflow-x-auto pb-1">
-          <Tabs items={FILTERS} value={filter} onChange={setFilter} layoutId="tickets-filter" />
-        </div>
-      </div>
+      <div className="mt-6">
+        <SectionCard
+          icon={TicketIcon}
+          title="Listado de pasajes"
+          description={`${rows.length} de ${tickets.length} pasajes`}
+          bodyClassName="p-0"
+        >
+          <div className="flex flex-col gap-3 border-b border-border px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+            <div className="w-full sm:max-w-sm">
+              <Input icon={Search} placeholder="Buscar por código, cliente, aerolínea, PNR o ruta…" value={search} onChange={(e) => setSearch(e.target.value)} />
+            </div>
+            <div className="-mx-1 overflow-x-auto px-1 pb-1">
+              <Tabs items={FILTERS} value={filter} onChange={setFilter} layoutId="tickets-filter" />
+            </div>
+          </div>
 
-      <div className="mt-4">
-        <DataTable
-          columns={columns}
-          rows={rows}
-          keyOf={(t) => t.id}
-          onRowClick={(t) => router.push(`/pasajes/${t.id}`)}
-          empty="No se encontraron pasajes con esos criterios."
-        />
+          <DataTable
+            columns={columns}
+            rows={rows}
+            keyOf={(t) => t.id}
+            onRowClick={(t) => router.push(`/pasajes/${t.id}`)}
+            empty="No se encontraron pasajes con esos criterios."
+            className="rounded-none border-0 bg-transparent shadow-none"
+          />
+        </SectionCard>
       </div>
 
       {canSell && (

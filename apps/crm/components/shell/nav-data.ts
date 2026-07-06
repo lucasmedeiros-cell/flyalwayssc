@@ -14,7 +14,6 @@ import {
   Megaphone,
   Zap,
   Bell,
-  Sparkles,
   Settings,
   type LucideIcon,
 } from "lucide-react";
@@ -73,7 +72,6 @@ export const CRM_NAV: CrmNavGroup[] = [
   {
     title: "Sistema",
     items: [
-      { href: "/novedades", label: "Novedades", icon: Sparkles, permission: "dashboard.view" },
       { href: "/ajustes", label: "Ajustes", icon: Settings, permission: "settings.view" },
     ],
   },

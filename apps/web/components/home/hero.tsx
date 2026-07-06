@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import { SearchPanel } from "@/components/search/search-panel";
 import { SmartImage } from "@/components/ui/smart-image";
+import { FlyingPlane } from "@/components/common/flying-plane";
 import { HERO_IMAGE } from "@/lib/images";
 import { fadeUpBlur, staggerContainer } from "@/lib/motion";
 
@@ -18,6 +19,9 @@ export function Hero() {
         {/* Tinte de marca sutil. */}
         <div className="absolute inset-0 bg-gradient-to-tr from-primary/35 via-transparent to-accent/25" />
       </div>
+
+      {/* Avioncito que cruza el hero para captar la atención al ingresar. */}
+      <FlyingPlane className="pointer-events-none absolute inset-0 z-0 overflow-hidden" size={34} />
 
       <div className="mx-auto max-w-7xl px-4 pb-12 pt-16 sm:px-6 sm:pt-24 lg:px-8">
         <motion.div

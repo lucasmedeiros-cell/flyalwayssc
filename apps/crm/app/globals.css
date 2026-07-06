@@ -236,8 +236,46 @@ body {
   background-clip: padding-box;
 }
 
-/* Impresión / exportación a PDF: solo se imprime el contenedor .print-area. */
+/* El documento imprimible (.print-area) SIEMPRE se ve como papel: paleta clara
+   fija, aunque la app esté en modo oscuro. Así el preview del modal y el PDF
+   generado nunca heredan el tema oscuro y quedan legibles y profesionales. */
+.print-area {
+  --background: #ffffff;
+  --foreground: #0e1525;
+  --surface: #ffffff;
+  --surface-2: #eef1f8;
+  --muted-foreground: #5b6577;
+  --border: #e4e8f1;
+  color: var(--foreground);
+  background: #ffffff;
+  color-scheme: light;
+}
+
+/* Impresión / exportación a PDF: solo se imprime el contenedor .print-area.
+   El documento suele vivir dentro de un modal (position/overflow/max-height),
+   que al imprimir recortaba todo menos el encabezado. Aquí neutralizamos a
+   TODOS los contenedores que lo envuelven para que fluya a su altura real. */
 @media print {
+  /* Fuerza esquema claro global al imprimir: el lienzo de la página nunca
+     sale oscuro alrededor del documento aunque el CRM esté en modo oscuro. */
+  :root,
+  html,
+  body {
+    color-scheme: light !important;
+  }
+
+  html,
+  body {
+    height: auto !important;
+    overflow: visible !important;
+    background: #fff !important;
+  }
+
+  /* Márgenes de página consistentes para el PDF. */
+  @page {
+    margin: 14mm;
+  }
+
   body * {
     visibility: hidden !important;
   }
@@ -245,16 +283,51 @@ body {
   .print-area * {
     visibility: visible !important;
   }
+
+  /* Cualquier ancestro del documento (modal, overlay, wrappers de framer-motion)
+     deja de recortar, posicionar y limitar la altura, y se pinta de blanco con
+     esquema claro para que el lienzo del PDF nunca salga oscuro alrededor. */
+  :has(.print-area) {
+    position: static !important;
+    overflow: visible !important;
+    max-height: none !important;
+    height: auto !important;
+    transform: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #ffffff !important;
+    color-scheme: light !important;
+    backdrop-filter: none !important;
+  }
+
   .print-area {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    padding: 0;
+    /* Documento siempre en paleta clara y legible, sin importar el tema activo. */
+    --background: #ffffff;
+    --foreground: #0e1525;
+    --surface: #ffffff;
+    --surface-2: #eef1f8;
+    --muted-foreground: #5b6577;
+    --border: #e4e8f1;
+
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    padding: 0 !important;
+    color: var(--foreground);
+    background: #fff !important;
     box-shadow: none !important;
     border: none !important;
   }
+
   .no-print {
     display: none !important;
+  }
+
+  /* Fuerza que se impriman fondos/colores de badges, logos, etc. */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 }
 
