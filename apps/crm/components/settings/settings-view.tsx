@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import { Check, Minus, ShieldCheck, Smartphone, Monitor, LogOut, Settings, Users, KeyRound, History, Lock } from "lucide-react";
 import type { CrmUser, CrmRole, CrmActiveSession, CrmAuditEntry, CrmAuditAction } from "@vialta/types";
@@ -12,7 +11,7 @@ import {
   CRM_ROLE_PERMISSIONS,
   CRM_AUDIT_ACTION_LABEL,
 } from "@vialta/types";
-import { Tabs, Badge, type BadgeTone, Avatar, Switch, Button, DataTable, type Column, Modal, Input, Field, Select, cn, RelativeTime } from "@vialta/ui";
+import { Badge, type BadgeTone, Avatar, Switch, Button, DataTable, type Column, Modal, Input, Field, Select, cn, RelativeTime } from "@vialta/ui";
 import type { CrmSettingsData } from "@/lib/crm/data-source";
 
 const ROLE_OPTIONS: { value: CrmRole; label: string }[] = [
@@ -31,14 +30,6 @@ function initialsFromName(name: string): string {
   if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
   return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
 }
-
-const TABS = [
-  { key: "users", label: "Usuarios y roles" },
-  { key: "permissions", label: "Permisos" },
-  { key: "security", label: "Seguridad" },
-  { key: "sessions", label: "Sesiones" },
-  { key: "audit", label: "Auditoría" },
-];
 
 const ROLE_TONE: Record<CrmRole, BadgeTone> = {
   admin: "primary",
@@ -129,8 +120,9 @@ function ToggleRow({
 /* --------------------------------- Vista ---------------------------------- */
 
 export function SettingsView({ data }: { data: CrmSettingsData }) {
-  const [tab, setTab] = useState("users");
-
+  // Todas las secciones en UNA sola página (sin pestañas): así se ve y edita
+  // todo de un vistazo. Seguridad y Sesiones van a dos columnas; las tablas
+  // (Usuarios, Permisos, Auditoría) ocupan el ancho completo.
   return (
     <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
       <div className="flex items-center gap-3">
@@ -143,17 +135,18 @@ export function SettingsView({ data }: { data: CrmSettingsData }) {
         </div>
       </div>
 
-      <div className="mt-6 overflow-x-auto pb-1">
-        <Tabs items={TABS} value={tab} onChange={setTab} layoutId="settings-tab" />
-      </div>
+      <div className="mt-6 space-y-6">
+        <UsersTab users={data.users} />
 
-      <motion.div key={tab} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2 }} className="mt-6">
-        {tab === "users" && <UsersTab users={data.users} />}
-        {tab === "permissions" && <PermissionsTab />}
-        {tab === "security" && <SecurityTab />}
-        {tab === "sessions" && <SessionsTab sessions={data.sessions} />}
-        {tab === "audit" && <AuditTab audit={data.audit} />}
-      </motion.div>
+        <div className="grid gap-6 lg:grid-cols-2">
+          <SecurityTab />
+          <SessionsTab sessions={data.sessions} />
+        </div>
+
+        <PermissionsTab />
+
+        <AuditTab audit={data.audit} />
+      </div>
     </div>
   );
 }
