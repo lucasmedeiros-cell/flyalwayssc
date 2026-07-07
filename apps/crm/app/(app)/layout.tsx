@@ -3,6 +3,7 @@ import { getServerUser } from "@/lib/auth/session";
 import { AuthProvider } from "@/components/auth/auth-provider";
 import { PrivacyProvider } from "@/components/privacy/privacy-provider";
 import { CrmShell } from "@/components/shell/crm-shell";
+import { BugReportButton } from "@/components/common/bug-report-button";
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   const user = await getServerUser();
@@ -12,6 +13,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
     <AuthProvider user={user}>
       <PrivacyProvider>
         <CrmShell>{children}</CrmShell>
+        <BugReportButton />
       </PrivacyProvider>
     </AuthProvider>
   );

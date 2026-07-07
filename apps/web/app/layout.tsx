@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
+import { BugReportButton } from "@/components/common/bug-report-button";
 
 const sans = Plus_Jakarta_Sans({
   variable: "--font-sans",
@@ -64,6 +65,7 @@ export default async function RootLayout({
           <SiteHeader promoActive={!!promo} />
           <main className="flex-1">{children}</main>
           <SiteFooter />
+          <BugReportButton />
         </ThemeProvider>
       </body>
     </html>
