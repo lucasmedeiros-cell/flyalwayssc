@@ -2,8 +2,12 @@
 
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { User, Lock, Loader2, AlertCircle } from "lucide-react";
+import { User, Lock, Loader2, AlertCircle, Plane } from "lucide-react";
 import { Button, GlassCard, Input, Field, BrandLogo } from "@vialta/ui";
+
+/** URL del sitio web público (para volver desde el CRM). En producción apunta a
+ *  la web de Netlify; en local se sobreescribe con NEXT_PUBLIC_WEB_URL. */
+const WEB_URL = process.env.NEXT_PUBLIC_WEB_URL ?? "https://flyalwayssc.netlify.app";
 
 export function LoginForm() {
   const router = useRouter();
@@ -100,6 +104,14 @@ export function LoginForm() {
           <code className="rounded bg-surface-2 px-1 py-0.5">admin</code>
         </p>
       </div>
+
+      {/* Volver al sitio web público (FlyAlways). */}
+      <a
+        href={WEB_URL}
+        className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-border px-4 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-surface-2"
+      >
+        <Plane className="h-4 w-4" /> Ir al sitio web
+      </a>
     </GlassCard>
   );
 }
