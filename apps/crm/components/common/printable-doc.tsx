@@ -43,7 +43,7 @@ export function PrintableDoc({
   notes?: string;
 }) {
   return (
-    <div className="print-area">
+    <div className="print-area paper-doc">
       <div className="flex items-start justify-between gap-4">
         <BrandLogo size={44} tagline="Agencia de viajes" />
         <div className="text-right">

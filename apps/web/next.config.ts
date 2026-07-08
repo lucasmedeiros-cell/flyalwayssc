@@ -3,6 +3,10 @@ import { version } from "./package.json";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  // Permite acceder al dev server desde otros equipos de la red local (IP en vez
+  // de localhost). Sin esto, Next 16 bloquea HMR/chunks cross-origin y la página
+  // queda sin hidratar (solo se ve el header). Cubre rangos LAN típicos.
+  allowedDevOrigins: ["192.168.125.162", "192.168.*.*", "10.*.*.*", "172.*.*.*"],
   // Versión del sistema expuesta al cliente (se actualiza sola con package.json).
   // Requisito Petrobox #2: mostrar la versión debajo del logo.
   env: { NEXT_PUBLIC_APP_VERSION: version },

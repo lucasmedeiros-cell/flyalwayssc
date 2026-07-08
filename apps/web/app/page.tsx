@@ -1,9 +1,8 @@
 import { getDataSource } from "@/lib/services";
 import { Hero } from "@/components/home/hero";
-import { HeroDestinations } from "@/components/home/hero-destinations";
+import { DestinationsShowcase } from "@/components/home/destinations-showcase";
 import { PromoBanner } from "@/components/home/promo-banner";
 import { FeaturedOffers } from "@/components/home/featured-offers";
-import { HowItWorks } from "@/components/home/how-it-works";
 import { Testimonials } from "@/components/home/testimonials";
 import { PartnersStrip } from "@/components/home/partners-strip";
 
@@ -11,11 +10,14 @@ export default async function HomePage() {
   const promo = await getDataSource().getPromo();
   return (
     <>
+      {/* Hero principal: diseño original (foto + titular + buscador). */}
       <Hero />
-      <HeroDestinations />
+
+      {/* Producto destacado — entre el hero y la sección de destinos. */}
       {promo && <PromoBanner promo={promo} />}
+
+      <DestinationsShowcase />
       <FeaturedOffers />
-      <HowItWorks />
       <Testimonials />
       <PartnersStrip />
     </>

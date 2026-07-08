@@ -77,12 +77,12 @@ export const NAV: NavItem[] = [
   },
   {
     label: "Cómo funciona",
-    href: "/#como-funciona",
+    href: "/como-funciona",
     mega: {
       links: [
-        { label: "Cómo reservar", description: "De la búsqueda al ticket", href: "/#como-funciona", icon: MousePointerClick },
-        { label: "Cómo pagar", description: "Seguro y en bolivianos", href: "/#como-funciona", icon: CreditCard },
-        { label: "Cancelar reservas", description: "Sin letra chica", href: "/#como-funciona", icon: RotateCcw },
+        { label: "Cómo reservar", description: "De la búsqueda al ticket", href: "/como-funciona", icon: MousePointerClick },
+        { label: "Cómo pagar", description: "Seguro y en bolivianos", href: "/como-funciona", icon: CreditCard },
+        { label: "Cancelar reservas", description: "Sin letra chica", href: "/como-funciona", icon: RotateCcw },
         { label: "Preguntas frecuentes", description: "Resolvemos tus dudas", href: "/#ayuda", icon: HelpCircle },
       ],
       cta: { label: "Empezar a reservar", href: "/#buscador" },

@@ -236,10 +236,12 @@ body {
   background-clip: padding-box;
 }
 
-/* El documento imprimible (.print-area) SIEMPRE se ve como papel: paleta clara
-   fija, aunque la app esté en modo oscuro. Así el preview del modal y el PDF
-   generado nunca heredan el tema oscuro y quedan legibles y profesionales. */
-.print-area {
+/* Los DOCUMENTOS (facturas, recibos, vouchers) siempre se ven como papel:
+   paleta clara fija, aunque la app esté en modo oscuro. Se limita a `.paper-doc`
+   para NO afectar a otras vistas imprimibles (p. ej. Reportes, que en pantalla
+   debe seguir el tema). La impresión de cualquier `.print-area` se aclara aparte
+   dentro de @media print. */
+.print-area.paper-doc {
   --background: #ffffff;
   --foreground: #0e1525;
   --surface: #ffffff;
@@ -340,3 +342,4 @@ body {
     scroll-behavior: auto !important;
   }
 }
+

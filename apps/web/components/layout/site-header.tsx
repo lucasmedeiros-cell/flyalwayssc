@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { BrandLogo } from "@/components/ui/brand-logo";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { DesktopNav } from "@/components/layout/desktop-nav";
 import { MobileNav } from "@/components/layout/mobile-nav";
 import { Button } from "@/components/ui/button";
+import { CurrencyToggle } from "@/components/layout/currency-toggle";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader({ promoActive = false }: { promoActive?: boolean }) {
@@ -44,7 +45,8 @@ export function SiteHeader({ promoActive = false }: { promoActive?: boolean }) {
           <DesktopNav promoActive={promoActive} />
 
           <div className="flex items-center gap-2">
-            <ThemeToggle />
+            <CurrencyToggle />
+            <ThemeToggle className="h-9 w-9" />
             <Link href="/perfil" className="hidden sm:block">
               <Button variant="outline" size="sm">
                 Ingresar

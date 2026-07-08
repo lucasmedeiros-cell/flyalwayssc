@@ -19,6 +19,8 @@ type BadgeKind = "flash" | "best" | "web" | "popular" | "last";
 type Offer = {
   origin: string;
   destination: string;
+  /** Slug del paquete al que enlaza "Reservar" (vista /paquetes/[slug]). */
+  slug: string;
   image: CuratedImage;
   oldPrice: number;
   newPrice: number;
@@ -30,12 +32,12 @@ type Offer = {
 };
 
 const OFFERS: Offer[] = [
-  { origin: "La Paz", destination: "Uyuni", image: DESTINATION_IMAGES["Uyuni"], oldPrice: 1200, newPrice: 780, seatsLeft: 3, viewers: 24, lastBookedMin: 2, badge: "flash", recommended: true },
-  { origin: "Santa Cruz", destination: "La Paz", image: DESTINATION_IMAGES["La Paz"], oldPrice: 980, newPrice: 686, seatsLeft: 8, viewers: 18, lastBookedMin: 5, badge: "popular" },
-  { origin: "Santa Cruz", destination: "Sucre", image: DESTINATION_IMAGES["Sucre"], oldPrice: 720, newPrice: 518, seatsLeft: 5, viewers: 12, lastBookedMin: 8, badge: "best" },
-  { origin: "La Paz", destination: "Rurrenabaque", image: DESTINATION_IMAGES["Rurrenabaque"], oldPrice: 990, newPrice: 743, seatsLeft: 4, viewers: 15, lastBookedMin: 3, badge: "web" },
-  { origin: "Santa Cruz", destination: "Tarija", image: DESTINATION_IMAGES["Tarija"], oldPrice: 880, newPrice: 598, seatsLeft: 2, viewers: 21, lastBookedMin: 1, badge: "last" },
-  { origin: "Santa Cruz", destination: "Cochabamba", image: DESTINATION_IMAGES["Cochabamba"], oldPrice: 540, newPrice: 421, seatsLeft: 12, viewers: 9, lastBookedMin: 11, badge: "best" },
+  { origin: "La Paz", destination: "Uyuni", slug: "salar-de-uyuni", image: DESTINATION_IMAGES["Uyuni"], oldPrice: 1200, newPrice: 780, seatsLeft: 3, viewers: 24, lastBookedMin: 2, badge: "flash", recommended: true },
+  { origin: "Santa Cruz", destination: "La Paz", slug: "la-paz-cordillera-real", image: DESTINATION_IMAGES["La Paz"], oldPrice: 980, newPrice: 686, seatsLeft: 8, viewers: 18, lastBookedMin: 5, badge: "popular" },
+  { origin: "Santa Cruz", destination: "Sucre", slug: "sucre-colonial", image: DESTINATION_IMAGES["Sucre"], oldPrice: 720, newPrice: 518, seatsLeft: 5, viewers: 12, lastBookedMin: 8, badge: "best" },
+  { origin: "La Paz", destination: "Rurrenabaque", slug: "madidi-rurrenabaque", image: DESTINATION_IMAGES["Rurrenabaque"], oldPrice: 990, newPrice: 743, seatsLeft: 4, viewers: 15, lastBookedMin: 3, badge: "web" },
+  { origin: "Santa Cruz", destination: "Tarija", slug: "valles-de-tarija", image: DESTINATION_IMAGES["Tarija"], oldPrice: 880, newPrice: 598, seatsLeft: 2, viewers: 21, lastBookedMin: 1, badge: "last" },
+  { origin: "Santa Cruz", destination: "Cochabamba", slug: "cochabamba-valle-alto", image: DESTINATION_IMAGES["Cochabamba"], oldPrice: 540, newPrice: 421, seatsLeft: 12, viewers: 9, lastBookedMin: 11, badge: "best" },
 ];
 
 const FILTERS = ["Todas", "Último minuto", "Fin de semana", "Nacionales", "Internacionales"] as const;
@@ -244,7 +246,7 @@ function OfferCard({ offer }: { offer: Offer }) {
           </span>
         )}
 
-        <Link href="/buscar?mode=air" className="mt-auto">
+        <Link href={`/paquetes/${offer.slug}`} className="mt-auto">
           <Button size="lg" className="w-full">
             Reservar
           </Button>

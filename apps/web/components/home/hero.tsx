@@ -10,14 +10,18 @@ import { fadeUpBlur, staggerContainer } from "@/lib/motion";
 
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden">
+    <section className="relative isolate flex min-h-[calc(100vh-4rem)] flex-col justify-center overflow-hidden">
       {/* Fotografía aspiracional full-bleed (cae al gradiente de marca si falla). */}
       <div className="absolute inset-0 -z-10">
         <SmartImage image={HERO_IMAGE} priority sizes="100vw" imgClassName="scale-105" />
-        {/* Scrim para legibilidad + fundido con el fondo de la página. */}
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/75 via-slate-950/55 to-background" />
-        {/* Tinte de marca sutil. */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-primary/35 via-transparent to-accent/25" />
+        {/* Scrim para legibilidad + fundido con el fondo de la página.
+            Theme-aware: en modo CLARO el velo es más oscuro (mejor contraste del
+            texto blanco); en modo OSCURO se aclara para que la foto se vea más
+            nítida. El `to-background` mantiene el fondo del buscador legible en
+            ambos temas. */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/60 to-background dark:from-slate-950/40 dark:via-slate-950/25" />
+        {/* Tinte de marca sutil (más discreto en oscuro para no ensuciar la foto). */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-primary/35 via-transparent to-accent/25 dark:from-primary/20 dark:to-accent/15" />
       </div>
 
       {/* Avioncito que cruza el hero para captar la atención al ingresar. */}

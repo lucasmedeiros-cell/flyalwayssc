@@ -37,3 +37,6 @@ next-env.d.ts
 
 # prisma
 prisma/*.db
+
+# netlify (estado local del CLI: siteId, no versionar)
+.netlify/

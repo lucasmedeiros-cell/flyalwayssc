@@ -28,7 +28,7 @@ const TRIGGER_ICON: Record<AutomationTrigger, LucideIcon> = {
   passport_expiry: ShieldAlert,
 };
 
-export function AutomationsView({ initial }: { initial: Automation[] }) {
+export function AutomationsView({ initial, embedded = false }: { initial: Automation[]; embedded?: boolean }) {
   const { can } = useAuth();
   const canManage = can("automations.manage");
   const [automations, setAutomations] = useState<Automation[]>(initial);
@@ -59,10 +59,14 @@ export function AutomationsView({ initial }: { initial: Automation[] }) {
   ];
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <div className={embedded ? "" : "mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8"}>
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight sm:text-3xl">Automatizaciones</h1>
+          {embedded ? (
+            <h2 className="font-[family-name:var(--font-display)] text-lg font-bold tracking-tight">Automatizaciones</h2>
+          ) : (
+            <h1 className="font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight sm:text-3xl">Automatizaciones</h1>
+          )}
           <p className="mt-1 text-sm text-muted-foreground">Flujos disparados por eventos: pagos, viajes, cumpleaños y seguimiento</p>
         </div>
         {canManage && (

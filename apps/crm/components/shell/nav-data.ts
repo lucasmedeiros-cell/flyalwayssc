@@ -12,8 +12,8 @@ import {
   BarChart3,
   FileBadge,
   Megaphone,
-  Zap,
   Bell,
+  Bot,
   Settings,
   type LucideIcon,
 } from "lucide-react";
@@ -43,6 +43,7 @@ export const CRM_NAV: CrmNavGroup[] = [
   {
     title: "Comercial",
     items: [
+      { href: "/vendedor", label: "Vendedor 24/7", icon: Bot, permission: "tickets.view" },
       { href: "/clientes", label: "Clientes", icon: Users, permission: "clients.view" },
       { href: "/pasajes", label: "Pasajes", icon: Ticket, permission: "tickets.view" },
       { href: "/paquetes", label: "Paquetes", icon: Package, permission: "packages.view" },
@@ -65,7 +66,6 @@ export const CRM_NAV: CrmNavGroup[] = [
       { href: "/reportes", label: "Reportes", icon: BarChart3, permission: "reports.view" },
       { href: "/documentos", label: "Documentos", icon: FileBadge, permission: "documents.view" },
       { href: "/marketing", label: "Marketing", icon: Megaphone, permission: "marketing.view" },
-      { href: "/automatizaciones", label: "Automatizaciones", icon: Zap, permission: "automations.view" },
       { href: "/notificaciones", label: "Notificaciones", icon: Bell, permission: "notifications.view" },
     ],
   },

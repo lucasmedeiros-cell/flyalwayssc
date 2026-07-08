@@ -2,16 +2,15 @@
 
 import { useState } from "react";
 import type { LucideIcon } from "lucide-react";
-import { Check, Minus, ShieldCheck, Smartphone, Monitor, LogOut, Settings, Users, KeyRound, History, Lock } from "lucide-react";
-import type { CrmUser, CrmRole, CrmActiveSession, CrmAuditEntry, CrmAuditAction } from "@vialta/types";
+import { ShieldCheck, Smartphone, Monitor, LogOut, Settings, Users, History, Lock, Bot, Clock, UserCheck, Sparkles, MessageSquareText } from "lucide-react";
+import type { CrmUser, CrmRole, CrmActiveSession, CrmAuditEntry, CrmAuditAction, Automation } from "@vialta/types";
 import {
   CRM_ROLE_LABEL,
-  CRM_ALL_PERMISSIONS,
-  CRM_PERMISSION_LABEL,
-  CRM_ROLE_PERMISSIONS,
   CRM_AUDIT_ACTION_LABEL,
 } from "@vialta/types";
-import { Badge, type BadgeTone, Avatar, Switch, Button, DataTable, type Column, Modal, Input, Field, Select, cn, RelativeTime } from "@vialta/ui";
+import { Badge, type BadgeTone, Avatar, Switch, Button, DataTable, type Column, Modal, Input, Field, Select, Textarea, cn, RelativeTime } from "@vialta/ui";
+import { useAuth } from "@/components/auth/auth-provider";
+import { AutomationsView } from "@/components/automations/automations-view";
 import type { CrmSettingsData } from "@/lib/crm/data-source";
 
 const ROLE_OPTIONS: { value: CrmRole; label: string }[] = [
@@ -119,10 +118,11 @@ function ToggleRow({
 
 /* --------------------------------- Vista ---------------------------------- */
 
-export function SettingsView({ data }: { data: CrmSettingsData }) {
+export function SettingsView({ data, automations }: { data: CrmSettingsData; automations: Automation[] }) {
+  const { can } = useAuth();
   // Todas las secciones en UNA sola página (sin pestañas): así se ve y edita
   // todo de un vistazo. Seguridad y Sesiones van a dos columnas; las tablas
-  // (Usuarios, Permisos, Auditoría) ocupan el ancho completo.
+  // (Usuarios, Auditoría) y las automatizaciones ocupan el ancho completo.
   return (
     <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
       <div className="flex items-center gap-3">
@@ -131,23 +131,201 @@ export function SettingsView({ data }: { data: CrmSettingsData }) {
         </span>
         <div>
           <h1 className="font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight sm:text-3xl">Ajustes</h1>
-          <p className="mt-0.5 text-sm text-muted-foreground">Usuarios, roles, permisos, seguridad y auditoría.</p>
+          <p className="mt-0.5 text-sm text-muted-foreground">Usuarios, seguridad, Vendedor 24/7 y automatizaciones.</p>
         </div>
       </div>
 
       <div className="mt-6 space-y-6">
         <UsersTab users={data.users} />
 
+        <VendedorConfigCard />
+
+        {can("automations.view") && (
+          <SectionCard icon={Sparkles} title="Automatizaciones" description="Flujos disparados por eventos: pagos, viajes, cumpleaños y seguimiento." tone="primary" bodyClassName="px-5 py-5 sm:px-6">
+            <AutomationsView initial={automations} embedded />
+          </SectionCard>
+        )}
+
         <div className="grid gap-6 lg:grid-cols-2">
           <SecurityTab />
           <SessionsTab sessions={data.sessions} />
         </div>
 
-        <PermissionsTab />
-
         <AuditTab audit={data.audit} />
       </div>
     </div>
+  );
+}
+
+/* ------------------------------ Vendedor 24/7 ----------------------------- */
+
+const TONO_OPTIONS = [
+  { value: "cercano", label: "Cercano y amable" },
+  { value: "formal", label: "Formal y profesional" },
+  { value: "neutral", label: "Neutral y directo" },
+];
+
+/** Encabezado de sub-bloque dentro de una tarjeta de ajustes. */
+function SubHeading({ icon: Icon, title, desc }: { icon: LucideIcon; title: string; desc?: string }) {
+  return (
+    <div className="mb-3 flex items-center gap-2.5">
+      <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-success/14 text-success">
+        <Icon className="h-4 w-4" />
+      </span>
+      <div>
+        <p className="text-sm font-semibold leading-tight">{title}</p>
+        {desc && <p className="text-xs text-muted-foreground">{desc}</p>}
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Parámetros del Vendedor 24/7 (bot de WhatsApp con IA). Estado local (mock),
+ * igual que el resto de Ajustes; al conectar el backend estos valores se
+ * persistirán vía el data-source. Cuatro grupos: activación/horario, traspaso
+ * a humano, tono/auto-cotización y mensaje de bienvenida.
+ */
+function VendedorConfigCard() {
+  const { can } = useAuth();
+  const editable = can("settings.manage") || can("automations.manage");
+
+  // 1 · Activación y horario
+  const [active, setActive] = useState(true);
+  const [always, setAlways] = useState(true);
+  const [from, setFrom] = useState("08:00");
+  const [to, setTo] = useState("22:00");
+
+  // 2 · Traspaso a humano
+  const [keywords, setKeywords] = useState("humano, asesor, reclamo, urgente");
+  const [handoffAfter, setHandoffAfter] = useState("6");
+  const [handoffHot, setHandoffHot] = useState(true);
+
+  // 3 · Tono y auto-cotización
+  const [tono, setTono] = useState("cercano");
+  const [autoQuote, setAutoQuote] = useState(true);
+  const [autoClose, setAutoClose] = useState(false);
+
+  // 4 · Mensaje de bienvenida
+  const [welcome, setWelcome] = useState(
+    "¡Hola! 👋 Soy el asistente de FlyAlways. Cuéntame a dónde quieres viajar y con gusto te ayudo a cotizar y reservar tu pasaje.",
+  );
+  const [signature, setSignature] = useState("Vendedor 24/7 · FlyAlways");
+
+  const dim = editable ? "" : "pointer-events-none opacity-60";
+
+  return (
+    <SectionCard
+      icon={Bot}
+      title="Vendedor 24/7"
+      description="Asistente de WhatsApp con IA: parámetros de atención automática."
+      tone="success"
+      action={<Badge tone={active ? "success" : "neutral"}>{active ? "Activo" : "En pausa"}</Badge>}
+    >
+      <div className={cn("space-y-6", dim)}>
+        {/* 1 · Activación y horario */}
+        <div>
+          <SubHeading icon={Clock} title="Activación y horario" desc="Cuándo atiende el bot automáticamente." />
+          <div className="divide-y divide-border">
+            <ToggleRow
+              icon={Bot}
+              tone="success"
+              title="Vendedor 24/7 activo"
+              desc="El bot responde y gestiona chats de WhatsApp por su cuenta."
+              checked={active}
+              onChange={setActive}
+            />
+            <ToggleRow
+              icon={Clock}
+              title="Atención las 24 horas"
+              desc="Si lo desactivas, el bot solo responde dentro de la franja horaria."
+              checked={always}
+              onChange={setAlways}
+            />
+          </div>
+          {!always && (
+            <div className="mt-3 grid grid-cols-2 gap-3">
+              <Field label="Desde" htmlFor="v-from">
+                <Input id="v-from" type="time" value={from} onChange={(e) => setFrom(e.target.value)} />
+              </Field>
+              <Field label="Hasta" htmlFor="v-to">
+                <Input id="v-to" type="time" value={to} onChange={(e) => setTo(e.target.value)} />
+              </Field>
+            </div>
+          )}
+        </div>
+
+        {/* 2 · Traspaso a humano */}
+        <div className="border-t border-border pt-5">
+          <SubHeading icon={UserCheck} title="Traspaso a humano" desc="Cuándo pasar la conversación a un agente." />
+          <div className="grid gap-4 sm:grid-cols-2">
+            <Field label="Palabras clave que activan el traspaso" htmlFor="v-keywords" className="sm:col-span-2">
+              <Input
+                id="v-keywords"
+                value={keywords}
+                onChange={(e) => setKeywords(e.target.value)}
+                placeholder="humano, asesor, reclamo"
+              />
+            </Field>
+            <Field label="Traspasar tras N mensajes sin cierre" htmlFor="v-after">
+              <Input id="v-after" type="number" min={1} max={50} value={handoffAfter} onChange={(e) => setHandoffAfter(e.target.value)} />
+            </Field>
+          </div>
+          <div className="mt-1 divide-y divide-border">
+            <ToggleRow
+              icon={UserCheck}
+              tone="accent"
+              title="Traspasar leads calientes automáticamente"
+              desc="Cuando el lead muestra alta intención de compra, avisa a un agente."
+              checked={handoffHot}
+              onChange={setHandoffHot}
+            />
+          </div>
+        </div>
+
+        {/* 3 · Tono y auto-cotización */}
+        <div className="border-t border-border pt-5">
+          <SubHeading icon={Sparkles} title="Tono y auto-cotización" desc="Cómo habla y qué puede resolver solo." />
+          <Field label="Tono de las respuestas" htmlFor="v-tono">
+            <Select id="v-tono" options={TONO_OPTIONS} value={tono} onChange={(e) => setTono(e.target.value)} />
+          </Field>
+          <div className="mt-1 divide-y divide-border">
+            <ToggleRow
+              icon={Sparkles}
+              title="Cotiza automáticamente"
+              desc="El bot arma y envía cotizaciones de pasajes sin intervención."
+              checked={autoQuote}
+              onChange={setAutoQuote}
+            />
+            <ToggleRow
+              icon={Sparkles}
+              tone="warning"
+              title="Cierra y emite pasajes sin intervención"
+              desc="Permite que el bot confirme la venta y emita el pasaje automáticamente."
+              checked={autoClose}
+              onChange={setAutoClose}
+            />
+          </div>
+        </div>
+
+        {/* 4 · Mensaje de bienvenida */}
+        <div className="border-t border-border pt-5">
+          <SubHeading icon={MessageSquareText} title="Mensaje de bienvenida" desc="Primer mensaje automático y firma del bot." />
+          <Field label="Texto de bienvenida" htmlFor="v-welcome">
+            <Textarea id="v-welcome" value={welcome} onChange={(e) => setWelcome(e.target.value)} rows={3} />
+          </Field>
+          <Field label="Firma" htmlFor="v-sign" className="mt-4">
+            <Input id="v-sign" value={signature} onChange={(e) => setSignature(e.target.value)} />
+          </Field>
+        </div>
+
+        {editable && (
+          <div className="flex justify-end border-t border-border pt-4">
+            <Button size="sm">Guardar cambios</Button>
+          </div>
+        )}
+      </div>
+    </SectionCard>
   );
 }
 
@@ -266,49 +444,6 @@ function UsersTab({ users: initialUsers }: { users: CrmUser[] }) {
         </form>
       </Modal>
     </>
-  );
-}
-
-/* --------------------------------- Permisos -------------------------------- */
-
-function PermissionsTab() {
-  const roles = Object.keys(CRM_ROLE_PERMISSIONS) as CrmRole[];
-  return (
-    <SectionCard icon={KeyRound} title="Permisos por rol" description="Qué puede hacer cada rol dentro del sistema." tone="accent" bodyClassName="p-0">
-      <div className="overflow-x-auto">
-        <table className="w-full min-w-[640px] border-collapse text-sm">
-          <thead>
-            <tr className="border-b border-border">
-              <th className="px-5 py-3 text-left text-xs font-medium uppercase tracking-wide text-muted-foreground sm:px-6">Permiso</th>
-              {roles.map((r) => (
-                <th key={r} className="px-3 py-3 text-center text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                  {CRM_ROLE_LABEL[r]}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {CRM_ALL_PERMISSIONS.map((perm) => (
-              <tr key={perm} className="border-b border-border last:border-0 hover:bg-surface-2/50">
-                <td className="px-5 py-2.5 sm:px-6">{CRM_PERMISSION_LABEL[perm]}</td>
-                {roles.map((r) => {
-                  const has = CRM_ROLE_PERMISSIONS[r].includes(perm);
-                  return (
-                    <td key={r} className="px-3 py-2.5 text-center">
-                      {has ? (
-                        <Check className="mx-auto h-4 w-4 text-success" />
-                      ) : (
-                        <Minus className="mx-auto h-4 w-4 text-muted-foreground/40" />
-                      )}
-                    </td>
-                  );
-                })}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </SectionCard>
   );
 }
 

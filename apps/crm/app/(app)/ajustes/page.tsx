@@ -12,6 +12,7 @@ export default async function AjustesPage() {
     return <AccessDenied message="Solo administración y supervisión pueden acceder a Ajustes." />;
   }
 
-  const data = await getCrmDataSource().getSettings();
-  return <SettingsView data={data} />;
+  const ds = getCrmDataSource();
+  const [data, automations] = await Promise.all([ds.getSettings(), ds.listAutomations()]);
+  return <SettingsView data={data} automations={automations} />;
 }

@@ -7,6 +7,7 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { BugReportButton } from "@/components/common/bug-report-button";
+import { CurrencyProvider } from "@/components/common/currency-provider";
 
 const sans = Plus_Jakarta_Sans({
   variable: "--font-sans",
@@ -61,11 +62,13 @@ export default async function RootLayout({
     <html lang="es-BO" suppressHydrationWarning className={`${sans.variable} ${display.variable} h-full`}>
       <body className="min-h-full flex flex-col antialiased">
         <ThemeProvider>
-          <ScrollProgress />
-          <SiteHeader promoActive={!!promo} />
-          <main className="flex-1">{children}</main>
-          <SiteFooter />
-          <BugReportButton />
+          <CurrencyProvider>
+            <ScrollProgress />
+            <SiteHeader promoActive={!!promo} />
+            <main className="flex-1">{children}</main>
+            <SiteFooter />
+            <BugReportButton />
+          </CurrencyProvider>
         </ThemeProvider>
       </body>
     </html>

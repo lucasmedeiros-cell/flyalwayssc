@@ -8,8 +8,20 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: false });
 
   app.setGlobalPrefix("api");
+  // Orígenes permitidos: la lista de WEB_ORIGIN (prod) y, en desarrollo, cualquier
+  // IP de la LAN privada (192.168.x, 10.x, 172.16-31.x) para poder abrir la web
+  // desde otro equipo/teléfono de la red sin editar el .env cada vez que cambia la IP.
+  const allowedOrigins = process.env.WEB_ORIGIN?.split(",") ?? ["http://localhost:3000"];
+  const isDev = process.env.NODE_ENV !== "production";
+  const lanOrigin = /^https?:\/\/(localhost|127\.0\.0\.1|192\.168\.\d{1,3}\.\d{1,3}|10\.\d{1,3}\.\d{1,3}\.\d{1,3}|172\.(1[6-9]|2\d|3[01])\.\d{1,3}\.\d{1,3})(:\d+)?$/;
   app.enableCors({
-    origin: process.env.WEB_ORIGIN?.split(",") ?? "http://localhost:3000",
+    origin: (origin: string | undefined, cb: (err: Error | null, allow?: boolean) => void) => {
+      // Sin Origin (curl, apps nativas) o en la lista explícita → permitido.
+      if (!origin || allowedOrigins.includes(origin)) return cb(null, true);
+      // En desarrollo, cualquier origen de la red local.
+      if (isDev && lanOrigin.test(origin)) return cb(null, true);
+      return cb(new Error(`Origen no permitido por CORS: ${origin}`), false);
+    },
     credentials: true,
   });
   app.useGlobalPipes(

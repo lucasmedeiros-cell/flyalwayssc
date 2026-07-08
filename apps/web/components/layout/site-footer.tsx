@@ -11,7 +11,6 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { BrandLogo } from "@/components/ui/brand-logo";
-import { NewsletterForm } from "@/components/layout/newsletter-form";
 
 const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
   {
@@ -28,7 +27,7 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
     links: [
       { label: "Destinos populares", href: "/#destinos" },
       { label: "Experiencias", href: "/#experiencias" },
-      { label: "Cómo funciona", href: "/#como-funciona" },
+      { label: "Cómo funciona", href: "/como-funciona" },
       { label: "Inspiración", href: "/#inspiracion" },
     ],
   },
@@ -37,7 +36,7 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
     links: [
       { label: "Para operadores", href: "/empresas" },
       { label: "Panel admin", href: "/admin" },
-      { label: "Sobre FlyAlways", href: "/#como-funciona" },
+      { label: "Sobre FlyAlways", href: "/como-funciona" },
     ],
   },
   {
@@ -73,24 +72,6 @@ const CRM_URL = process.env.NEXT_PUBLIC_CRM_URL ?? "http://localhost:3001";
 export function SiteFooter() {
   return (
     <footer className="mt-24 border-t border-border bg-surface/40">
-      {/* Newsletter — reciprocidad + retención */}
-      <div className="border-b border-border">
-        <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-12 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-          <div className="max-w-md">
-            <h3 className="font-[family-name:var(--font-display)] text-xl font-bold tracking-tight">
-              Ofertas que despiertan ganas de viajar
-            </h3>
-            <p className="mt-1.5 text-sm text-muted-foreground">
-              Suscríbete y recibe tarifas exclusivas y rutas en oferta antes que nadie.
-              Sin spam, solo buenos viajes.
-            </p>
-          </div>
-          <div className="w-full lg:max-w-md">
-            <NewsletterForm />
-          </div>
-        </div>
-      </div>
-
       {/* Marca + columnas */}
       <div className="mx-auto grid max-w-7xl grid-cols-2 gap-10 px-4 py-14 sm:px-6 md:grid-cols-6 lg:px-8">
         <div className="col-span-2">

@@ -1,11 +1,12 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Search, Plus, FileText, Send, CheckCircle2, ArrowRightLeft } from "lucide-react";
+import { Search, Plus, FileText, Send, CheckCircle2, ArrowRightLeft, Bot } from "lucide-react";
 import type { Quote, QuoteStatus } from "@vialta/types";
 import { QUOTE_STATUS_LABEL, quoteTotal } from "@vialta/types";
 import { Badge, Button, DataTable, type Column, Tabs, Input, cn, formatMoney, formatDate, formatInt } from "@vialta/ui";
 import { useAuth } from "@/components/auth/auth-provider";
+import { VENDEDOR_AGENT } from "@/lib/vendedor";
 import { QUOTE_STATUS_TONE } from "./quote-utils";
 import { QuoteBuilder } from "./quote-builder";
 import { QuotePreview } from "./quote-preview";
@@ -76,7 +77,14 @@ export function QuotesView({ initialQuotes }: { initialQuotes: Quote[] }) {
       width: "1.2fr",
       cell: (q) => (
         <span className="min-w-0">
-          <span className="block font-medium tabular-nums">{q.code}</span>
+          <span className="flex items-center gap-1.5 font-medium tabular-nums">
+            {q.code}
+            {q.agentName === VENDEDOR_AGENT && (
+              <span className="inline-flex items-center gap-1 rounded-full bg-success/15 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-success">
+                <Bot className="h-3 w-3" /> 24/7
+              </span>
+            )}
+          </span>
           <span className="block truncate text-xs text-muted-foreground">{q.customerName}</span>
         </span>
       ),
